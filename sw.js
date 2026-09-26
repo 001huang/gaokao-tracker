@@ -1,5 +1,5 @@
 // 离线缓存与更新：页面网络优先（4 秒超时回退缓存），其他资源缓存优先；新版本等待用户点击「刷新」后启用
-const VERSION = '3df7d065';
+const VERSION = '4fb12014';
 const CACHE = 'gaokao-tracker-' + VERSION;
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon.png'];
 self.addEventListener('install', e => {

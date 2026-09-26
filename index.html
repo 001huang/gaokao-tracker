@@ -252,6 +252,77 @@ html.big .kv{font-size:15px}
 html.big .stats3 span{font-size:13.5px}
 html.big .subsum{font-size:14.5px}
 
+/* v3 新增 */
+.topbar .tr{display:flex;align-items:center;gap:8px;flex:none}
+.gear{flex:none;width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,255,255,.18);color:#fff;display:grid;place-items:center;padding:0}
+.gear svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.gear.on{background:rgba(255,255,255,.38)}
+.seg{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;background:var(--card);border-radius:14px;padding:4px;margin-bottom:12px;box-shadow:var(--sh)}
+.seg button{border:0;background:none;height:40px;border-radius:10px;font-size:15px;color:var(--sub)}
+.seg button.on{background:var(--pri);color:#fff;font-weight:600}
+.pcard{border:1.5px solid var(--pri-soft)}
+.pcard>b{font-size:16px}.pcard p{margin:6px 0 10px}
+.why{font-size:11.5px;color:#0b7285;font-weight:600;margin-top:2px}
+@media (prefers-color-scheme:dark){.why{color:#66d9e8}}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:0}
+.abar{display:flex;height:12px;border-radius:6px;overflow:hidden;background:var(--track);margin:4px 0 8px}
+.abar i{display:block;height:100%}
+.arow{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) auto minmax(0,1fr);gap:6px;align-items:center;padding:6px 0;border-bottom:1px dashed var(--line);font-size:14px}
+.arow:last-child{border-bottom:0}.arow .muted{font-size:12px}.arow>span:last-child{text-align:right}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.f small{font-weight:400;color:var(--sub)}
+.dt{width:100%;border-collapse:collapse;font-size:13.5px}
+.dt th{font-weight:600;color:var(--sub);font-size:12px;text-align:right;padding:4px 2px;border-bottom:1px solid var(--line)}
+.dt th:first-child,.dt td:first-child{text-align:left}
+.dt td{text-align:right;padding:7px 2px;border-bottom:1px dashed var(--line);vertical-align:middle}
+.dt small{display:block;color:var(--sub);font-size:11px;font-weight:400}
+.dt .dn{display:block;white-space:nowrap}
+.dt .tot td{font-weight:700;border-bottom:0}
+.spark{display:block;margin-top:2px}
+.trend{margin-bottom:6px}
+.tr1{display:grid;grid-template-columns:44px minmax(0,1fr) 42px 40px;gap:6px;align-items:center;padding:4px 0;font-size:14px}
+.tr1 b{text-align:right}.tr1 small{text-align:right;font-size:12px}
+.tr1 .sm{font-size:11.5px}
+.up{color:var(--c2)}.down{color:var(--hf)}
+.fbars{margin-top:8px}
+.fb{margin:8px 0;font-size:14px}
+.fbt{position:relative;height:8px;border-radius:4px;background:var(--track);margin-top:4px;overflow:visible}
+.fbt i{display:block;height:100%;border-radius:4px;background:var(--pri)}
+.fbt em{position:absolute;top:-3px;width:2px;height:14px;background:var(--text);opacity:.55;margin-left:-1px}
+.dist .dr{display:grid;grid-template-columns:64px minmax(0,1fr) 26px;gap:8px;align-items:center;font-size:13.5px;margin:6px 0}
+.dist .dr b{text-align:right}
+.dist .fbt i{background:var(--wf)}
+.tip{background:var(--bg);border-radius:10px;padding:9px 11px;margin-top:8px;font-size:13.5px;line-height:1.55}
+.warn-t{color:#c2410c;font-size:14px}
+@media (prefers-color-scheme:dark){.warn-t{color:#ffa94d}}
+.okline{color:var(--c2);font-size:13.5px;margin:0 0 8px}
+.stats3 b small{font-size:12px;font-weight:500;color:var(--sub)}
+.rc-ask{background:var(--pri-soft);color:var(--pri);border-radius:12px;padding:12px;margin:12px 0;font-size:14px}
+.rc-k{background:var(--bg);border-radius:12px;padding:12px;margin:10px 0;white-space:pre-wrap;font-size:15px;word-break:break-word}
+.rate3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.rt{border:0;border-radius:12px;min-height:62px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:15px}
+.rt small{font-size:11.5px;opacity:.8}
+.rt2{background:#d3f9d8;color:#2b8a3e}.rt1{background:#fff3bf;color:#a15c00}.rt0{background:#ffe3e3;color:#c92a2a}
+@media (prefers-color-scheme:dark){.rt2{background:#1d3b26;color:#8ce99a}.rt1{background:#43331a;color:#ffc078}.rt0{background:#3a1f22;color:#ff8787}}
+.fcard{border:1px solid var(--line);border-radius:16px;padding:14px;margin:10px 0 12px}
+.fname{font-size:20px;font-weight:700;margin:8px 0 6px;word-break:break-word}
+.tpk{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tpb{border:1px solid var(--line);border-left:5px solid var(--c);background:var(--card);border-radius:12px;min-height:58px;text-align:left;padding:8px 12px;display:flex;flex-direction:column;justify-content:center}
+.tpb b{font-size:15px}.tpb small{color:var(--sub);font-size:12px}
+.tbar{position:fixed;left:0;right:0;bottom:calc(57px + env(safe-area-inset-bottom));z-index:29;padding:0 max(10px,env(safe-area-inset-right)) 8px max(10px,env(safe-area-inset-left));pointer-events:none}
+.tb-in{pointer-events:auto;max-width:740px;margin:0 auto;display:flex;align-items:center;gap:6px;background:#23305a;color:#fff;border-radius:14px;padding:6px 6px 6px 12px;box-shadow:0 4px 16px rgba(0,0,0,.2)}
+.tb-in.brk{background:#0b7285}.tb-in.ok{background:#2b8a3e}
+.tb-l{flex:1;min-width:0;font-size:13.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tb-in b{font-size:18px;font-variant-numeric:tabular-nums;margin-right:2px}
+.btn.lt{background:rgba(255,255,255,.18);color:#fff;padding:0 10px}
+.x.lt{color:#fff}
+body.timing main{padding-bottom:calc(140px + env(safe-area-inset-bottom))}
+body.timing .toast:not(.top){bottom:calc(150px + env(safe-area-inset-bottom))}
+.ch.flat .ch-b{border-top:0}
+html.big .why{font-size:13px}
+html.big .seg button{font-size:16px}
+html.big .arow,html.big .fb,html.big .dt{font-size:15.5px}
+
 @media (min-width:700px){main{padding:18px 18px 96px}.lhead{margin:-18px -18px 8px;padding:12px 18px 6px}.modes{grid-template-columns:repeat(4,1fr)}}
 @media print{
   body{background:#fff;color:#000;font-size:10.5pt}
@@ -269,15 +340,16 @@ html.big .subsum{font-size:14.5px}
 </style>
 </head>
 <body>
-<header class="topbar"><div class="wrap"><h1>高考知识点打卡器</h1><div class="cd" id="topCd"></div></div></header>
+<header class="topbar"><div class="wrap"><h1>高考知识点打卡器</h1><div class="tr"><div class="cd" id="topCd"></div><button class="gear" id="gear" data-act="tab" data-tab="set" aria-label="设置"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></div></div></header>
 <main><div class="wrap"><div id="banners"></div><div id="view"></div></div></main>
 <nav class="tabbar"><div class="wrap">
   <button data-act="tab" data-tab="dash"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>总览</button>
   <button data-act="tab" data-tab="list"><svg viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1.2"/><circle cx="4.5" cy="12" r="1.2"/><circle cx="4.5" cy="18" r="1.2"/></svg>知识清单</button>
   <button data-act="tab" data-tab="today"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 12l3 3 5-6"/></svg>今日打卡</button>
   <button data-act="tab" data-tab="plan"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4M7.5 14h3M7.5 17.5h6"/></svg>复习计划</button>
-  <button data-act="tab" data-tab="set"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>设置</button>
+  <button data-act="tab" data-tab="ana"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>分析</button>
 </div></nav>
+<div class="tbar" id="tbar"></div>
 <div class="mask" id="mask" data-act="sheet-close"></div>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true"></div>
 <div class="setup" id="setup"></div>
@@ -747,8 +819,8 @@ const MIGRATIONS = {
 /* ==================== 应用逻辑 ==================== */
 (function () {
 'use strict';
-const APP_VERSION = '2.0';
-const BUILD = '3df7d065';
+const APP_VERSION = '3.0';
+const BUILD = '4fb12014';
 const $ = (s, r) => (r || document).querySelector(s);
 const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -812,8 +884,21 @@ function subjectsOf(c) {
 
 /* ---------- 存储、校验与数据迁移 ---------- */
 const LS = 'gaokao-tracker-v1';
-const blankUI = () => ({ tab: 'dash', subj: 'all', filter: 'all', hf: false, q: '', open: {}, fclosed: {}, wkOpen: {}, big: false, wxHide: false, revAll: false });
-const blank = () => ({ v: 1, dv: DATA_VERSION, setup: null, pts: {}, tasks: {}, checkins: {}, plan: null, ui: blankUI() });
+const SCHEMA = 3; // 存档结构版本：1/2 = v1、v2 应用；3 = 新增诊断、专注记录、自测记录、复盘、学习参数
+const CAUSES = ['概念不懂', '方法不会', '计算粗心', '审题失误', '记忆遗忘'];
+const CAUSE_TIPS = [
+  '回到教材重学这个概念，看 1 道例题，再用自己的话写进「我的要点」。',
+  '整理该题型的解题步骤（第一步做什么、常用思路），同类题连做 3 道。',
+  '建立「易错清单」，关键步骤写清楚并验算，草稿分区书写。',
+  '读题时圈出关键词、单位和限定条件，做完回看「题目问的是什么」。',
+  '少重读、多回忆：用闪卡自测，按 1/3/7/15 天间隔复习。'
+];
+const defPref = () => ({ mNew: 25, mRev: 10, focus: 25, brk: 5 });
+const blankUI = () => ({ tab: 'dash', subj: 'all', filter: 'all', hf: false, q: '', open: {}, fclosed: {}, wkOpen: {}, big: false, wxHide: false, revAll: false, ana: 'diag', sortP: false, pMore: 60, diagSkip: false });
+const blank = () => ({ v: SCHEMA, dv: DATA_VERSION, setup: null, pts: {}, tasks: {}, checkins: {}, plan: null, diag: null, focus: {}, timer: null, rec: {}, reviews: {}, pref: defPref(), ui: blankUI() });
+const num = (x, a, b) => (x === '' || x == null || isNaN(+x)) ? null : clamp(+x, a, b);
+const dflt = (v, d) => (v == null ? d : v);
+const byDate = (a, b) => (a.d < b.d ? -1 : a.d > b.d ? 1 : 0);
 const isObj = o => !!o && typeof o === 'object' && !Array.isArray(o);
 function sanitize(o) {
   const b = blank();
@@ -822,6 +907,9 @@ function sanitize(o) {
   r.ui = Object.assign(blankUI(), isObj(o.ui) ? o.ui : {});
   ['open', 'fclosed', 'wkOpen'].forEach(k => { if (!isObj(r.ui[k])) r.ui[k] = {}; });
   if (typeof r.ui.q !== 'string') r.ui.q = '';
+  if (['diag', 'stats', 'review', 'tips'].indexOf(r.ui.ana) < 0) r.ui.ana = 'diag';
+  if (['dash', 'list', 'today', 'plan', 'ana', 'set'].indexOf(r.ui.tab) < 0) r.ui.tab = 'dash';
+  r.ui.pMore = 60;
   r.dv = +o.dv || 1;
   const pts = {};
   if (isObj(o.pts)) Object.keys(o.pts).forEach(k => {
@@ -832,6 +920,9 @@ function sanitize(o) {
     if (typeof v.n === 'string') e.n = v.n;
     if (v.w) e.w = true;
     if (+v.r > 0) e.r = Math.min(99, Math.floor(+v.r));
+    if (+v.f > 0) e.f = Math.min(99, Math.floor(+v.f));
+    if (typeof v.k === 'string' && v.k) e.k = v.k.slice(0, 300);
+    if (Array.isArray(v.c)) { const c = v.c.filter(x => Array.isArray(x) && isDate(x[0]) && CAUSES[x[1]] != null).map(x => [x[0], +x[1]]).slice(-30); if (c.length) e.c = c; }
     pts[k] = e;
   });
   r.pts = pts;
@@ -854,8 +945,42 @@ function sanitize(o) {
   if (isObj(c) && MODES[c.mode] && isDate(c.exam) && isDate(c.r1) && isDate(c.r2)) {
     const ok = c.mode === '312' ? (['wuli', 'lishi'].indexOf(c.first) >= 0 && Array.isArray(c.second) && c.second.length === 2)
       : c.mode === '33' ? (Array.isArray(c.three) && c.three.length === 3) : true;
-    if (ok) { c.subjects = subjectsOf(c).filter(k => SYLLABUS[k]); c.daily = clamp(Math.round(+c.daily) || 20, 1, 100); r.setup = c; } else r.setup = null;
+    if (ok) { c.subjects = subjectsOf(c).filter(k => SYLLABUS[k]); c.daily = clamp(Math.round(+c.daily) || 20, 1, 100); c.target = num(c.target, 0, 750); if (c.target != null) c.target = Math.round(c.target); r.setup = c; } else r.setup = null;
   } else r.setup = null;
+  /* v3 新增字段（v1/v2 存档没有这些字段，这里补默认值即完成 v2→v3 迁移，原有进度/ID 不变） */
+  const D = o.diag;
+  if (isObj(D)) {
+    const tgt = {}; if (isObj(D.tgt)) Object.keys(D.tgt).forEach(k => { const n = num(D.tgt[k], 0, 150); if (SYLLABUS[k] && n != null) tgt[k] = Math.round(n); });
+    const hist = [];
+    (Array.isArray(D.hist) ? D.hist : []).forEach(h => {
+      if (!isObj(h) || !isDate(h.d) || !isObj(h.sc)) return;
+      const sc = {}; Object.keys(h.sc).forEach(k => { const n = num(h.sc[k], 0, 150); if (SYLLABUS[k] && n != null) sc[k] = Math.round(n * 2) / 2; });
+      if (!Object.keys(sc).length) return;
+      const same = hist.find(x => x.d === h.d); if (same) Object.assign(same.sc, sc); else hist.push({ d: h.d, sc });
+    });
+    hist.sort(byDate);
+    r.diag = { tgt, hist: hist.slice(-60), wd: dflt(num(D.wd, 0, 16), 3), we: dflt(num(D.we, 0, 16), 6), done: !!D.done };
+  } else r.diag = null;
+  const fo = {};
+  if (isObj(o.focus)) Object.keys(o.focus).forEach(d => {
+    if (!isDate(d) || !isObj(o.focus[d])) return; const x = {};
+    Object.keys(o.focus[d]).forEach(k => { const n = +o.focus[d][k]; if (SYLLABUS[k] && n > 0) x[k] = Math.min(1440, Math.round(n)); });
+    fo[d] = x;
+  });
+  r.focus = fo;
+  const T = o.timer;
+  r.timer = isObj(T) && SYLLABUS[T.sk] && (T.mode === 'f' || T.mode === 'b') && +T.dur > 0 && (+T.start > 0 || +T.rem >= 0)
+    ? { sk: T.sk, id: typeof T.id === 'string' ? T.id : null, mode: T.mode, dur: clamp(+T.dur, 1, 180), start: +T.start > 0 ? +T.start : null, rem: +T.start > 0 ? null : clamp(+T.rem, 0, 180 * 60000), d: isDate(T.d) ? T.d : today() } : null;
+  const rec = {};
+  if (isObj(o.rec)) Object.keys(o.rec).forEach(d => { const a = o.rec[d]; if (isDate(d) && Array.isArray(a)) rec[d] = [0, 1, 2].map(i => Math.max(0, Math.floor(+a[i] || 0))); });
+  r.rec = rec;
+  const rvw = {};
+  if (isObj(o.reviews)) Object.keys(o.reviews).forEach(d => { const a = o.reviews[d]; if (isDate(d) && isObj(a)) rvw[d] = { note: typeof a.note === 'string' ? a.note.slice(0, 500) : '', d: isDate(a.d) ? a.d : d }; });
+  r.reviews = rvw;
+  const pf = isObj(o.pref) ? o.pref : {}, dp = defPref();
+  r.pref = { mNew: clamp(Math.round(+pf.mNew) || dp.mNew, 5, 120), mRev: clamp(Math.round(+pf.mRev) || dp.mRev, 2, 60), focus: clamp(Math.round(+pf.focus) || dp.focus, 5, 120), brk: clamp(Math.round(+pf.brk) || dp.brk, 1, 60) };
+  r.from = +o.v || 1;
+  r.v = SCHEMA;
   return r;
 }
 /* 知识点改名/拆分后迁移旧进度：按 MIGRATIONS 表，再按保存的知识点名称兜底匹配 */
@@ -897,7 +1022,10 @@ function load() {
   return migrate(sanitize(o));
 }
 let S = load();
+let AL = null; // 时间分配缓存，保存数据时失效
 function save() {
+  AL = null;
+  delete S.from;
   try { localStorage.setItem(LS, JSON.stringify(S)); if (!storageOK) { storageOK = true; renderBanners(); } }
   catch (e) { if (storageOK) { storageOK = false; renderBanners(); toast('保存失败：浏览器存储不可用或已满'); } }
 }
@@ -929,22 +1057,42 @@ const LEGEND = '<div class="legend"><span><i class="l2"></i>掌握</span><span><
 
 /* ---------- 间隔复习（学过/需复习：按 1、3、7、15 天提醒） ---------- */
 const IV = [1, 3, 7, 15];
+/* 复习间隔：学过按 1/3/7/15 天；需复习每天；「没记住」≥2 次的点间隔缩短 */
+function ivOf(o) { let iv = o.s === 3 ? 1 : IV[Math.min(o.r || 0, IV.length - 1)]; if ((o.f || 0) >= 2) iv = Math.max(1, Math.round(iv / (1 + 0.5 * (o.f - 1)))); return iv; }
 function dueInfo(id) {
   const o = S.pts[id]; if (!o || (o.s !== 1 && o.s !== 3)) return null;
   const last = o.rv || o.t; if (!last) return null;
-  const iv = o.s === 3 ? 1 : IV[Math.min(o.r || 0, IV.length - 1)], ago = diffDays(last, today());
+  const iv = ivOf(o), ago = diffDays(last, today());
   return ago >= iv ? { ago, iv, over: ago - iv } : null;
 }
 function dueList() {
   const ts = new Set(tasksOf(today()).map(x => x.id));
   return activePts().map(p => [p, dueInfo(p.id)]).filter(x => x[1] && !ts.has(x[0].id))
-    .sort((a, b) => ((gs(b[0].id) === 3) - (gs(a[0].id) === 3)) || (b[1].over - a[1].over)).map(x => x[0]);
+    .map(x => [x[0], prio(x[0])]).sort((a, b) => b[1] - a[1]).map(x => x[0]);
 }
-function review(id, ok) {
-  const o = entry(id), t = today();
-  if (ok) { o.r = (o.r || 0) + 1; if (o.s === 3) o.s = 1; } else { o.s = 3; o.r = 0; }
-  o.rv = t; o.t = t; save();
+/* 自测打分：2 完全记得 / 1 模糊 / 0 忘了 → 更新状态与间隔复习 */
+function rate(id, g) {
+  const o = entry(id), t = today(), s = o.s || 0;
+  if (g === 2) {
+    if (s === 0 || s === 3) { o.s = 1; o.r = 1; }
+    else if (s === 1) { o.r = (o.r || 0) + 1; if (o.r >= IV.length) { o.s = 2; o.m = t; } }
+  } else if (g === 1) { if (s !== 1) o.s = 1; o.r = 0; }
+  else { o.s = 3; o.r = 0; o.f = (o.f || 0) + 1; }
+  o.rv = t; o.t = t;
+  const rc = S.rec[t] || (S.rec[t] = [0, 0, 0]); rc[2 - g]++;
+  save(); return o;
 }
+function review(id, ok) { return rate(id, ok ? 2 : 0); }
+function addCause(id, k) {
+  const o = entry(id), t = today(); o.c = o.c || [];
+  const i = o.c.findIndex(x => x[0] === t && x[1] === k);
+  if (i >= 0) o.c.splice(i, 1); else o.c.push([t, k]);
+  if (o.c.length > 30) o.c = o.c.slice(-30);
+  if (!o.c.length) delete o.c;
+  save(); return i < 0;
+}
+function causeDist(from, to) { const c = [0, 0, 0, 0, 0]; activePts().forEach(p => { const o = S.pts[p.id]; if (o && o.c) o.c.forEach(x => { if (x[0] >= from && x[0] <= to) c[x[1]]++; }); }); return c; }
+function recSum(from, to) { const a = [0, 0, 0]; Object.keys(S.rec).forEach(d => { if (d >= from && d <= to) S.rec[d].forEach((v, i) => { a[i] += v; }); }); return a; }
 
 /* ---------- 阶段 ---------- */
 const PHN = { 1: '一轮复习', 2: '二轮复习', 3: '考前冲刺' };
@@ -958,21 +1106,127 @@ function phaseEnd(ph) { const c = S.setup; return ph === 1 ? c.r1 : ph === 2 ? c
 const daysLeft = () => diffDays(today(), S.setup.exam);
 const examOver = () => today() > S.setup.exam;
 
+/* ---------- 个人诊断：目标拆分与各科时间分配 ---------- */
+const FLOOR = 0.08, CAP = 0.35;
+const diagOn = () => !!(S.diag && S.diag.done && S.setup);
+const fullOf = sk => fullScore(sk, S.setup.mode);
+function ensureDiag() { if (!S.diag) S.diag = { tgt: {}, hist: [], wd: 3, we: 6, done: false }; return S.diag; }
+/* 每科最近一次成绩（hist 按日期升序） */
+function latestScores() { const out = {}; (S.diag ? S.diag.hist : []).forEach(h => Object.keys(h.sc).forEach(k => { out[k] = h.sc[k]; })); return out; }
+function scoreDelta() { const out = {}, last = {}; (S.diag ? S.diag.hist : []).forEach(h => Object.keys(h.sc).forEach(k => { if (last[k] != null) out[k] = Math.round((h.sc[k] - last[k]) * 10) / 10; last[k] = h.sc[k]; })); return out; }
+function upsertScores(d, sc) {
+  if (!Object.keys(sc).length) return false;
+  const D = ensureDiag(), h = D.hist.find(x => x.d === d);
+  if (h) h.sc = sc; else D.hist.push({ d, sc });
+  D.hist.sort(byDate); if (D.hist.length > 60) D.hist = D.hist.slice(-60);
+  return true;
+}
+/* 目标总分自动拆分：各科按「还能提的分数空间（满分−当前）」分摊需要提高的分数；没填成绩的科目按已填科目的平均得分率估计 */
+function autoSplit(T, cur) {
+  const ks = subs(); if (!ks.length || !(T > 0)) return {};
+  const full = {}; ks.forEach(k => { full[k] = fullOf(k); });
+  const known = ks.filter(k => cur[k] != null);
+  const kr = known.length ? known.reduce((a, k) => a + cur[k], 0) / known.reduce((a, k) => a + full[k], 0) : 0.6;
+  const base = {}; ks.forEach(k => { base[k] = cur[k] != null ? cur[k] : full[k] * kr; });
+  const C = ks.reduce((a, k) => a + base[k], 0), F = ks.reduce((a, k) => a + full[k], 0);
+  T = Math.min(Math.round(T), F);
+  const raw = {};
+  if (T <= C) ks.forEach(k => { raw[k] = C ? base[k] * T / C : T / ks.length; });
+  else { const Rm = ks.reduce((a, k) => a + full[k] - base[k], 0) || 1; ks.forEach(k => { raw[k] = base[k] + (T - C) * (full[k] - base[k]) / Rm; }); }
+  const out = {}; let sum = 0;
+  ks.forEach(k => { out[k] = Math.min(full[k], Math.floor(raw[k])); sum += out[k]; });
+  const order = ks.slice().sort((a, b) => (raw[b] - Math.floor(raw[b])) - (raw[a] - Math.floor(raw[a])));
+  let left = T - sum, i = 0, guard = 0;
+  while (left > 0 && guard++ < 5000) { const k = order[i++ % order.length]; if (out[k] < full[k]) { out[k]++; left--; } }
+  return out;
+}
+function targets() {
+  const cur = latestScores(), T = +S.setup.target || 0, man = (S.diag && S.diag.tgt) || {}, auto = T ? autoSplit(T, cur) : {}, out = {};
+  subs().forEach(k => { out[k] = man[k] != null ? Math.min(man[k], fullOf(k)) : auto[k] != null ? auto[k] : null; });
+  return out;
+}
+/* 剩余未掌握内容占比（高频按 2 倍计；学过算一半） */
+function remainFrac(sk) { let a = 0, b = 0; SYLLABUS[sk].pts.forEach(p => { const v = p.hf ? 2 : 1, st = gs(p.id); b += v; a += v * (st === 2 ? 0 : st === 1 ? 0.5 : 1); }); return b ? a / b : 0; }
+/* 归一化并限制在 [lo, hi]：每次固定偏离最大的一科，其余按比例重新分配 */
+function boundNorm(raw, lo, hi) {
+  const ks = Object.keys(raw), fixed = {}, w = {};
+  for (let it = 0; it < 30; it++) {
+    const free = ks.filter(k => !(k in fixed)); if (!free.length) break;
+    const left = 1 - ks.filter(k => k in fixed).reduce((a, k) => a + fixed[k], 0);
+    const fs = free.reduce((a, k) => a + raw[k], 0);
+    free.forEach(k => { w[k] = fs > 0 ? raw[k] / fs * left : left / free.length; });
+    let worst = null, wd = 1e-9;
+    free.forEach(k => { const d = w[k] < lo ? lo - w[k] : w[k] > hi ? w[k] - hi : 0; if (d > wd) { wd = d; worst = k; } });
+    if (!worst) break;
+    fixed[worst] = w[worst] < lo ? lo : hi;
+  }
+  Object.assign(w, fixed);
+  const sum = ks.reduce((a, k) => a + w[k], 0) || 1; ks.forEach(k => { w[k] /= sum; });
+  return w;
+}
+/* 分配权重 = (分差 + 1) × (0.4 + 0.6 × 剩余未掌握占比)，每科至少 8%、最多 35%；未诊断时各科平均 */
+function allocation() {
+  const ks = subs(), n = ks.length, w = {}, info = {};
+  if (!n) return { w, even: true, info };
+  if (!diagOn()) { ks.forEach(k => { w[k] = 1 / n; }); return { w, even: true, info }; }
+  const cur = latestScores(), tg = targets(), raw = {};
+  ks.forEach(k => {
+    const full = fullOf(k), c = cur[k], t = tg[k], gap = c != null && t != null ? Math.max(0, t - c) : null, rf = remainFrac(k);
+    raw[k] = ((gap != null ? gap : full * 0.1) + 1) * (0.4 + 0.6 * rf);
+    info[k] = { cur: c, tgt: t, gap, full, rf };
+  });
+  Object.assign(w, boundNorm(raw, Math.min(FLOOR, 0.5 / n), Math.max(CAP, 1.5 / n)));
+  return { w, even: false, info };
+}
+const alloc = () => AL || (AL = allocation());
+const isWeekend = d => { const x = parse(d).getDay(); return x === 0 || x === 6; };
+function dayMinutes(d) { if (!diagOn()) return 0; return Math.round((isWeekend(d) ? S.diag.we : S.diag.wd) * 60); }
+function subjMinutes(d) { const W = alloc().w, M = dayMinutes(d), out = {}; subs().forEach(k => { out[k] = Math.round(W[k] * M / 5) * 5; }); return out; }
+function focusSum(from, to) { const out = {}; subs().forEach(k => { out[k] = 0; }); Object.keys(S.focus).forEach(d => { if (d >= from && d <= to) Object.keys(S.focus[d]).forEach(k => { if (k in out) out[k] += S.focus[d][k]; }); }); return out; }
+function planMinutes(from, to) { const out = {}; subs().forEach(k => { out[k] = 0; }); if (!diagOn()) return out; const W = alloc().w; for (let d = from; d <= to; d = addDays(d, 1)) { const M = dayMinutes(d); subs().forEach(k => { out[k] += W[k] * M; }); } subs().forEach(k => { out[k] = Math.round(out[k]); }); return out; }
+const sumv = o => Object.keys(o).reduce((a, k) => a + o[k], 0);
+
+/* ---------- 提分优先级 ---------- */
+const STW = [1, 0.6, 0.15, 1.1]; // 未学 / 学过 / 掌握 / 需复习
+function prio(p, W) {
+  W = W || alloc().w;
+  const o = S.pts[p.id] || {}, st = o.s || 0, n = subs().length || 1;
+  let v = (W[p.sk] || 1 / n) * n * STW[st];
+  const di = dueInfo(p.id); if (di) v *= 1.3 + 0.05 * Math.min(di.over, 10);
+  if (p.hf) v *= 1.5;
+  if (o.w) v *= 1.3;
+  if (o.f) v *= 1 + 0.3 * Math.min(o.f, 5);
+  return Math.round(v * 100);
+}
+function reasons(p) {
+  const A = alloc(), o = S.pts[p.id] || {}, st = o.s || 0, n = subs().length || 1, r = [], di = dueInfo(p.id);
+  if (!A.even && (A.w[p.sk] || 0) * n >= 1.15) r.push('差距大');
+  if (o.f) r.push('没记住' + o.f + '次');
+  if (di) r.push(di.over > 0 ? '逾期' + di.over + '天' : '到期复习');
+  else if (st === 3) r.push('需复习');
+  if (o.w) r.push('难点');
+  if (!r.length) r.push(st === 0 ? '未学' : st === 2 ? '已掌握' : '巩固');
+  return r.slice(0, 3);
+}
+
 /* ---------- 今日任务 ---------- */
 function tasksOf(d) { return (S.tasks[d] || []).filter(t => isActive(t.id)); }
 function inToday(id) { return (S.tasks[today()] || []).some(t => t.id === id); }
 function addToday(id) { const t = today(); const l = S.tasks[t] || (S.tasks[t] = []); if (!l.some(x => x.id === id)) l.push({ id, done: false }); save(); }
 function removeToday(id) { const t = today(); S.tasks[t] = (S.tasks[t] || []).filter(x => x.id !== id); save(); }
-function toggleDone(id) {
-  const x = (S.tasks[today()] || []).find(t => t.id === id); if (!x) return;
-  x.done = !x.done;
-  if (x.done) {
+/* 完成任务：g 为自测结果（null = 跳过自测，按 v2 规则：未学→学过） */
+function completeTask(id, g) {
+  const x = (S.tasks[today()] || []).find(t => t.id === id);
+  if (x) x.done = true;
+  if (g == null) {
     const s = gs(id);
     if (s === 0) setS(id, 1);
     else if (s === 1 || s === 3) { const o = entry(id); if (s === 1) o.r = (o.r || 0) + 1; o.rv = today(); }
-  }
+  } else rate(id, g);
   save();
 }
+function undoTask(id) { const x = (S.tasks[today()] || []).find(t => t.id === id); if (x) { x.done = false; save(); } }
+function toggleDone(id) { const x = (S.tasks[today()] || []).find(t => t.id === id); if (!x) return; if (x.done) undoTask(id); else completeTask(id, null); }
 /* 按比例从多个科目列表中均衡抽取 n 个 */
 function balance(lists, n) {
   const total = lists.reduce((a, l) => a + l.length, 0); n = Math.max(0, Math.min(n, total));
@@ -1020,6 +1274,7 @@ function autoSchedule() {
   let room = cap - kept.filter(x => isActive(x.id)).length;
   if (room <= 0) { toast('今日任务已达上限 ' + cap + ' 个（可在「设置」中调整）'); return; }
   const have = new Set(kept.map(x => x.id));
+  if (diagOn()) { autoScheduleV3(t, kept, have, room); return; }
   const due = dueList().map(p => p.id).filter(id => !have.has(id));
   const revs = due.slice(0, Math.min(due.length, Math.max(2, Math.round(cap * 0.3)), room));
   revs.forEach(id => have.add(id)); room -= revs.length;
@@ -1031,6 +1286,39 @@ function autoSchedule() {
   toast(n ? '已安排 ' + picks.length + ' 个新任务' + (revs.length ? '、' + revs.length + ' 个到期复习' : '') : '没有需要安排的知识点');
   render();
 }
+
+/* 有诊断时：候选 = 到期复习 + 本周计划/阶段内容（每科取靠前的一段，保持章节顺序），按提分优先级排序，
+   再按各科分钟预算与当天可用时间装入，不超过每日上限 */
+const taskCost = id => (gs(id) === 0 ? S.pref.mNew : S.pref.mRev);
+function autoScheduleV3(t, kept, have, room) {
+  const A = alloc(), W = A.w, total = dayMinutes(t), budget = {};
+  if (total <= 0) { toast('今天的可用学习时间为 0，未安排（可在「分析 → 诊断」中修改）'); return; }
+  subs().forEach(k => { budget[k] = W[k] * total; });
+  let used = 0;
+  kept.filter(x => isActive(x.id)).forEach(x => { const c = x.rev || (!x.done && gs(x.id) !== 0) ? S.pref.mRev : S.pref.mNew; budget[PT[x.id].sk] -= c; used += c; });
+  const cand = new Set(dueList().map(p => p.id).filter(id => !have.has(id)));
+  suggestion(have).lists.forEach(l => l.slice(0, 40).forEach(id => cand.add(id)));
+  const pr = {}; cand.forEach(id => { pr[id] = prio(PT[id], W); });
+  const order = Array.from(cand).filter(isActive).sort((a, b) => pr[b] - pr[a]);
+  // 复习最多占 60% 的名额，避免到期复习太多时完全停掉新内容（有剩余时间再补）
+  const picks = [], later = [], revCap = Math.ceil(room * 0.6), hasNew = order.some(id => gs(id) === 0);
+  let revN = 0;
+  order.forEach(id => {
+    if (picks.length >= room) return;
+    const c = taskCost(id), sk = PT[id].sk, isRev = gs(id) !== 0;
+    if (used + c > total) return;
+    if (isRev && hasNew && revN >= revCap) { later.push(id); return; }
+    if (isRev) revN++;
+    if (budget[sk] >= c * 0.5) { picks.push(id); budget[sk] -= c; used += c; } else { later.push(id); if (isRev) revN--; }
+  });
+  later.sort((a, b) => (gs(a) !== 0) - (gs(b) !== 0)); // 剩余名额先补新内容，再补复习
+  later.forEach(id => { const c = taskCost(id); if (picks.length < room && used + c <= total) { picks.push(id); used += c; } });
+  S.tasks[t] = kept.concat(picks.map(id => ({ id, done: false, auto: true, rev: gs(id) !== 0 })));
+  save();
+  toast(picks.length ? '已按提分优先安排 ' + picks.length + ' 个任务，约 ' + used + ' 分钟' : '今天的时间已排满或没有需要安排的知识点');
+  render();
+}
+function todayLoad(t) { return tasksOf(t).reduce((a, x) => a + (x.rev || (!x.done && gs(x.id) !== 0) ? S.pref.mRev : S.pref.mNew), 0); }
 
 /* ---------- 打卡 ---------- */
 function streak() { let d = today(); if (!S.checkins[d]) d = addDays(d, -1); let n = 0; while (S.checkins[d]) { n++; d = addDays(d, -1); } return n; }
@@ -1057,31 +1345,49 @@ function planPool(ph, sk) {
   if (ph === 2) return ps.filter(p => p.hf || gs(p.id) !== 2).map(p => p.id);
   return ps.filter(p => p.hf || gs(p.id) === 3 || (S.pts[p.id] && S.pts[p.id].w)).map(p => p.id);
 }
-function genPlan() {
+function weekMinutes(w, t) { let m = 0; for (let d = w.start < t ? t : w.start; d <= w.end; d = addDays(d, 1)) m += dayMinutes(d); return m; }
+/* opts.from：只重排从该周一开始的周（之前的周原样保留）；opts.redo：已确认的周也重排 */
+function genPlan(opts) {
+  opts = opts || {};
   const c = S.setup, t = today();
   if (examOver()) { toast('高考日期已过，请先在「设置」中更新高考日期'); return; }
-  const keep = {};
-  (S.plan ? S.plan.weeks : []).forEach(w => { if (w.confirmed && w.end >= t) keep[w.start] = w; });
+  const keep = {}, from = opts.from || mondayOf(t);
+  (S.plan ? S.plan.weeks : []).forEach(w => { if (w.end >= t && (w.start < from || (w.confirmed && !opts.redo))) keep[w.start] = w; });
   const weeks = [];
   for (let s = mondayOf(t); s <= c.exam; s = addDays(s, 7)) {
     if (keep[s]) { weeks.push(keep[s]); continue; }
     const e = addDays(s, 6) < c.exam ? addDays(s, 6) : c.exam;
     weeks.push({ start: s, end: e, ph: phaseOf(s < t ? t : s), items: {}, confirmed: false, note: '' });
   }
+  const fixedW = w => !!keep[w.start];
+  const A = diagOn() ? alloc() : null;
   [1, 2, 3].forEach(ph => {
-    const ws = weeks.filter(w => w.ph === ph && !w.confirmed); if (!ws.length) return;
+    const ws = weeks.filter(w => w.ph === ph && !fixedW(w)); if (!ws.length) return;
     const used = new Set();
-    weeks.filter(w => w.ph === ph && w.confirmed).forEach(w => Object.keys(w.items).forEach(k => w.items[k].forEach(id => used.add(id))));
+    weeks.filter(w => w.ph === ph && fixedW(w)).forEach(w => Object.keys(w.items).forEach(k => w.items[k].forEach(id => used.add(id))));
     const dys = ws.map(w => diffDays(w.start < t ? t : w.start, w.end) + 1), D = dys.reduce((a, b) => a + b, 0);
     subs().forEach(sk => {
-      // 按每周实际可用天数加权分配（本周只剩几天时少分一些），保持章节顺序
-      const ids = planPool(ph, sk).filter(id => !used.has(id)), L = ids.length;
-      let acc = 0;
-      ws.forEach((w, i) => { const a = Math.round(acc / D * L); acc += dys[i]; w.items[sk] = ids.slice(a, Math.round(acc / D * L)); });
+      let ids = planPool(ph, sk).filter(id => !used.has(id));
+      const L = ids.length;
+      if (!A) {
+        // 未诊断：按每周实际可用天数加权平均分配（本周只剩几天时少分一些），保持章节顺序
+        let acc = 0;
+        ws.forEach((w, i) => { const a = Math.round(acc / D * L); acc += dys[i]; w.items[sk] = ids.slice(a, Math.round(acc / D * L)); });
+        return;
+      }
+      // 有诊断：每周量 = max(按剩余天数平均, 该科每周分配时间×70% ÷ 新学每点分钟)，高权重科目更早学完；二轮/冲刺按提分优先排序
+      if (ph > 1) { const pr = {}; ids.forEach(id => { pr[id] = prio(PT[id], A.w); }); ids = ids.slice().sort((a, b) => pr[b] - pr[a]); }
+      let taken = 0, dLeft = D;
+      ws.forEach((w, i) => {
+        const rem = L - taken, even = dLeft > 0 ? Math.round(rem * dys[i] / dLeft) : rem;
+        const cap = Math.floor(weekMinutes(w, t) * A.w[sk] * 0.7 / S.pref.mNew);
+        const q = Math.min(rem, Math.max(even, cap));
+        w.items[sk] = ids.slice(taken, taken + q); taken += q; dLeft -= dys[i];
+      });
     });
   });
   S.plan = { created: t, weeks };
-  save(); toast('已生成 ' + weeks.length + ' 周复习计划'); render();
+  save(); toast(opts.msg || '已生成 ' + weeks.length + ' 周复习计划'); render();
 }
 const weekIds = (w, sk) => (w.items[sk] || []).filter(id => PT[id]);
 const weekCount = w => subs().reduce((a, sk) => a + weekIds(w, sk).length, 0);
@@ -1106,6 +1412,92 @@ function renderBanners() {
   if (IN_APP && !S.ui.wxHide) h += '<div class="bn bn-wx"><span>在' + IN_APP + '里打开时，进度可能被清理且无法离线使用。建议点右上角「…」→「在浏览器打开」，再「添加到主屏幕」。</span><button class="btn line sm" data-act="wx-hide">知道了</button></div>';
   $('#banners').innerHTML = h;
 }
+
+/* ---------- 专注计时（番茄钟）：保存开始时间戳，刷新/切后台回来继续计算 ---------- */
+let tmTick = null, tmDone = null, actx = null;
+function unlockAudio() { try { const C = window.AudioContext || window.webkitAudioContext; if (C && !actx) actx = new C(); if (actx && actx.state === 'suspended') actx.resume(); } catch (e) { /* 忽略 */ } }
+function beep() {
+  try {
+    if (!actx) return; const t0 = actx.currentTime;
+    [0, 0.45, 0.9].forEach(o => { const os = actx.createOscillator(), g = actx.createGain(); os.frequency.value = 880; g.gain.setValueAtTime(0.0001, t0 + o); g.gain.exponentialRampToValueAtTime(0.3, t0 + o + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t0 + o + 0.35); os.connect(g); g.connect(actx.destination); os.start(t0 + o); os.stop(t0 + o + 0.4); });
+  } catch (e) { /* 忽略 */ }
+}
+const tmLeft = () => { const T = S.timer; return !T ? 0 : T.start ? T.start + T.dur * 60000 - Date.now() : T.rem; };
+const mmss = ms => { const x = Math.max(0, Math.ceil(ms / 1000)); return pad(Math.floor(x / 60)) + ':' + pad(x % 60); };
+function logFocus(sk, min, d) { min = Math.floor(min); if (!sk || min < 1) return; const x = S.focus[d] || (S.focus[d] = {}); x[sk] = (x[sk] || 0) + min; }
+function tmStart(sk, id, mode) {
+  if (!SYLLABUS[sk]) return;
+  if (S.timer) tmStop(true);
+  unlockAudio(); mode = mode || 'f';
+  S.timer = { sk, id: id || null, mode, dur: mode === 'b' ? S.pref.brk : S.pref.focus, start: Date.now(), rem: null, d: today() };
+  tmDone = null; save(); tmRun(); renderTimer();
+}
+function tmPause() { const T = S.timer; if (!T || !T.start) return; T.rem = Math.max(0, tmLeft()); T.start = null; save(); renderTimer(); }
+function tmResume() { const T = S.timer; if (!T || T.start) return; unlockAudio(); T.start = Date.now() - (T.dur * 60000 - T.rem); T.rem = null; save(); tmRun(); renderTimer(); }
+function tmStop(quiet) {
+  const T = S.timer; if (!T) return; let m = 0;
+  if (T.mode === 'f') { m = Math.floor((T.dur * 60000 - Math.max(0, tmLeft())) / 60000); logFocus(T.sk, m, T.d); }
+  S.timer = null; clearInterval(tmTick); save(); renderTimer();
+  if (!quiet) toast(T.mode === 'f' ? (m >= 1 ? '已记录' + SYLLABUS[T.sk].name + ' ' + m + ' 分钟' : '不足 1 分钟，未记录') : '已结束休息');
+}
+function tmFinish(quiet) {
+  const T = S.timer; if (!T) return;
+  if (T.mode === 'f') logFocus(T.sk, T.dur, T.d);
+  S.timer = null; clearInterval(tmTick);
+  tmDone = { sk: T.sk, id: T.id, mode: T.mode, dur: T.dur };
+  save(); renderTimer();
+  if (!quiet) { try { if (navigator.vibrate) navigator.vibrate([300, 150, 300]); } catch (e) { /* 忽略 */ } beep(); }
+  toast(T.mode === 'f' ? (quiet ? '上次专注已完成，' : '专注完成！') + '已记录' + SYLLABUS[T.sk].name + ' ' + T.dur + ' 分钟' : '休息结束，开始下一轮吧');
+  if (!sheetId && (S.ui.tab === 'ana' || S.ui.tab === 'today' || S.ui.tab === 'dash')) render();
+}
+function tmRun() {
+  clearInterval(tmTick); if (!S.timer) return;
+  tmTick = setInterval(() => {
+    if (!S.timer) { clearInterval(tmTick); return; }
+    if (S.timer.start && tmLeft() <= 0) { tmFinish(false); return; }
+    const b = $('#tbTime'); if (b) b.textContent = mmss(tmLeft());
+  }, 1000);
+}
+function renderTimer() {
+  const el = $('#tbar'); if (!el) return;
+  const T = S.setup ? S.timer : null; let h = '';
+  if (T) h = '<div class="tb-in' + (T.mode === 'b' ? ' brk' : '') + '"><span class="tb-l">' + (T.mode === 'b' ? '休息中' : '专注 · ' + SYLLABUS[T.sk].name) + (T.start ? '' : '（暂停）') + '</span><b id="tbTime">' + mmss(tmLeft()) + '</b>' +
+    (T.start ? '<button class="btn sm lt" data-act="tm-pause">暂停</button>' : '<button class="btn sm lt" data-act="tm-resume">继续</button>') + '<button class="btn sm lt" data-act="tm-stop">结束</button></div>';
+  else if (tmDone && S.setup) h = '<div class="tb-in ok"><span class="tb-l">' + (tmDone.mode === 'f' ? '✓ 专注 ' + tmDone.dur + ' 分钟' : '休息结束') + '</span>' +
+    (tmDone.mode === 'f' ? '<button class="btn sm lt" data-act="tm-break">休息' + S.pref.brk + '分</button>' : '') + '<button class="btn sm lt" data-act="tm-again">' + (tmDone.mode === 'f' ? '再来一轮' : '开始专注') + '</button><button class="x lt" data-act="tm-close" aria-label="关闭">×</button></div>';
+  el.innerHTML = h; document.body.classList.toggle('timing', !!h);
+}
+
+/* ---------- 小组件 ---------- */
+function spark(sk, w, h) {
+  const pts = (S.diag ? S.diag.hist : []).filter(x => x.sc[sk] != null).map(x => x.sc[sk] / fullOf(sk));
+  if (pts.length < 2) return '';
+  w = w || 44; h = h || 16;
+  const mn = Math.min.apply(null, pts), mx = Math.max.apply(null, pts), rg = mx - mn || 1;
+  const xy = pts.map((v, i) => (i * (w - 4) / (pts.length - 1) + 2).toFixed(1) + ',' + (h - 2 - (v - mn) / rg * (h - 4)).toFixed(1));
+  return '<svg class="spark" width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + ' ' + h + '" aria-hidden="true"><polyline points="' + xy.join(' ') + '" fill="none" stroke="' + SYLLABUS[sk].color + '" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="' + xy[xy.length - 1].split(',')[0] + '" cy="' + xy[xy.length - 1].split(',')[1] + '" r="2.2" fill="' + SYLLABUS[sk].color + '"/></svg>';
+}
+const whyHTML = p => '<div class="why">' + reasons(p).join(' · ') + '</div>';
+function causeBlock(id, title) {
+  const o = S.pts[id] || {}, t = today(), cnt = [0, 0, 0, 0, 0];
+  (o.c || []).forEach(x => { cnt[x[1]]++; });
+  const tot = CAUSES.map((c, i) => cnt[i] ? c + '×' + cnt[i] : '').filter(Boolean).join(' · ');
+  return '<div class="fl">' + title + '</div><div class="chipset">' + CAUSES.map((c, i) => '<button class="chip' + ((o.c || []).some(x => x[0] === t && x[1] === i) ? ' on' : '') + '" data-act="cause" data-id="' + id + '" data-k="' + i + '">' + c + '</button>').join('') + '</div>' +
+    (tot ? '<div class="muted" style="margin-top:6px">累计错因：' + tot + '</div>' : '');
+}
+const RATE = [[2, '完全记得', '间隔拉长'], [1, '模糊', '明天再复习'], [0, '忘了', '标为需复习']];
+const rateBtns = act => '<div class="rate3">' + RATE.map(r => '<button class="rt rt' + r[0] + '" data-act="' + act + '" data-g="' + r[0] + '"><b>' + r[1] + '</b><small>' + r[2] + '</small></button>').join('') + '</div>';
+function readScores(root, prefix) {
+  const sc = {}; let err = null;
+  subs().forEach(k => {
+    const el = root.querySelector('[name="' + prefix + k + '"]'); if (!el) return;
+    const v = el.value.trim(); if (v === '') return;
+    const n = +v, f = fullOf(k);
+    if (isNaN(n) || n < 0 || n > f) err = SYLLABUS[k].name + '分数需在 0–' + f + ' 之间'; else sc[k] = Math.round(n * 2) / 2;
+  });
+  return err || sc;
+}
+const scoreInputs = (prefix, vals) => '<div class="grid3">' + subs().map(k => '<label class="f"><span>' + SYLLABUS[k].name + ' <small>/' + fullOf(k) + '</small></span><input type="number" inputmode="decimal" step="0.5" min="0" max="' + fullOf(k) + '" name="' + prefix + k + '" value="' + (vals && vals[k] != null ? vals[k] : '') + '" placeholder="分数"></label>').join('') + '</div>';
 
 /* ---------- 设置表单 ---------- */
 function defaultCfg() { const exam = '2027-06-07'; return { mode: '312', first: 'wuli', second: ['huaxue', 'shengwu'], three: ['wuli', 'huaxue', 'shengwu'], exam, r1: addDays(exam, -99), r2: addDays(exam, -28), target: '', daily: 20 }; }
@@ -1181,6 +1573,10 @@ function viewDash() {
   let h = '<div class="card cdcard"><div class="row2" style="justify-content:space-between;align-items:flex-end;gap:8px"><div><div class="muted">距离 ' + c.exam.replace(/-/g, '.') + ' 高考还有</div><div class="big">' + Math.max(0, dl) + '<span style="font-size:18px;font-weight:600"> 天</span></div></div>' +
     '<div style="text-align:right"><div class="muted">当前阶段</div><div style="font-weight:700;font-size:16px">' + (over ? '已结束' : PHN[ph]) + '</div>' + (c.target ? '<div class="muted">目标 ' + c.target + ' / ' + totalFull() + ' 分</div>' : '<div class="muted">满分 ' + totalFull() + ' 分</div>') + '</div></div></div>';
   if (over) h += '<div class="note-box">高考日期已过。如需继续使用，请到「设置」中修改高考日期。</div>';
+  if (parse(t).getDay() === 0 && !S.reviews[mondayOf(t)]) h += '<div class="card pcard"><b>今天周日，花 3 分钟做本周复盘</b><p class="muted">看看本周投入、自测正确率和错因，再一键重新分配下周计划。</p><button class="btn" data-act="go-ana" data-k="review">开始复盘</button></div>';
+  if (!diagOn()) {
+    if (!S.ui.diagSkip) h += '<div class="card pcard"><b>做个 2 分钟诊断，让复习更高效</b><p class="muted">填最近一次模考成绩、目标分和每天可用时间，按「提分性价比」给各科分配时间，自动安排优先补短板。</p><div class="btns"><button class="btn" data-act="go-ana" data-k="diag">去诊断</button><button class="btn line" data-act="diag-skip">先跳过</button></div></div>';
+  } else h += allocCard(t);
   h += '<div class="card"><h3>总体进度</h3><div class="hero"><div class="ring" style="background:conic-gradient(var(--c2) 0 ' + a + '%,var(--c1) ' + a + '% ' + b + '%,var(--c3) ' + b + '% ' + d + '%,var(--track) ' + d + '% 100%)"><div><b>' + Math.round(pct(st[2], all.length)) + '%</b><small>掌握率</small></div></div>' +
     '<div class="kv"><div><span>掌握</span><b style="color:var(--c2)">' + st[2] + '</b></div><div><span>学过</span><b style="color:var(--c1)">' + st[1] + '</b></div><div><span>需复习</span><b style="color:var(--c3)">' + st[3] + '</b></div><div><span>未学</span><b>' + st[0] + '</b></div><div><span>总知识点</span><b>' + all.length + '</b></div><div><span>错题/难点</span><b style="color:var(--wf)">' + wrong + '</b></div></div></div></div>';
   const ws = weekSummary();
@@ -1201,6 +1597,15 @@ function viewDash() {
   weak.sort((x, y) => y[0] - x[0]);
   if (weak.length) h += '<div class="card"><h3>需复习最多的章节</h3><ul class="weak">' + weak.slice(0, 6).map(w => '<li>' + subTag(w[1].sk) + esc(w[1].name) + ' <span class="muted">· ' + w[0] + ' 个需复习</span></li>').join('') + '</ul></div>';
   return h;
+}
+
+function allocCard(t) {
+  const A = alloc(), M = subjMinutes(t), done = S.focus[t] || {}, tot = dayMinutes(t), ks = subs().slice().sort((a, b) => A.w[b] - A.w[a]);
+  return '<div class="card"><h3>今日时间分配 <span class="muted" style="font-weight:400">' + (isWeekend(t) ? '周末' : '工作日') + ' ' + Math.round(tot / 6) / 10 + ' 小时</span></h3>' +
+    '<div class="abar">' + ks.map(k => '<i style="width:' + (A.w[k] * 100).toFixed(1) + '%;background:' + SYLLABUS[k].color + '"></i>').join('') + '</div>' +
+    '<div class="arows">' + ks.map(k => { const inf = A.info[k] || {}; return '<div class="arow"><span><i class="dot" style="background:' + SYLLABUS[k].color + '"></i>' + SYLLABUS[k].name + '</span><span class="muted">' + (inf.gap != null ? '差 ' + inf.gap + ' 分' : '未填成绩') + '</span><b>' + M[k] + ' 分钟</b><span class="muted">已专注 ' + (done[k] || 0) + '</span></div>'; }).join('') + '</div>' +
+    '<p class="muted" style="margin:8px 0 0">差距大、剩余高频内容多的科目分得更多时间，每科至少 8%。</p>' +
+    '<div class="btns" style="margin-top:10px"><button class="btn ghost sm" data-act="tm-pick">⏱ 开始专注</button><button class="btn line sm" data-act="go-ana" data-k="diag">查看诊断</button></div></div>';
 }
 
 /* ---------- 视图：知识清单 ---------- */
@@ -1226,7 +1631,7 @@ function renderListCtl() {
   $('#subChips').innerHTML = '<button class="chip' + (S.ui.subj === 'all' ? ' on' : '') + '" data-act="subj" data-sk="all">全部</button>' +
     subs().map(sk => { const p = SYLLABUS[sk].pts; return '<button class="chip' + (S.ui.subj === sk ? ' on' : '') + '" data-act="subj" data-sk="' + sk + '">' + SYLLABUS[sk].name + ' <small>' + Math.round(pct(stats(p)[2], p.length)) + '%</small></button>'; }).join('');
   const fs = [['all', '全部', scope.length], ['0', '未学', st[0]], ['1', '学过', st[1]], ['2', '掌握', st[2]], ['3', '需复习', st[3]], ['w', '错题/难点', nw]];
-  $('#fChips').innerHTML = fs.map(f => '<button class="chip' + (S.ui.filter === f[0] ? ' on' : '') + '" data-act="filter" data-f="' + f[0] + '">' + f[1] + ' <small>' + f[2] + '</small></button>').join('') +
+  $('#fChips').innerHTML = '<button class="chip' + (S.ui.sortP ? ' on' : '') + '" data-act="sortp">⇅ 提分优先</button>' + fs.map(f => '<button class="chip' + (S.ui.filter === f[0] ? ' on' : '') + '" data-act="filter" data-f="' + f[0] + '">' + f[1] + ' <small>' + f[2] + '</small></button>').join('') +
     '<button class="chip" data-act="expand">全部展开</button><button class="chip" data-act="collapse">全部折叠</button>';
   $('#subSum').innerHTML = (S.ui.subj === 'all' ? '全部科目' : SYLLABUS[S.ui.subj].name) + '：共 ' + scope.length + ' 个知识点，掌握 ' + st[2] + '（' + Math.round(pct(st[2], scope.length)) + '%）。点左侧状态按钮循环切换，点文字可写备注、标记难点';
 }
@@ -1236,14 +1641,23 @@ function chHeadInner(ch) {
   return '<div class="row2"><span class="nm">' + esc(ch.name) + '</span><span class="ct">' + c[2] + '/' + ch.pts.length + ' 掌握<span class="chev">›</span></span></div>' + barHTML(c, true);
 }
 function rowHTML(p) {
-  const s = gs(p.id), o = S.pts[p.id] || {}, on = TODAYSET.has(p.id);
+  const s = gs(p.id), o = S.pts[p.id] || {}, on = TODAYSET.has(p.id), why = S.ui.sortP && S.ui.tab === 'list';
   return '<div class="row" data-row="' + p.id + '"><button class="st s' + s + '" data-act="cyc" data-id="' + p.id + '" aria-label="切换状态，当前' + STN[s] + '">' + STN[s] + '</button>' +
-    '<div class="row-main" data-act="open" data-id="' + p.id + '" role="button"><div class="row-t">' + badges(p) + esc(p.name) + '</div>' +
+    '<div class="row-main" data-act="open" data-id="' + p.id + '" role="button"><div class="row-t">' + (why && S.ui.subj === 'all' ? subTag(p.sk) : '') + badges(p) + esc(p.name) + '</div>' + (why ? whyHTML(p) : '') +
     (o.note || o.t ? '<div class="row-m"><span class="nt">' + (o.note ? '备注：' + esc(o.note) : '') + '</span>' + (o.t ? '<span>' + md(o.t) + ' 更新</span>' : '') + '</div>' : '') + '</div>' +
     '<button class="add' + (on ? ' on' : '') + '" data-act="add" data-id="' + p.id + '" aria-label="' + (on ? '移出今日任务' : '加入今日任务') + '">' + (on ? '✓' : '+') + '</button></div>';
 }
 function renderList() {
   TODAYSET = new Set(tasksOf(today()).map(t => t.id));
+  if (S.ui.sortP) {
+    const W = alloc().w, arr = listSubs().reduce((a, k) => a.concat(SYLLABUS[k].pts.filter(matches)), []), pr = {};
+    arr.forEach(p => { pr[p.id] = prio(p, W); });
+    arr.sort((a, b) => pr[b.id] - pr[a.id]);
+    const show = arr.slice(0, S.ui.pMore);
+    $('#list').innerHTML = arr.length ? '<div class="muted" style="margin:0 4px 8px">按「提分优先」排序：综合各科时间分配' + (alloc().even ? '（未诊断，各科相同）' : '') + '、高频、状态、难点、没记住次数和逾期复习。</div><div class="ch open flat"><div class="ch-b">' + show.map(rowHTML).join('') + '</div></div>' +
+      (arr.length > show.length ? '<button class="btn line" style="width:100%;margin-top:4px" data-act="pmore">显示更多（共 ' + arr.length + ' 个）</button>' : '') : '<div class="empty">没有符合条件的知识点</div>';
+    return;
+  }
   const multi = S.ui.subj === 'all';
   let h = '', shown = 0;
   listSubs().forEach(sk => {
@@ -1295,16 +1709,22 @@ function viewToday() {
   let h = '<div class="card"><div class="row2" style="justify-content:space-between;flex-wrap:wrap"><div><b style="font-size:17px">' + (d.getMonth() + 1) + '月' + d.getDate() + '日 周' + WK[d.getDay()] + '</b> <span class="phase ph' + ph + '">' + (over ? '已结束' : PHN[ph]) + '</span></div><span class="muted">距高考 ' + Math.max(0, daysLeft()) + ' 天</span></div>' +
     '<div class="stats3" style="margin-top:12px"><div><b>' + done + '/' + l.length + '</b><span>今日完成</span></div><div><b>' + streak() + '</b><span>连续打卡</span></div><div><b>' + longest() + '</b><span>最长连续</span></div></div>' +
     '<div class="bigbtns"><button class="btn ghost" data-act="auto"' + (over ? ' disabled' : '') + '>自动安排</button>' + (ci ? '<button class="btn done" data-act="uncheckin">✓ 已打卡 ' + esc(ci.at || '') + '</button>' : '<button class="btn" data-act="checkin">今日打卡</button>') + '</div>' +
-    (over ? '<p class="muted" style="margin:10px 0 0">高考日期已过，请到「设置」中更新高考日期。</p>' :
+    (S.timer ? '' : '<button class="btn line" style="width:100%;margin-top:10px" data-act="tm-pick">⏱ 开始专注 ' + S.pref.focus + ' 分钟</button>') +
+    (over ? '<p class="muted" style="margin:10px 0 0">高考日期已过，请到「设置」中更新高考日期。</p>' : diagOn() ?
+    '<p class="muted" style="margin:10px 0 0">今天可用 <b>' + Math.round(dayMinutes(t) / 6) / 10 + '</b> 小时 · 已安排约 <b>' + todayLoad(t) + '</b> 分钟 · 已专注 <b>' + sumv(S.focus[t] || {}) + '</b> 分钟。「自动安排」按提分优先级和各科时间分配挑选任务（新学 ' + S.pref.mNew + ' 分钟/个，复习 ' + S.pref.mRev + ' 分钟/个），上限 ' + cap + ' 个。</p>' :
     '<p class="muted" style="margin:10px 0 0">' + sg.src + ' <b>' + sg.rem + '</b> 个，还有 <b>' + sg.days + '</b> 天 → 建议每天约 <b>' + sg.n + '</b> 个新任务。每日上限 ' + cap + ' 个（含复习，可在设置中调整）。「自动安排」只替换未完成的自动任务，保留手动添加的任务。</p>') + '</div>';
   h += '<div class="card"><h3>今日任务 <span class="muted" style="font-weight:400">' + l.length + '/' + cap + '</span></h3>';
   if (!l.length) h += '<div class="empty" style="padding:20px 8px">还没有任务。<br>点「自动安排」，或到「知识清单」点知识点右侧的 ＋ 加入今日任务。</div>';
-  else h += l.map(x => { const p = PT[x.id], s = gs(x.id); return '<div class="task' + (x.done ? ' done' : '') + '"><button class="chk" data-act="tdone" data-id="' + p.id + '" aria-label="' + (x.done ? '标记未完成' : '标记完成') + '">✓</button><div class="row-main" data-act="open" data-id="' + p.id + '" role="button"><div class="row-t">' + subTag(p.sk) + (x.rev ? '<span class="rv">复习</span>' : '') + badges(p) + esc(p.name) + '</div><div class="row-m"><span class="nt">' + esc(p.ch.name) + '</span></div></div><button class="st s' + s + '" data-act="cyc" data-id="' + p.id + '">' + STN[s] + '</button><button class="x" data-act="tremove" data-id="' + p.id + '" aria-label="移除">×</button></div>'; }).join('');
+  else {
+    const W = alloc().w, pr = {}; l.forEach(x => { pr[x.id] = prio(PT[x.id], W); });
+    h += l.slice().sort((a, b) => (a.done - b.done) || (pr[b.id] - pr[a.id])).map(x => { const p = PT[x.id], s = gs(x.id); return '<div class="task' + (x.done ? ' done' : '') + '"><button class="chk" data-act="tdone" data-id="' + p.id + '" aria-label="' + (x.done ? '标记未完成' : '完成并自测') + '">✓</button><div class="row-main" data-act="open" data-id="' + p.id + '" role="button"><div class="row-t">' + subTag(p.sk) + (x.rev ? '<span class="rv">复习</span>' : '') + badges(p) + esc(p.name) + '</div>' + (x.done ? '' : whyHTML(p)) + '<div class="row-m"><span class="nt">' + esc(p.ch.name) + '</span></div></div><button class="st s' + s + '" data-act="cyc" data-id="' + p.id + '">' + STN[s] + '</button><button class="x" data-act="tremove" data-id="' + p.id + '" aria-label="移除">×</button></div>'; }).join('');
+  }
   const yl = tasksOf(addDays(t, -1)).filter(x => !x.done && !inToday(x.id));
   if (yl.length) h += '<button class="btn line sm" style="width:100%;margin-top:10px" data-act="carry">把昨天未完成的 ' + yl.length + ' 个任务转入今天</button>';
-  h += '<p class="muted" style="margin:10px 0 0">勾选完成会把「未学」标为「学过」；学会了点状态按钮标为「掌握」，没把握就标「需复习」。</p></div>';
-  const due = dueList();
-  h += '<div class="card"><h3>复习提醒 <span class="muted" style="font-weight:400">到期 ' + due.length + ' 个</span></h3>';
+  h += '<p class="muted" style="margin:10px 0 0">点 ✓ 完成时先合上书自测，再按「完全记得 / 模糊 / 忘了」打分，系统据此安排下次复习；小标签说明为什么优先安排它。</p></div>';
+  const due = dueList(), fq = flashQueue().length;
+  h += '<div class="card"><h3>复习提醒 <span class="muted" style="font-weight:400">到期 ' + due.length + ' 个</span></h3>' +
+    (fq ? '<button class="btn" style="width:100%;margin-bottom:10px" data-act="fl-open">闪卡自测 · ' + Math.min(fq, FLASH_MAX) + ' 张' + (fq > FLASH_MAX ? '（共 ' + fq + ' 张待复习）' : '') + '</button>' : '');
   if (!due.length) h += '<p class="muted" style="margin:0">暂无到期复习。「学过」的知识点会在 1、3、7、15 天后提醒复习，「需复习」的每天提醒。</p>';
   else {
     const show = S.ui.revAll ? due : due.slice(0, 6);
@@ -1326,7 +1746,8 @@ function viewPlan() {
   let h = '<div class="card"><h3>复习阶段</h3>' + (d1 + d2 + d3 ? '<div class="tl">' +
     (d1 ? '<div class="ph1" style="flex:' + d1 + '">一轮 ' + d1 + '天</div>' : '') + (d2 ? '<div class="ph2" style="flex:' + d2 + '">二轮 ' + d2 + '天</div>' : '') + (d3 ? '<div class="ph3" style="flex:' + d3 + '">冲刺 ' + d3 + '天</div>' : '') + '</div>' : '<div class="note-box">高考日期已过，请到「设置」中更新高考日期。</div>') +
     '<p class="muted" style="margin:4px 0">一轮至 ' + c.r1 + '，二轮至 ' + c.r2 + '，高考 ' + c.exam + '（可在设置中修改）。</p>' +
-    '<p class="muted" style="margin:4px 0">按剩余天数把各科知识点按章节顺序分配到每周：一轮覆盖全部未掌握；二轮二刷未掌握+高频；冲刺回归高频、需复习与错题。已确认的周在重新生成时保留不变。</p>' +
+    '<p class="muted" style="margin:4px 0">按剩余天数把各科知识点按章节顺序分配到每周：一轮覆盖全部未掌握；二轮二刷未掌握+高频；冲刺回归高频、需复习与错题。已确认的周在重新生成时保留不变。' +
+    (diagOn() ? '<br><b>已按诊断分配：</b>时间多的科目每周安排更多、更早学完；二轮和冲刺按「提分优先」排序。' : '<br>完成「分析 → 诊断」后，会按各科差距和可用时间分配每周的量。') + '</p>' +
     '<div class="btns" style="margin-top:10px"><button class="btn" data-act="gen-plan"' + (examOver() ? ' disabled' : '') + '>' + (P ? '重新生成计划' : '生成复习计划') + '</button>' + (P ? '<button class="btn ghost" data-act="confirm-all">全部确认</button>' : '') + '</div></div>';
   if (!P || !P.weeks.length) return h + '<div class="empty">还没有复习计划，点击上方「生成复习计划」。</div>';
   const nConf = P.weeks.filter(w => w.confirmed).length;
@@ -1353,6 +1774,157 @@ function viewPlan() {
   return h;
 }
 
+/* ---------- 视图：分析（诊断 / 统计 / 复盘 / 方法） ---------- */
+function viewAna() {
+  const segs = [['diag', '诊断'], ['stats', '统计'], ['review', '复盘'], ['tips', '方法']];
+  return '<div class="seg">' + segs.map(x => '<button class="' + (S.ui.ana === x[0] ? 'on' : '') + '" data-act="ana" data-k="' + x[0] + '">' + x[1] + '</button>').join('') + '</div>' +
+    (S.ui.ana === 'stats' ? anaStats() : S.ui.ana === 'review' ? anaReview() : S.ui.ana === 'tips' ? anaTips() : anaDiag());
+}
+function anaDiag() {
+  const ks = subs(), D = S.diag || { tgt: {}, hist: [], wd: 3, we: 6, done: false }, cur = latestScores(), last = D.hist.length ? D.hist[D.hist.length - 1] : null, T = S.setup.target, auto = T ? autoSplit(+T, cur) : {};
+  let h = diagOn() ? resultCard() : '';
+  h += '<div class="card" id="diagForm"><h3>' + (diagOn() ? '更新诊断' : '个人诊断') + '</h3>' + (diagOn() ? '' : '<p class="muted" style="margin-top:0">约 2 分钟。填最近一次模考成绩、目标和每天可用时间，按「提分性价比」给各科分配时间。成绩不全也可以先填一部分。</p>') +
+    '<div class="fl">最近一次模考</div><div class="grid2"><label class="f"><span>考试日期</span><input type="date" name="mdate" value="' + (last ? last.d : today()) + '"></label></div>' + scoreInputs('sc_', last ? last.sc : null) +
+    '<p class="muted" style="margin:6px 0 0">同一日期会覆盖该次成绩；换个日期保存就新增一次记录，用于看趋势。</p>' +
+    '<div class="fl">目标</div><div class="grid2"><label class="f"><span>目标总分 <small>/' + totalFull() + '</small></span><input type="number" inputmode="numeric" name="dtarget" min="0" max="' + totalFull() + '" value="' + (T != null ? T : '') + '" placeholder="如 600"></label></div>' +
+    '<div class="fl">各科目标 <small>留空 = 按总分自动拆分</small></div><div class="grid3">' + ks.map(k => '<label class="f"><span>' + SYLLABUS[k].name + '</span><input type="number" inputmode="numeric" name="tg_' + k + '" min="0" max="' + fullOf(k) + '" value="' + (D.tgt[k] != null ? D.tgt[k] : '') + '" placeholder="' + (auto[k] != null ? '自动 ' + auto[k] : '—') + '"></label>').join('') + '</div>' +
+    '<button class="btn line sm" style="margin-top:8px" data-act="diag-split">按目标总分自动拆分</button>' +
+    '<div class="fl">每天可用学习时间 <small>小时，不含上课</small></div><div class="grid2"><label class="f"><span>工作日</span><input type="number" inputmode="decimal" step="0.5" min="0" max="16" name="wd" value="' + D.wd + '"></label><label class="f"><span>周末/假期</span><input type="number" inputmode="decimal" step="0.5" min="0" max="16" name="we" value="' + D.we + '"></label></div>' +
+    '<button class="btn" style="width:100%;margin-top:14px" data-act="diag-save">保存诊断并分配时间</button>' +
+    (diagOn() ? '<button class="btn line sm" style="width:100%;margin-top:8px" data-act="diag-clear">清除诊断（恢复平均分配）</button>' : '') + '</div>';
+  if (D.hist.length) h += histCard();
+  return h;
+}
+function resultCard() {
+  const A = alloc(), ks = subs(), wdM = Math.round(S.diag.wd * 60), weM = Math.round(S.diag.we * 60);
+  let sc = 0, st = 0, sg = 0, allC = true, allT = true;
+  const rows = ks.map(k => {
+    const i = A.info[k];
+    if (i.cur == null) allC = false; else sc += i.cur;
+    if (i.tgt == null) allT = false; else st += i.tgt;
+    if (i.gap != null) sg += i.gap;
+    return '<tr><td><span class="dn"><i class="dot" style="background:' + SYLLABUS[k].color + '"></i>' + SYLLABUS[k].name + '</span>' + spark(k) + '</td><td>' + (i.cur != null ? i.cur : '—') + '</td><td>' + (i.tgt != null ? i.tgt : '—') + '</td><td>' + (i.gap != null ? '<b>' + i.gap + '</b><small>' + Math.round(i.gap / i.full * 100) + '%</small>' : '—') + '</td><td><b>' + Math.round(A.w[k] * wdM / 5) * 5 + '</b><small>' + Math.round(A.w[k] * weM / 5) * 5 + '</small></td></tr>';
+  }).join('');
+  return '<div class="card"><h3>诊断结果</h3><table class="dt"><thead><tr><th>科目</th><th>当前</th><th>目标</th><th>差距<small>占满分</small></th><th>分钟/天<small>工作日/周末</small></th></tr></thead><tbody>' + rows +
+    '<tr class="tot"><td>合计</td><td>' + (allC ? sc : '—') + '</td><td>' + (allT ? st : (S.setup.target || '—')) + '</td><td>' + sg + '</td><td><b>' + wdM + '</b><small>' + weM + '</small></td></tr></tbody></table>' +
+    '<p class="muted" style="margin:8px 0 0"><b>分配规则：</b>权重 =（分差 + 1）×（0.4 + 0.6 × 该科未掌握内容占比，高频按 2 倍计），每科至少 8%、最多 35%，再按当天可用时间折算成分钟。</p></div>';
+}
+function histCard() {
+  const H = S.diag.hist, ks = subs(), dl = scoreDelta(), cur = latestScores();
+  return '<div class="card"><h3>模考记录与趋势</h3><div class="trend">' + ks.map(k => '<div class="tr1"><span>' + SYLLABUS[k].name + '</span>' + (spark(k, 96, 24) || '<span class="muted sm">记录 ≥2 次后显示</span>') + '<b>' + (cur[k] != null ? cur[k] : '—') + '</b>' + (dl[k] != null ? '<small class="' + (dl[k] >= 0 ? 'up' : 'down') + '">' + (dl[k] > 0 ? '+' : '') + dl[k] + '</small>' : '<small></small>') + '</div>').join('') + '</div>' +
+    H.slice().reverse().map(x => { const got = ks.filter(k => x.sc[k] != null), tot = got.reduce((a, k) => a + x.sc[k], 0); return '<div class="wi"><span class="n"><b>' + x.d + '</b> <span class="muted">' + (got.length === ks.length ? '总分 ' + tot : got.length + ' 科') + ' · ' + got.map(k => SYLLABUS[k].name.slice(0, 1) + x.sc[k]).join(' ') + '</span></span><button data-act="hist-del" data-d="' + x.d + '">删除</button></div>'; }).join('') + '</div>';
+}
+function fbRows(act, plW, plT) {
+  const on = diagOn(), ks = subs(), mx = Math.max.apply(null, [1].concat(ks.map(k => act[k])));
+  return '<div class="fbars">' + ks.map(k => {
+    const base = on && plW[k] ? plW[k] : mx;
+    return '<div class="fb"><div class="row2" style="justify-content:space-between"><span><i class="dot" style="background:' + SYLLABUS[k].color + '"></i>' + SYLLABUS[k].name + '</span><span class="muted">' + act[k] + (on ? ' / ' + plW[k] : '') + ' 分钟</span></div>' +
+      '<div class="fbt"><i style="width:' + clamp(act[k] / base * 100, 0, 100).toFixed(1) + '%;background:' + SYLLABUS[k].color + '"></i>' + (on && plW[k] ? '<em style="left:' + clamp(plT[k] / plW[k] * 100, 0, 100).toFixed(1) + '%"></em>' : '') + '</div></div>';
+  }).join('') + '</div>';
+}
+const distHTML = cd => { const mx = Math.max.apply(null, [1].concat(cd)); return '<div class="dist">' + CAUSES.map((c, i) => '<div class="dr"><span>' + c + '</span><div class="fbt"><i style="width:' + (cd[i] / mx * 100).toFixed(1) + '%"></i></div><b>' + cd[i] + '</b></div>').join('') + '</div>'; };
+const tipsHTML = cd => [0, 1, 2, 3, 4].filter(i => cd[i] > 0).sort((a, b) => cd[b] - cd[a]).slice(0, 2).map(i => '<div class="tip"><b>' + CAUSES[i] + '：</b>' + CAUSE_TIPS[i] + '</div>').join('');
+const sumA = a => a.reduce((x, y) => x + y, 0);
+/* 投入产出：近 14 天某科专注时间占比明显高于其掌握进步占比，且模考没有提高 */
+function insight() {
+  const t = today(), from = addDays(t, -13), mins = focusSum(from, t), ks = subs(), M = sumv(mins);
+  if (M < 60) return { txt: '近 14 天专注记录不足 60 分钟。用「⏱ 专注计时」记录学习时间后，这里会分析哪一科「投入多但没提分」。' };
+  const gain = {}; ks.forEach(k => { gain[k] = SYLLABUS[k].pts.filter(p => { const o = S.pts[p.id]; return o && o.s === 2 && o.m && o.m >= from; }).length; });
+  const G = sumv(gain), sd = scoreDelta();
+  let best = null, bv = 0;
+  ks.forEach(k => {
+    if (mins[k] < 60) return;
+    const ms = mins[k] / M, gsh = G ? gain[k] / G : 0, d = sd[k];
+    if (ms >= 1.3 * gsh + 0.05 && (d == null || d <= 0) && ms - gsh > bv) { bv = ms - gsh; best = k; }
+  });
+  if (!best) return { txt: '近 14 天各科投入与进步基本匹配，没有发现「投入多但没提分」的科目。' };
+  const k = best, d = sd[k];
+  return { sk: k, txt: SYLLABUS[k].name + '：近 14 天投入 ' + mins[k] + ' 分钟（占 ' + Math.round(mins[k] / M * 100) + '%），新掌握 ' + gain[k] + ' 个' + (G ? '（占 ' + Math.round(gain[k] / G * 100) + '%）' : '') + (d != null ? '，最近一次模考 ' + (d > 0 ? '+' : '') + d + ' 分' : '') + '。可能是「看得多、练得少」：把时间换成闪卡自测和限时做题，并用错题归因找出主要原因。' };
+}
+function anaStats() {
+  const t = today(), mon = mondayOf(t), sun = addDays(mon, 6), act = focusSum(mon, t), plW = planMinutes(mon, sun), plT = planMinutes(mon, t), on = diagOn();
+  let h = '<div class="card"><h3>本周专注时间 <span class="muted" style="font-weight:400">' + md(mon) + '–' + md(sun) + '</span></h3>' +
+    '<div class="stats3"><div><b>' + sumv(act) + '</b><span>实际（分钟）</span></div><div><b>' + (on ? sumv(plT) : '—') + '</b><span>计划至今</span></div><div><b>' + (on ? sumv(plW) : '—') + '</b><span>本周计划</span></div></div>' + fbRows(act, plW, plT) +
+    '<p class="muted" style="margin:8px 0 0">' + (on ? '竖线 = 按计划到今天应达到的位置。' : '完成诊断后，可与各科计划时间对比。') + '时长来自「⏱ 专注计时」。</p>' +
+    (S.timer ? '' : '<button class="btn ghost" style="width:100%;margin-top:10px" data-act="tm-pick">⏱ 开始专注</button>') + '</div>';
+  const ins = insight();
+  h += '<div class="card"><h3>投入多但没提分？</h3><p style="margin:0" class="' + (ins.sk ? 'warn-t' : 'muted') + '">' + esc(ins.txt) + '</p></div>';
+  const cd = causeDist(addDays(t, -27), t);
+  h += '<div class="card"><h3>错因分布 <span class="muted" style="font-weight:400">近 4 周</span></h3>' + (sumA(cd) ? distHTML(cd) + tipsHTML(cd) : '<p class="muted" style="margin:0">还没有错因记录。标记错题/难点或自测「忘了」时选一下原因，这里会统计并给出针对性建议。</p>') + '</div>';
+  const r7 = recSum(addDays(t, -6), t), rn = sumA(r7);
+  h += '<div class="card"><h3>自测记录 <span class="muted" style="font-weight:400">近 7 天</span></h3>' + (rn ? '<div class="stats3"><div><b style="color:var(--c2)">' + r7[0] + '</b><span>完全记得</span></div><div><b style="color:var(--c3)">' + r7[1] + '</b><span>模糊</span></div><div><b style="color:var(--hf)">' + r7[2] + '</b><span>忘了</span></div></div><p class="muted" style="margin:8px 0 0">记得率 ' + Math.round(r7[0] / rn * 100) + '%。长期低于 60% 说明新内容推进太快，可以少安排新学、多复习。</p>' : '<p class="muted" style="margin:0">完成任务时自测或用闪卡自测后，这里会统计记得率。</p>') + '</div>';
+  return h;
+}
+function behind(mon, t) {
+  const out = [], wk = planWeekOf(t), el = diffDays(mon, t) + 1, act = focusSum(mon, t), plT = planMinutes(mon, t);
+  subs().forEach(k => {
+    const why = [];
+    if (diagOn() && plT[k] >= 60 && act[k] < plT[k] * 0.6) why.push('专注 ' + act[k] + '/' + plT[k] + ' 分钟');
+    if (wk) { const ids = weekIds(wk, k); if (ids.length >= 3) { const dn = ids.filter(id => gs(id) !== 0).length, exp = ids.length * Math.min(el, 7) / 7; if (dn < exp * 0.75 - 0.5) why.push('本周计划完成 ' + dn + '/' + ids.length + ' 个'); } }
+    if (why.length) out.push([k, why.join('，')]);
+  });
+  return out;
+}
+function anaReview() {
+  const t = today(), mon = mondayOf(t), sun = addDays(mon, 6), R = S.reviews[mon], act = focusSum(mon, t), plW = planMinutes(mon, sun), plT = planMinutes(mon, t), rc = recSum(mon, sun), rn = sumA(rc), cd = causeDist(mon, sun), ws = weekSummary(), on = diagOn(), bh = behind(mon, t);
+  let h = '<div class="card"><h3>本周复盘 <span class="muted" style="font-weight:400">' + md(mon) + '–' + md(sun) + '</span></h3>' + (R ? '<p class="okline">✓ 已于 ' + md(R.d) + ' 复盘</p>' : '') +
+    '<div class="stats3"><div><b>' + sumv(act) + (on ? '<small>/' + sumv(plW) + '</small>' : '') + '</b><span>专注分钟' + (on ? '/计划' : '') + '</span></div><div><b>' + ws.mastered + '</b><span>新掌握</span></div><div><b>' + (rn ? Math.round(rc[0] / rn * 100) + '%' : '—') + '</b><span>自测记得率' + (rn ? '·' + rn + '次' : '') + '</span></div></div>' +
+    '<div class="fl">各科投入</div>' + fbRows(act, plW, plT) +
+    '<div class="fl">错因分布</div>' + (sumA(cd) ? distHTML(cd) + tipsHTML(cd) : '<p class="muted" style="margin:0">本周没有错因记录。</p>') +
+    '<div class="fl">落后于计划</div>' + (bh.length ? '<ul class="weak">' + bh.map(b => '<li>' + subTag(b[0]) + esc(b[1]) + '</li>').join('') + '</ul>' : '<p class="muted" style="margin:0">' + (on || planWeekOf(t) ? '暂无明显落后的科目。' : '完成诊断或生成复习计划后，这里会列出落后的科目。') + '</p>') + '</div>';
+  h += '<div class="card" id="rvForm"><h3>记录与调整</h3><div class="fl">本周模考/周测成绩 <small>选填</small></div><div class="grid2"><label class="f"><span>考试日期</span><input type="date" name="rdate" value="' + t + '"></label></div>' + scoreInputs('rs_', null) +
+    '<div class="fl">本周最薄弱的地方</div><textarea class="inp" id="rvNote" maxlength="500" placeholder="如：数学导数压轴题没思路；英语七选五错 3 个">' + esc(R ? R.note : '') + '</textarea>' +
+    '<label class="sw" style="margin-top:6px"><span>同时重排已确认的周</span><input type="checkbox" id="rvRedo"><i></i></label>' +
+    '<div class="btns" style="margin-top:8px"><button class="btn line" data-act="rv-save">保存复盘</button><button class="btn" data-act="rv-realloc">保存并重新分配下周计划</button></div>' +
+    '<p class="muted" style="margin:8px 0 0">重新分配会用最新成绩和进度重新计算各科时间，并从下周起重排计划；本周和已确认的周默认不变。</p></div>';
+  const past = Object.keys(S.reviews).filter(d => d < mon).sort().reverse().slice(0, 6);
+  if (past.length) h += '<div class="card"><h3>往期复盘</h3>' + past.map(d => '<div class="wi"><span class="n"><b>' + md(d) + ' 那周</b> <span class="muted">' + esc(S.reviews[d].note || '（未写备注）') + '</span></span></div>').join('') + '</div>';
+  return h;
+}
+function anaTips() {
+  const T = [['主动回忆', '合上书先回忆、先做题，再对照课本和「我的要点」。比反复看书、划线记得牢。完成任务时的自测和闪卡就是为此设计的。'],
+    ['间隔复习', '学过的内容按 1、3、7、15 天复习，快忘时复习一次效果最好；「忘了」的点会更频繁出现。'],
+    ['交替练习', '一次学习里穿插不同科目、不同题型，比连做同一类题更能练出「该用哪种方法」的判断力。自动安排会混排各科。'],
+    ['优先补短板', '时间优先给「差距大 + 高频 + 没掌握」的内容，这就是「提分优先」排序；已掌握的只需少量巩固。'],
+    ['专注与休息', '25 分钟专注 + 5 分钟休息，手机静音放远；记录时长，才能看清时间花在了哪里。'],
+    ['保证睡眠', '每天睡够 7–8 小时，睡眠会巩固当天所学；熬夜刷题换来的是第二天效率下降。'],
+    ['每周复盘', '周日花几分钟看投入、记得率和错因，再调整下周计划。']];
+  return '<div class="card"><h3>高效学习建议</h3>' + T.map(x => '<div class="tip"><b>' + x[0] + '：</b>' + x[1] + '</div>').join('') + '</div>' +
+    '<div class="card"><h3>这个应用怎么帮你做到</h3><p class="muted" style="margin:0">诊断 → 按差距分配各科时间 → 「自动安排」按提分优先挑任务 → 完成时自测打分 → 间隔复习与闪卡 → 专注计时记录投入 → 错因归因 → 周日复盘并重排下周计划。</p></div>';
+}
+function saveDiag() {
+  const f = $('#diagForm'), q = n => f.querySelector('[name="' + n + '"]');
+  const sc = readScores(f, 'sc_'); if (typeof sc === 'string') { toast(sc); return; }
+  const d = q('mdate').value;
+  if (Object.keys(sc).length && (!isDate(d) || d > today())) { toast('请填写正确的考试日期（不晚于今天）'); return; }
+  const tv = q('dtarget').value.trim(), T = tv === '' ? null : Math.round(+tv);
+  if (T != null && (isNaN(T) || T < 0 || T > totalFull())) { toast('目标总分需在 0–' + totalFull() + ' 之间'); return; }
+  const tgt = {}; let err = null;
+  subs().forEach(k => { const v = q('tg_' + k).value.trim(); if (v === '') return; const n = Math.round(+v); if (isNaN(n) || n < 0 || n > fullOf(k)) err = SYLLABUS[k].name + '目标需在 0–' + fullOf(k) + ' 之间'; else tgt[k] = n; });
+  if (err) { toast(err); return; }
+  const wd = num(q('wd').value, 0, 16), we = num(q('we').value, 0, 16);
+  if (wd == null || we == null || wd + we <= 0) { toast('请填写工作日和周末每天可用的学习时间'); return; }
+  const D = ensureDiag();
+  upsertScores(d, sc);
+  Object.keys(D.tgt).forEach(k => { if (subs().indexOf(k) < 0) tgt[k] = D.tgt[k]; });
+  D.tgt = tgt; D.wd = Math.round(wd * 2) / 2; D.we = Math.round(we * 2) / 2; D.done = true;
+  S.setup.target = T;
+  save(); render(); window.scrollTo(0, 0);
+  toast(Object.keys(latestScores()).length ? '诊断已保存，已按提分性价比分配各科时间' : '已保存。未填成绩，暂按剩余内容分配');
+}
+function saveReview(realloc) {
+  const f = $('#rvForm'), t = today(), mon = mondayOf(t);
+  const sc = readScores(f, 'rs_'); if (typeof sc === 'string') { toast(sc); return; }
+  const d = f.querySelector('[name=rdate]').value;
+  if (Object.keys(sc).length) { if (!isDate(d) || d > t) { toast('请填写正确的考试日期（不晚于今天）'); return; } upsertScores(d, sc); }
+  S.reviews[mon] = { note: $('#rvNote').value.trim().slice(0, 500), d: t };
+  save();
+  if (!realloc) { render(); toast('本周复盘已保存'); return; }
+  if (examOver()) { render(); toast('高考日期已过，无法重排计划'); return; }
+  const redo = $('#rvRedo').checked, tail = diagOn() ? '' : '（未做诊断，按平均分配）';
+  genPlan(S.plan ? { from: addDays(mon, 7), redo, msg: '已重新分配，下周起的计划已重排' + (redo ? '（含已确认的周）' : '') + tail } : { msg: '已按最新情况生成复习计划' + tail });
+}
+
 /* ---------- 视图：设置 ---------- */
 function viewSet() {
   const c = S.setup, dropped = SUBJECT_ORDER.filter(k => subs().indexOf(k) < 0 && SYLLABUS[k].pts.some(p => S.pts[p.id]));
@@ -1360,6 +1932,13 @@ function viewSet() {
     '<div class="card"><h3>选科与目标</h3><div id="setForm">' + setupFormHTML(c) + '</div>' +
     '<p class="muted" style="margin:12px 0 0">更换选科后，取消的科目进度会保留（不显示），重新选回即可恢复。' + (dropped.length ? '当前保留未显示：' + dropped.map(k => SYLLABUS[k].name).join('、') + '。' : '') + '</p>' +
     '<button class="btn" style="width:100%;margin-top:14px" data-act="save-setup">保存设置</button></div>' +
+    '<div class="card" id="prefForm"><h3>学习参数</h3><div class="grid2">' +
+    '<label class="f"><span>新学一个知识点（分钟）</span><input type="number" inputmode="numeric" name="mNew" min="5" max="120" value="' + S.pref.mNew + '"></label>' +
+    '<label class="f"><span>复习一个知识点（分钟）</span><input type="number" inputmode="numeric" name="mRev" min="2" max="60" value="' + S.pref.mRev + '"></label>' +
+    '<label class="f"><span>专注时长（分钟）</span><input type="number" inputmode="numeric" name="focus" min="5" max="120" value="' + S.pref.focus + '"></label>' +
+    '<label class="f"><span>休息时长（分钟）</span><input type="number" inputmode="numeric" name="brk" min="1" max="60" value="' + S.pref.brk + '"></label></div>' +
+    '<p class="muted" style="margin:10px 0 0">用于按时间自动安排任务和番茄钟。每天可用时间、模考成绩在「分析 → 诊断」中填写。</p>' +
+    '<button class="btn ghost" style="width:100%;margin-top:10px" data-act="save-pref">保存学习参数</button></div>' +
     '<div class="card"><h3>显示</h3><label class="sw"><span>大字号模式</span><input type="checkbox" id="bigFont"' + (S.ui.big ? ' checked' : '') + '><i></i></label></div>' +
     '<div class="card"><h3>数据备份</h3><p class="muted" style="margin-top:0">备份包含全部进度、备注、难点标记、打卡与计划。在微信里打开时无法下载文件，请用「复制备份文本」发给自己保存。</p><div class="btns"><button class="btn ghost" data-act="export">导出备份文件</button>' +
     (navigator.canShare ? '<button class="btn ghost" data-act="share-export">分享备份</button>' : '') + '<button class="btn ghost" data-act="copy-export">复制备份文本</button>' +
@@ -1372,38 +1951,84 @@ function viewSet() {
 }
 
 /* ---------- 底部弹层（知识点详情），支持返回键/返回手势关闭 ---------- */
-let noteTimer, sheetPushed = false, ignorePop = 0;
+let noteTimer, sheetPushed = false, ignorePop = 0, sheetMode = null, RC = null;
+let FQ = [], FI = 0, FR = false, FC = false, FS = [0, 0, 0];
+function setK(id, k) { const o = entry(id); if (k) o.k = k.slice(0, 300); else delete o.k; save(); }
+const causeBoxHTML = id => { const o = S.pts[id] || {}; return o.w || o.f || o.c ? causeBlock(id, '错因（可多选，记在今天）') : ''; };
 function sheetHTML(id) {
   const p = PT[id], s = gs(id), o = S.pts[id] || {}, on = inToday(id);
-  return '<div class="grab"></div><div class="muted">' + subTag(p.sk) + esc(p.ch.m) + ' · ' + esc(p.ch.name) + '</div><h2>' + badges(p) + esc(p.name) + '</h2>' +
+  return '<div class="grab"></div><div class="muted">' + subTag(p.sk) + esc(p.ch.m) + ' · ' + esc(p.ch.name) + '</div><h2>' + badges(p) + esc(p.name) + '</h2>' + whyHTML(p) +
     '<div class="sts">' + STN.map((n, i) => '<button class="s' + i + (s === i ? ' on' : '') + '" data-act="ss" data-s="' + i + '">' + n + '</button>').join('') + '</div>' +
-    '<textarea class="inp" id="noteIn" maxlength="200" rows="2" placeholder="备注（选填）：易错点、错题页码、老师提醒…">' + esc(o.note || '') + '</textarea>' +
-    '<div class="muted" style="margin:6px 0 12px">' + (o.t ? '最近更新：' + o.t : '尚未更新') + (o.r ? ' · 已复习 ' + o.r + ' 次' : '') + '</div>' +
+    '<textarea class="inp" id="kIn" maxlength="300" rows="2" placeholder="我的要点/公式（自己写，闪卡自测时用来对照）">' + esc(o.k || '') + '</textarea>' +
+    '<textarea class="inp" id="noteIn" maxlength="200" rows="2" style="margin-top:8px" placeholder="备注（选填）：易错点、错题页码、老师提醒…">' + esc(o.note || '') + '</textarea>' +
+    '<div class="muted" style="margin:6px 0 12px">' + (o.t ? '最近更新：' + o.t : '尚未更新') + (o.r ? ' · 已复习 ' + o.r + ' 次' : '') + (o.f ? ' · 没记住 ' + o.f + ' 次' : '') + '</div>' +
     '<div class="btns"><button class="btn ' + (o.w ? 'wbtn' : 'line') + '" data-act="sheet-wrong">' + (o.w ? '取消错题/难点' : '标记错题/难点') + '</button><button class="btn ' + (on ? 'line' : 'ghost') + '" data-act="sheet-add">' + (on ? '移出今日任务' : '加入今日任务') + '</button></div>' +
-    '<button class="btn" style="width:100%;margin-top:8px" data-act="sheet-close">完成</button>';
+    '<div id="causeBox">' + causeBoxHTML(id) + '</div>' +
+    '<div class="btns" style="margin-top:10px"><button class="btn line" data-act="tm-start" data-sk="' + p.sk + '" data-id="' + id + '">⏱ 专注 ' + S.pref.focus + ' 分钟</button><button class="btn" data-act="sheet-close">完成</button></div>';
 }
-function openSheet(id) {
-  if (!PT[id]) return;
-  if (sheetId) flushNote();
-  sheetId = id;
-  $('#sheet').innerHTML = sheetHTML(id);
-  $('#mask').classList.add('show'); $('#sheet').classList.add('show');
+function recallHTML() {
+  const p = PT[RC.id], o = S.pts[RC.id] || {};
+  let h = '<div class="grab"></div><div class="muted">' + subTag(p.sk) + esc(p.ch.name) + '</div><h2>' + badges(p) + esc(p.name) + '</h2>';
+  if (RC.step === 'cause') return h + '<p class="muted">已标为「需复习」，明天会再提醒。</p>' + causeBlock(RC.id, '这次没记住，主要原因是？（可多选，也可跳过）') + '<button class="btn" style="width:100%;margin-top:14px" data-act="sheet-close">完成</button>';
+  h += '<div class="rc-ask"><b>先合上书自测</b><br>说出或写出这个知识点的要点，并做 1–2 道相关题目，再对照课本/笔记给自己打分。</div>';
+  h += o.k ? (RC.shown ? '<div class="rc-k"><div class="muted">我的要点</div>' + esc(o.k) + '</div>' : '<button class="btn line" style="width:100%" data-act="rc-reveal">自测完了，显示我的要点</button>') : '<p class="muted" style="margin:0">还没写「我的要点/公式」。在知识点详情里写下来，下次就能当闪卡对照。</p>';
+  return h + '<div class="fl">自测结果</div>' + rateBtns('rc-rate') + '<button class="btn line sm" style="width:100%;margin-top:10px" data-act="rc-skip">跳过自测，直接完成</button>';
+}
+function flashQueue() {
+  const ids = [], W = alloc().w;
+  tasksOf(today()).forEach(x => { const st = gs(x.id); if (!x.done && (st === 1 || st === 3)) ids.push(x.id); });
+  dueList().forEach(p => { if (ids.indexOf(p.id) < 0) ids.push(p.id); });
+  const pr = {}; ids.forEach(id => { pr[id] = prio(PT[id], W); });
+  return ids.sort((a, b) => pr[b] - pr[a]);
+}
+function flashHTML() {
+  const head = '<div class="grab"></div><div class="row2" style="justify-content:space-between"><b>闪卡自测</b><span class="muted">' + Math.min(FI + 1, FQ.length) + ' / ' + FQ.length + '</span></div>';
+  if (FI >= FQ.length) {
+    const n = sumA(FS);
+    return head + '<div class="fcard"><div class="fname">本轮完成 ' + n + ' 张</div><div class="stats3"><div><b style="color:var(--c2)">' + FS[0] + '</b><span>完全记得</span></div><div><b style="color:var(--c3)">' + FS[1] + '</b><span>模糊</span></div><div><b style="color:var(--hf)">' + FS[2] + '</b><span>忘了</span></div></div><p class="muted">「忘了」「模糊」的明天会再出现；记得的间隔会拉长。</p></div><button class="btn" style="width:100%" data-act="sheet-close">完成</button>';
+  }
+  const id = FQ[FI], p = PT[id], o = S.pts[id] || {};
+  let h = head + '<div class="fcard"><div class="muted">' + subTag(p.sk) + esc(p.ch.name) + '</div><div class="fname">' + badges(p) + esc(p.name) + '</div>' + whyHTML(p);
+  if (FR) h += (o.k ? '<div class="rc-k">' + esc(o.k) + '</div>' : '<p class="muted">还没写要点，对照课本/笔记自查；可在知识点详情里补上「我的要点」。</p>') + (o.note ? '<div class="muted">备注：' + esc(o.note) + '</div>' : '');
+  else h += '<p class="muted">先在心里或纸上回忆要点、公式、例子，再点下面查看。</p><button class="btn ghost" style="width:100%" data-act="fl-reveal">回忆完了，显示要点</button>';
+  h += '</div>';
+  if (FC) return h + causeBlock(id, '没记住的原因？（可选）') + '<button class="btn" style="width:100%;margin-top:12px" data-act="fl-next">下一张</button>';
+  return h + rateBtns('fl-rate') + '<button class="btn line sm" style="width:100%;margin-top:10px" data-act="sheet-close">结束自测</button>';
+}
+function tpickHTML() {
+  const mins = diagOn() ? subjMinutes(today()) : null, done = S.focus[today()] || {};
+  return '<div class="grab"></div><h2>开始专注 ' + S.pref.focus + ' 分钟</h2><p class="muted" style="margin-top:0">选择科目。计时以开始时间为准，刷新或切到后台再回来会接着算；结束时振动/提示音（设备支持时）。</p><div class="tpk">' +
+    subs().map(k => '<button class="tpb" data-act="tm-start" data-sk="' + k + '" style="--c:' + SYLLABUS[k].color + '"><b>' + SYLLABUS[k].name + '</b><small>今日 ' + (done[k] || 0) + (mins ? ' / ' + mins[k] : '') + ' 分钟</small></button>').join('') +
+    '</div><button class="btn line" style="width:100%;margin-top:12px" data-act="sheet-close">取消</button>';
+}
+function showSheet(html) {
+  const sh = $('#sheet'); sh.innerHTML = html; sh.scrollTop = 0;
+  $('#mask').classList.add('show'); sh.classList.add('show');
   document.body.classList.add('noscroll');
   if (!sheetPushed) { try { history.pushState({ gk: 'sheet', tab: S.ui.tab }, ''); sheetPushed = true; } catch (e) { /* 忽略 */ } }
 }
+const reSheet = html => { const sh = $('#sheet'); sh.innerHTML = html; sh.scrollTop = 0; };
+function openSheet(id) { if (!PT[id]) return; if (sheetId) flushNote(); sheetId = id; sheetMode = 'pt'; showSheet(sheetHTML(id)); }
+function openRecall(id, step) { if (!PT[id]) return; if (sheetId) flushNote(); sheetId = id; sheetMode = 'recall'; RC = { id, step: step || 'ask', shown: false }; showSheet(recallHTML()); }
+const FLASH_MAX = 20;
+function openFlash() { FQ = flashQueue().slice(0, FLASH_MAX); if (!FQ.length) { toast('暂无需要自测的知识点'); return; } FI = 0; FR = false; FC = false; FS = [0, 0, 0]; sheetId = '@flash'; sheetMode = 'flash'; showSheet(flashHTML()); }
+function openTPick() { if (sheetId) flushNote(); sheetId = '@tp'; sheetMode = 'tpick'; showSheet(tpickHTML()); }
 function flushNote() {
-  const ta = $('#noteIn'); clearTimeout(noteTimer);
-  if (ta && sheetId && ta.value.trim() !== ((S.pts[sheetId] && S.pts[sheetId].note) || '')) setNote(sheetId, ta.value.trim());
+  clearTimeout(noteTimer);
+  if (!sheetId || sheetMode !== 'pt') return;
+  const ta = $('#noteIn'), tk = $('#kIn'), o = S.pts[sheetId] || {};
+  if (ta && ta.value.trim() !== (o.note || '')) setNote(sheetId, ta.value.trim());
+  if (tk && tk.value.trim() !== (o.k || '')) setK(sheetId, tk.value.trim());
 }
 function closeSheet(fromPop) {
   if (!sheetId) return;
   flushNote();
-  const id = sheetId; sheetId = null;
+  const id = sheetId, mode = sheetMode; sheetId = null; sheetMode = null; RC = null;
   if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
   $('#mask').classList.remove('show'); $('#sheet').classList.remove('show');
   document.body.classList.remove('noscroll');
   if (sheetPushed) { sheetPushed = false; if (!fromPop) { ignorePop++; history.back(); } }
-  refreshPoint(id);
+  if (mode === 'pt') refreshPoint(id); else render();
 }
 function fitSheet() {
   const vv = window.visualViewport, sh = $('#sheet'); if (!vv || !sh) return;
@@ -1465,16 +2090,18 @@ function importData(text) {
 
 /* ---------- 渲染 ---------- */
 function render() {
+  AL = null;
   document.documentElement.classList.toggle('big', !!S.ui.big);
-  renderBanners();
+  renderBanners(); renderTimer();
   if (!S.setup) { showSetup(); return; }
   $('#setup').classList.remove('show'); $('#setup').innerHTML = '';
   const dl = daysLeft();
   $('#topCd').innerHTML = dl >= 0 ? '距高考 <b>' + dl + '</b> 天' : '高考已结束';
   $$('.tabbar button').forEach(b => { const on = b.dataset.tab === S.ui.tab; b.classList.toggle('on', on); b.setAttribute('aria-current', on ? 'page' : 'false'); });
+  $('#gear').classList.toggle('on', S.ui.tab === 'set');
   const v = $('#view'), tab = S.ui.tab;
   if (tab === 'list') { v.innerHTML = viewList(); renderListCtl(); renderList(); }
-  else v.innerHTML = tab === 'today' ? viewToday() : tab === 'plan' ? viewPlan() : tab === 'set' ? viewSet() : viewDash();
+  else v.innerHTML = tab === 'today' ? viewToday() : tab === 'plan' ? viewPlan() : tab === 'set' ? viewSet() : tab === 'ana' ? viewAna() : viewDash();
   const hw = $('.hm-wrap'); if (hw) hw.scrollLeft = hw.scrollWidth;
 }
 
@@ -1507,19 +2134,70 @@ document.addEventListener('click', e => {
       if (inToday(sheetId)) removeToday(sheetId); else addToday(sheetId);
       const on = inToday(sheetId); el.textContent = on ? '移出今日任务' : '加入今日任务'; el.className = 'btn ' + (on ? 'line' : 'ghost'); break;
     }
-    case 'sheet-wrong': { const w = toggleWrong(sheetId); el.textContent = w ? '取消错题/难点' : '标记错题/难点'; el.className = 'btn ' + (w ? 'wbtn' : 'line'); toast(w ? '已加入错题/难点' : '已取消难点标记'); break; }
+    case 'sheet-wrong': { const w = toggleWrong(sheetId); el.textContent = w ? '取消错题/难点' : '标记错题/难点'; el.className = 'btn ' + (w ? 'wbtn' : 'line'); const cb = $('#causeBox'); if (cb) cb.innerHTML = causeBoxHTML(sheetId); toast(w ? '已加入错题/难点，可以选一下错因' : '已取消难点标记'); break; }
+    case 'cause': { const on = addCause(id, +el.dataset.k); const cb = $('#causeBox'); if (cb && sheetMode === 'pt') cb.innerHTML = causeBoxHTML(id); else el.classList.toggle('on', on); break; }
+    case 'rc-reveal': if (RC) { RC.shown = true; reSheet(recallHTML()); } break;
+    case 'rc-rate': {
+      if (!RC) break;
+      const g = +el.dataset.g, rid = RC.id, was = gs(rid);
+      completeTask(rid, g);
+      if (g === 0) { RC.step = 'cause'; reSheet(recallHTML()); }
+      else { closeSheet(false); toast(g === 2 ? (gs(rid) === 2 && was !== 2 ? '连续记住，已自动标为「掌握」' : '很好！下次复习间隔会拉长') : '记为模糊，明天再复习'); }
+      break;
+    }
+    case 'rc-skip': if (RC) { completeTask(RC.id, null); closeSheet(false); toast('已完成（未自测）'); } break;
+    case 'fl-open': openFlash(); break;
+    case 'fl-reveal': FR = true; reSheet(flashHTML()); break;
+    case 'fl-rate': {
+      const g = +el.dataset.g, fid = FQ[FI]; if (!fid) break;
+      const x = (S.tasks[today()] || []).find(t => t.id === fid && !t.done); if (x) x.done = true;
+      rate(fid, g); FS[2 - g]++;
+      if (g === 0) FC = true; else { FI++; FR = false; }
+      reSheet(flashHTML()); break;
+    }
+    case 'fl-next': FC = false; FI++; FR = false; reSheet(flashHTML()); break;
+    case 'tm-pick': openTPick(); break;
+    case 'tm-start': { tmStart(el.dataset.sk, el.dataset.id || null, 'f'); toast('开始专注 ' + S.pref.focus + ' 分钟'); if (sheetId) closeSheet(false); else render(); break; }
+    case 'tm-pause': tmPause(); break;
+    case 'tm-resume': tmResume(); break;
+    case 'tm-stop': tmStop(false); if (!sheetId) render(); break;
+    case 'tm-break': if (tmDone) tmStart(tmDone.sk, null, 'b'); break;
+    case 'tm-again': if (tmDone) { tmStart(tmDone.sk, tmDone.id, 'f'); if (!sheetId) render(); } break;
+    case 'tm-close': tmDone = null; renderTimer(); break;
+    case 'ana': S.ui.ana = el.dataset.k; save(); render(); window.scrollTo(0, 0); break;
+    case 'go-ana': S.ui.ana = el.dataset.k; if (S.ui.tab !== 'ana') goTab('ana'); else { save(); render(); window.scrollTo(0, 0); } break;
+    case 'diag-skip': S.ui.diagSkip = true; save(); render(); toast('已跳过，可随时在「分析 → 诊断」中填写'); break;
+    case 'diag-split': {
+      const f = $('#diagForm'), T = +f.querySelector('[name=dtarget]').value;
+      if (!(T > 0)) { toast('请先填写目标总分'); break; }
+      const sc = readScores(f, 'sc_'), a = autoSplit(T, Object.assign({}, latestScores(), typeof sc === 'string' ? {} : sc));
+      subs().forEach(k => { const i = f.querySelector('[name="tg_' + k + '"]'); if (i && a[k] != null) i.value = a[k]; });
+      toast('已按目标总分拆分，可再手动微调'); break;
+    }
+    case 'diag-save': saveDiag(); break;
+    case 'diag-clear': if (confirm('清除诊断后恢复平均分配（模考记录保留），继续？')) { S.diag.done = false; save(); render(); toast('已恢复平均分配'); } break;
+    case 'hist-del': if (confirm('删除 ' + el.dataset.d + ' 的成绩记录？')) { S.diag.hist = S.diag.hist.filter(h => h.d !== el.dataset.d); save(); render(); } break;
+    case 'rv-save': case 'rv-realloc': saveReview(a === 'rv-realloc'); break;
+    case 'save-pref': {
+      const f = $('#prefForm'), g = n => Math.round(+f.querySelector('[name=' + n + ']').value);
+      S.pref = { mNew: clamp(g('mNew') || 25, 5, 120), mRev: clamp(g('mRev') || 10, 2, 60), focus: clamp(g('focus') || 25, 5, 120), brk: clamp(g('brk') || 5, 1, 60) };
+      save(); render(); toast('学习参数已保存'); break;
+    }
+    case 'sortp': S.ui.sortP = !S.ui.sortP; S.ui.pMore = 60; save(); renderListCtl(); renderList(); break;
+    case 'pmore': S.ui.pMore += 60; renderList(); break;
     case 'sheet-close': closeSheet(false); break;
     case 'auto': autoSchedule(); break;
     case 'checkin': checkin(); break;
     case 'uncheckin': if (confirm('撤销今天的打卡？')) { delete S.checkins[today()]; save(); render(); } break;
-    case 'tdone': toggleDone(id); render(); break;
+    case 'tdone': { const x = (S.tasks[today()] || []).find(t => t.id === id); if (x && x.done) { undoTask(id); render(); } else openRecall(id); break; }
     case 'tremove': removeToday(id); render(); break;
     case 'carry': {
       const cap = S.setup.daily || 20; let added = 0;
       tasksOf(addDays(today(), -1)).filter(x => !x.done).forEach(x => { if (tasksOf(today()).length < cap && !inToday(x.id)) { addToday(x.id); added++; } });
       toast(added ? '已转入 ' + added + ' 个任务' : '今日任务已达上限'); render(); break;
     }
-    case 'rev-ok': case 'rev-no': review(id, a === 'rev-ok'); toast(a === 'rev-ok' ? '很好！下次复习间隔会变长' : '已标为需复习，明天再提醒'); render(); break;
+    case 'rev-ok': review(id, true); toast(gs(id) === 2 ? '连续记住，已自动标为「掌握」' : '很好！下次复习间隔会拉长'); render(); break;
+    case 'rev-no': review(id, false); render(); openRecall(id, 'cause'); break;
     case 'rev-all': S.ui.revAll = !S.ui.revAll; save(); render(); break;
     case 'rev-add': {
       const cap = S.setup.daily || 20; let added = 0;
@@ -1583,7 +2261,7 @@ document.addEventListener('click', e => {
     case 'reset':
       if (confirm('确定要清空所有进度、打卡、计划和设置吗？此操作不可撤销。') && confirm('再次确认：真的要重置吗？')) {
         try { localStorage.removeItem(LS); } catch (err) { /* 忽略 */ }
-        S = blank(); toast('已重置'); window.scrollTo(0, 0); render();
+        S = blank(); tmDone = null; clearInterval(tmTick); toast('已重置'); window.scrollTo(0, 0); render();
       }
       break;
   }
@@ -1601,7 +2279,7 @@ let qTimer;
 document.addEventListener('input', e => {
   const el = e.target;
   if (el.id === 'q') { clearTimeout(qTimer); qTimer = setTimeout(() => { S.ui.q = el.value; S.ui.fclosed = {}; save(); renderListCtl(); renderList(); }, 200); }
-  if (el.id === 'noteIn' && sheetId) { const id = sheetId; clearTimeout(noteTimer); noteTimer = setTimeout(() => setNote(id, el.value.trim()), 500); }
+  if ((el.id === 'noteIn' || el.id === 'kIn') && sheetId && sheetMode === 'pt') { const id = sheetId, fn = el.id === 'kIn' ? setK : setNote; clearTimeout(noteTimer); noteTimer = setTimeout(() => fn(id, el.value.trim()), 500); }
   if (el.dataset && el.dataset.wknote != null && S.plan) { const w = S.plan.weeks[+el.dataset.wknote]; if (w) { w.note = el.value; clearTimeout(noteTimer); noteTimer = setTimeout(save, 400); } }
 });
 document.addEventListener('focusin', e => {
@@ -1612,10 +2290,11 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && sheetId) c
 // 跨天自动刷新（App 挂在后台过夜，或一直开着跨过零点）
 let lastDay = today();
 function dayCheck() { if (today() !== lastDay) { lastDay = today(); if (!sheetId) render(); } }
-document.addEventListener('visibilitychange', () => { if (!document.hidden) dayCheck(); });
+document.addEventListener('visibilitychange', () => { if (!document.hidden) { dayCheck(); if (S.timer && S.timer.start && tmLeft() <= 0) tmFinish(false); } });
 setInterval(dayCheck, 60000);
 
 /* ---------- 启动 ---------- */
+const UPGRADED = S.from < SCHEMA && !!S.setup;
 save();
 try {
   const st = history.state;
@@ -1624,7 +2303,10 @@ try {
     if (S.setup && S.ui.tab !== 'dash') history.pushState({ gk: 'tab', tab: S.ui.tab }, '');
   }
 } catch (e) { /* 忽略 */ }
+// 计时器：刷新后恢复；若已在离开期间结束，补记时长
+if (S.timer && S.timer.start && tmLeft() <= 0) tmFinish(true); else tmRun();
 render();
+if (UPGRADED) toast('已升级到 ' + APP_VERSION + '：新增诊断、提分优先、自测、专注计时与复盘');
 
 /* ---------- 离线与更新（仅在 http/https 下注册 Service Worker，直接打开本地文件时跳过） ---------- */
 if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
@@ -1639,7 +2321,7 @@ if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
   }).catch(() => {});
   navigator.serviceWorker.addEventListener('controllerchange', () => { if (updateRequested) { updateRequested = false; location.reload(); } });
 }
-window.__gk = { S: () => S, PTS, PT, SYLLABUS, autoSchedule, genPlan, dueList, today, version: APP_VERSION };
+window.__gk = { S: () => S, PTS, PT, SYLLABUS, autoSchedule, genPlan, dueList, today, version: APP_VERSION, allocation, autoSplit, targets, prio, reasons, rate, flashQueue, dueInfo, dayMinutes, subjMinutes, causeDist, insight, behind };
 })();
 
 </script>
