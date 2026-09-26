@@ -1,13 +1,36 @@
-// 离线缓存：缓存优先 + 后台更新（stale-while-revalidate）
-const CACHE = 'gaokao-tracker-4f392ec8';
+// 离线缓存与更新：页面网络优先（4 秒超时回退缓存），其他资源缓存优先；新版本等待用户点击「刷新」后启用
+const VERSION = '3df7d065';
+const CACHE = 'gaokao-tracker-' + VERSION;
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon.png'];
-self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting())); });
-self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
+self.addEventListener('install', e => {
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL.map(u => new Request(u, { cache: 'reload' })))));
+});
+self.addEventListener('message', e => { if (e.data === 'SKIP_WAITING') self.skipWaiting(); });
+self.addEventListener('activate', e => {
+  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k.indexOf('gaokao-tracker-') === 0 && k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim()));
+});
+function pageFromCache(cache) { return cache.match('./index.html').then(r => r || cache.match('./')); }
+function networkFirst(req) {
+  return caches.open(CACHE).then(cache => new Promise(resolve => {
+    let done = false;
+    const finish = r => { if (!done && r) { done = true; resolve(r); } };
+    const timer = setTimeout(() => pageFromCache(cache).then(finish), 4000);
+    fetch(req.url, { cache: 'no-cache', credentials: 'same-origin' }).then(res => {
+      if (res && res.ok) cache.put('./index.html', res.clone());
+      clearTimeout(timer); finish(res);
+    }).catch(() => pageFromCache(cache).then(r => { clearTimeout(timer); finish(r || Response.error()); }));
+  }));
+}
 self.addEventListener('fetch', e => {
   const req = e.request;
-  if (req.method !== 'GET' || new URL(req.url).origin !== location.origin) return;
-  e.respondWith(caches.open(CACHE).then(cache => cache.match(req, { ignoreSearch: true }).then(hit => {
-    const net = fetch(req).then(res => { if (res && res.ok) cache.put(req, res.clone()); return res; }).catch(() => hit || (req.mode === 'navigate' ? cache.match('./index.html') : undefined));
-    return hit || net;
+  if (req.method !== 'GET') return;
+  const url = new URL(req.url);
+  if (url.origin !== location.origin) return;
+  const scope = new URL(self.registration.scope);
+  const isPage = req.mode === 'navigate' || url.pathname === scope.pathname || url.pathname === scope.pathname + 'index.html';
+  if (isPage) { e.respondWith(networkFirst(req)); return; }
+  e.respondWith(caches.match(req, { ignoreSearch: true }).then(hit => hit || fetch(req).then(res => {
+    if (res && res.ok) { const cp = res.clone(); caches.open(CACHE).then(c => c.put(req, cp)); }
+    return res;
   })));
 });
