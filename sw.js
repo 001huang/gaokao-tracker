@@ -1,5 +1,5 @@
 // 离线缓存与更新：页面网络优先（4 秒超时、断网、网站出错或返回的不是本应用时回退缓存），其他资源缓存优先；新版本等待用户点击「刷新」后启用
-const VERSION = 'f4cc294c';
+const VERSION = 'dcdbaf60';
 const CACHE = 'gaokao-tracker-' + VERSION;
 const SHELL = ['./', './index.html'];
 const EXTRA = ['./manifest.json', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon.png']; // 图标取不到（如镜像地址被重定向）不影响离线使用
