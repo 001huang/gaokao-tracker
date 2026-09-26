@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>高考知识点打卡器</title>
+<meta name="description" content="高考知识点清单、每日打卡与复习计划（离线可用）">
+<meta name="theme-color" content="#3b5bdb">
+<!--PWA-->
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="高考打卡">
+<!--/PWA-->
+<style>
+:root{--bg:#f3f5fa;--card:#fff;--text:#1f2937;--sub:#6b7280;--line:#e6e8ef;--pri:#3b5bdb;--pri2:#5b7cfa;--pri-soft:#eaefff;
+--c0:#c5cbd6;--c1:#3b82f6;--c2:#16a34a;--c3:#f08c00;--track:#eceff5;--hf:#e03131;--r:16px;--sh:0 1px 2px rgba(16,24,40,.05),0 2px 8px rgba(16,24,40,.05)}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1116;--card:#1a1d25;--text:#e6e8ee;--sub:#9aa1ad;--line:#2a2f3b;--pri:#4c6ef5;--pri2:#748ffc;--pri-soft:#1f2842;--c0:#4a5261;--track:#262b36;--sh:none}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC","Source Han Sans SC","WenQuanYi Micro Hei",sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.55;overscroll-behavior-y:none}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer;touch-action:manipulation}
+.wrap{max-width:760px;margin:0 auto}
+.topbar{background:linear-gradient(135deg,var(--pri),var(--pri2));color:#fff;padding:calc(env(safe-area-inset-top) + 12px) 16px 14px}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.topbar h1{font-size:18px;margin:0;font-weight:700;letter-spacing:.5px}
+.topbar .cd{font-size:13px;background:rgba(255,255,255,.18);padding:4px 10px;border-radius:20px;white-space:nowrap}
+.topbar .cd b{font-size:16px;margin:0 2px}
+main{padding:12px 12px calc(84px + env(safe-area-inset-bottom))}
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+.tabbar .wrap{display:flex}
+.tabbar button{flex:1;border:0;background:none;padding:7px 0 6px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11.5px;color:var(--sub);min-height:56px}
+.tabbar svg{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tabbar button.on{color:var(--pri);font-weight:600}
+.card{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);padding:14px;margin-bottom:12px}
+.card h3{margin:0 0 10px;font-size:16px}
+.muted{color:var(--sub);font-size:13px}
+.row2{display:flex;gap:10px;align-items:center}
+.btn{border:0;border-radius:12px;padding:0 16px;min-height:44px;background:var(--pri);color:#fff;font-weight:600;font-size:15px;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.btn.ghost{background:var(--pri-soft);color:var(--pri)}
+.btn.line{background:none;border:1px solid var(--line);color:var(--text)}
+.btn.warn{background:#fff0f0;color:#c92a2a}
+@media (prefers-color-scheme:dark){.btn.warn{background:#3a1f22;color:#ff8787}}
+.btn.sm{min-height:36px;padding:0 12px;font-size:13.5px;border-radius:10px}
+.btn:disabled{opacity:.5}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btns .btn{flex:1 1 auto}
+/* 进度条 */
+.bar{display:flex;height:10px;border-radius:6px;overflow:hidden;background:var(--track)}
+.bar i{display:block;height:100%}
+.bar .b2{background:var(--c2)}.bar .b1{background:var(--c1)}.bar .b3{background:var(--c3)}
+.bar.thin{height:6px}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--sub);margin-top:6px}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:4px;vertical-align:-1px}
+.l0{background:var(--c0)}.l1{background:var(--c1)}.l2{background:var(--c2)}.l3{background:var(--c3)}
+/* 总览 */
+.hero{display:flex;gap:14px;align-items:center}
+.ring{width:108px;height:108px;border-radius:50%;flex:none;display:grid;place-items:center}
+.ring>div{width:80px;height:80px;border-radius:50%;background:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring b{font-size:22px;line-height:1.1}.ring small{font-size:11px;color:var(--sub)}
+.kv{display:grid;grid-template-columns:repeat(2,1fr);gap:6px 12px;flex:1;font-size:13px}
+.kv div{display:flex;justify-content:space-between;border-bottom:1px dashed var(--line);padding:2px 0}
+.kv b{font-weight:600}
+.cdcard{background:linear-gradient(135deg,var(--pri),var(--pri2));color:#fff}
+.cdcard .big{font-size:40px;font-weight:800;line-height:1.1}
+.cdcard .muted{color:rgba(255,255,255,.85)}
+.phase{display:inline-block;font-size:12px;padding:2px 8px;border-radius:10px;background:rgba(255,255,255,.2);margin-left:6px;vertical-align:middle}
+.ph1{background:#e7f5ff;color:#1864ab}.ph2{background:#fff4e6;color:#d9480f}.ph3{background:#fff0f6;color:#c2255c}
+@media (prefers-color-scheme:dark){.ph1{background:#1b3148;color:#74c0fc}.ph2{background:#3d2a17;color:#ffa94d}.ph3{background:#3d1a2a;color:#f783ac}}
+.stats3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
+.stats3 b{display:block;font-size:20px}
+.stats3 span{font-size:12px;color:var(--sub)}
+details.subj{padding:0}
+details.subj>summary{list-style:none;padding:14px;cursor:pointer}
+details.subj>summary::-webkit-details-marker{display:none}
+.subj-t{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.subj-t b{font-size:16px}.subj-t b::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--sc);margin-right:7px;vertical-align:2px}
+.subj-body{padding:0 14px 14px;border-top:1px solid var(--line)}
+.chrow{padding:8px 0;border-bottom:1px solid var(--line);font-size:13.5px}
+.chrow:last-of-type{border-bottom:0}
+.chrow .row2{justify-content:space-between;margin-bottom:4px}
+.weak li{margin:4px 0;font-size:14px}
+/* 清单 */
+.lhead{position:sticky;top:0;z-index:15;background:var(--bg);margin:-12px -12px 8px;padding:10px 12px 6px}
+.search{display:flex;gap:8px}
+.search input{flex:1;min-width:0;height:42px;border:1px solid var(--line);border-radius:12px;padding:0 12px;background:var(--card);font-size:16px;outline:none}
+.search input:focus{border-color:var(--pri)}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:8px 0 2px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1px solid var(--line);background:var(--card);border-radius:18px;padding:0 13px;height:34px;font-size:14px;white-space:nowrap;display:inline-flex;align-items:center;gap:4px}
+.chip small{color:var(--sub);font-size:11.5px}
+.chip.on{background:var(--pri);border-color:var(--pri);color:#fff}.chip.on small{color:rgba(255,255,255,.85)}
+.tog{flex:none;height:42px;border-radius:12px;border:1px solid var(--line);background:var(--card);padding:0 12px;font-size:14px;white-space:nowrap}
+.tog.on{background:#fff0f0;border-color:#ffc9c9;color:var(--hf);font-weight:600}
+@media (prefers-color-scheme:dark){.tog.on{background:#3a1f22;border-color:#5c2b2f}}
+.subsum{font-size:13px;color:var(--sub);margin:4px 2px 10px}
+.sub-h{font-size:18px;font-weight:700;margin:16px 4px 6px}
+.mod-h{font-size:13px;color:var(--sub);margin:14px 4px 6px;font-weight:600}
+.ch{background:var(--card);border-radius:14px;box-shadow:var(--sh);margin-bottom:8px;overflow:hidden}
+.ch-h{width:100%;border:0;background:none;text-align:left;padding:12px 14px;display:block}
+.ch-h .row2{justify-content:space-between}
+.ch-h .nm{font-weight:600;font-size:15px}
+.ch-h .ct{font-size:12.5px;color:var(--sub);white-space:nowrap}
+.ch-h .bar{margin-top:7px}
+.chev{display:inline-block;transition:transform .2s;color:var(--sub);margin-left:4px}
+.ch.open .chev{transform:rotate(90deg)}
+.ch-b{border-top:1px solid var(--line)}
+.ch:not(.open) .ch-b{display:none}
+.row{display:flex;align-items:center;gap:10px;padding:8px 10px 8px 12px;border-bottom:1px solid var(--line);min-height:52px}
+.row:last-child{border-bottom:0}
+.st{flex:none;width:58px;height:32px;border-radius:16px;border:0;font-size:13px;font-weight:600}
+.s0{background:var(--track);color:var(--sub)}
+.s1{background:#dbeafe;color:#1d4ed8}
+.s2{background:#d3f9d8;color:#2b8a3e}
+.s3{background:#ffec99;color:#b35c00}
+@media (prefers-color-scheme:dark){.s1{background:#1e3a5f;color:#93c5fd}.s2{background:#1d3b26;color:#8ce99a}.s3{background:#43331a;color:#ffc078}}
+.row-main{flex:1;min-width:0;cursor:pointer;padding:4px 0}
+.row-t{font-size:14.5px;word-break:break-word}
+.row-m{font-size:12px;color:var(--sub);display:flex;gap:8px;margin-top:2px}
+.row-m .nt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0}
+.hf{display:inline-block;font-size:11px;line-height:16px;padding:0 5px;border-radius:5px;background:#ffe3e3;color:var(--hf);margin-right:5px;vertical-align:1px;font-weight:600}
+@media (prefers-color-scheme:dark){.hf{background:#4a2124}}
+.add{flex:none;width:40px;height:40px;border-radius:50%;border:1px dashed var(--line);background:none;font-size:20px;color:var(--pri);line-height:1}
+.add.on{background:var(--pri-soft);border:1px solid var(--pri);font-size:16px}
+.empty{text-align:center;color:var(--sub);padding:40px 16px}
+/* 今日 */
+.task{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.task:last-child{border-bottom:0}
+.chk{flex:none;width:30px;height:30px;border-radius:9px;border:2px solid var(--c0);background:none;color:transparent;font-weight:800;font-size:16px}
+.task.done .chk{background:var(--c2);border-color:var(--c2);color:#fff}
+.task.done .row-t{text-decoration:line-through;color:var(--sub)}
+.x{flex:none;width:34px;height:34px;border:0;background:none;color:var(--sub);font-size:20px;border-radius:50%}
+.tag{display:inline-block;font-size:11.5px;padding:0 6px;border-radius:6px;color:#fff;background:var(--c,#888);margin-right:5px;line-height:18px;vertical-align:1px}
+.bigbtns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.bigbtns .btn{min-height:50px;font-size:16px}
+.btn.done{background:var(--c2)}
+.hm-wrap{overflow-x:auto;padding-bottom:4px}
+.hm-grid{display:flex;gap:3px}
+.hm-col{display:flex;flex-direction:column;gap:3px}
+.hm-col i{width:14px;height:14px;border-radius:3px;display:block}
+.hm-lab{display:flex;flex-direction:column;gap:3px;font-size:10px;color:var(--sub);margin-right:2px}
+.hm-lab span{height:14px;line-height:14px}
+.hm0{background:var(--track)}.hm1{background:#b2f2bb}.hm2{background:#69db7c}.hm3{background:#40c057}.hm4{background:#2b8a3e}.hmf{background:transparent}
+.hm-today{outline:2px solid var(--pri);outline-offset:-1px}
+/* 计划 */
+.tl{display:flex;border-radius:10px;overflow:hidden;font-size:12px;text-align:center;margin:8px 0}
+.tl div{padding:6px 2px;min-width:0}
+.wk{padding:0}
+.wk-h{padding:12px 14px 6px;display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.wk-h b{font-size:15px}
+.wk.cur{outline:2px solid var(--pri)}
+.wk-st{font-size:12px;white-space:nowrap;padding:2px 8px;border-radius:10px;background:var(--track);color:var(--sub)}
+.wk.ok .wk-st{background:#d3f9d8;color:#2b8a3e}
+@media (prefers-color-scheme:dark){.wk.ok .wk-st{background:#1d3b26;color:#8ce99a}}
+.wk-sum{padding:0 14px;display:flex;flex-wrap:wrap;gap:6px;font-size:12.5px}
+.wk-sum .tag{font-size:12px;line-height:20px;padding:0 7px}
+.wk-tip{padding:6px 14px 0;font-size:12.5px;color:var(--sub)}
+.wk-act{padding:10px 14px 12px;display:flex;gap:8px;flex-wrap:wrap}
+.wk-b{border-top:1px solid var(--line);padding:6px 14px 12px}
+.wk-b h4{margin:10px 0 4px;font-size:13.5px}
+.wi{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:13.5px;border-bottom:1px dashed var(--line)}
+.wi .dot{flex:none;width:9px;height:9px;border-radius:50%}
+.wi span.n{flex:1;min-width:0}
+.wi button{flex:none;border:1px solid var(--line);background:none;border-radius:8px;height:30px;padding:0 8px;font-size:12px;color:var(--sub)}
+.wk textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:8px;background:var(--bg);min-height:40px;resize:vertical;margin-top:8px;font-size:14px}
+.badge{display:inline-block;font-size:11px;background:var(--pri);color:#fff;border-radius:8px;padding:0 6px;margin-left:4px;vertical-align:1px}
+/* 设置表单 */
+.fl{font-weight:600;font-size:14px;margin:14px 0 8px}
+.fl small{font-weight:400;color:var(--sub)}
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mode input,.cc input{position:absolute;opacity:0;pointer-events:none}
+.mode span{display:block;border:1.5px solid var(--line);border-radius:12px;padding:10px;min-height:64px;background:var(--card)}
+.mode b{display:block;font-size:14.5px}.mode small{color:var(--sub);font-size:12px}
+.mode input:checked+span{border-color:var(--pri);background:var(--pri-soft)}
+.chipset{display:flex;flex-wrap:wrap;gap:8px}
+.cc span{display:inline-flex;align-items:center;height:40px;padding:0 18px;border-radius:20px;border:1.5px solid var(--line);background:var(--card);font-size:15px}
+.cc input:checked+span{border-color:var(--pri);background:var(--pri);color:#fff}
+.pick{display:none}
+.sf[data-mode="312"] .p312,.sf[data-mode="33"] .p33,.sf[data-mode="li"] .pli,.sf[data-mode="wen"] .pwen{display:block}
+.hint{font-size:13px;color:var(--sub);background:var(--bg);padding:10px;border-radius:10px;margin:12px 0 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.f{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--sub)}
+.f input{height:44px;border:1px solid var(--line);border-radius:10px;padding:0 10px;background:var(--card);font-size:16px;color:var(--text);min-width:0;width:100%}
+textarea.inp{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--card);font-size:15px;min-height:70px}
+.note-box{background:#fff9db;color:#8a6d00;border-radius:12px;padding:12px 14px;font-size:14px;margin-bottom:12px}
+@media (prefers-color-scheme:dark){.note-box{background:#3a3217;color:#ffe066}}
+/* 底部弹层 */
+.mask{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:50;display:none}
+.mask.show{display:block}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:51;background:var(--card);border-radius:20px 20px 0 0;padding:10px 16px calc(16px + env(safe-area-inset-bottom));max-width:760px;margin:0 auto;transform:translateY(105%);transition:transform .22s ease;max-height:88vh;overflow-y:auto}
+.sheet.show{transform:none}
+.grab{width:40px;height:5px;border-radius:3px;background:var(--line);margin:0 auto 10px}
+.sheet h2{font-size:17px;margin:4px 0 4px}
+.sts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0}
+.sts button{height:48px;border-radius:12px;border:2px solid transparent;font-weight:600;font-size:15px}
+.sts button.on{border-color:currentColor;box-shadow:0 0 0 2px var(--card) inset}
+/* 首次设置 */
+.setup{position:fixed;inset:0;z-index:60;background:var(--bg);overflow-y:auto;display:none}
+.setup.show{display:block}
+.setup .inner{max-width:560px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 20px) 16px 40px}
+.setup h1{font-size:24px;margin:10px 0 4px}
+.toast{position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom));transform:translateX(-50%);background:rgba(30,30,30,.92);color:#fff;padding:10px 16px;border-radius:12px;font-size:14px;z-index:90;opacity:0;pointer-events:none;transition:opacity .2s;max-width:86vw;text-align:center}
+.toast.show{opacity:1}
+#printArea{display:none}
+@media (min-width:700px){main{padding:18px 18px 96px}.lhead{margin:-18px -18px 8px;padding:12px 18px 6px}.modes{grid-template-columns:repeat(4,1fr)}}
+@media print{
+  body{background:#fff;color:#000;font-size:10.5pt}
+  body>*:not(#printArea){display:none!important}
+  #printArea{display:block}
+  #printArea h1{font-size:18pt;margin:0 0 4pt}
+  #printArea h2{font-size:14pt;margin:14pt 0 4pt;border-bottom:1.5pt solid #000;page-break-after:avoid}
+  #printArea h3{font-size:11pt;margin:8pt 0 2pt;color:#444}
+  #printArea h4{font-size:10.5pt;margin:6pt 0 2pt;page-break-after:avoid}
+  #printArea ul{margin:0;padding:0;list-style:none;columns:2;column-gap:18pt}
+  #printArea li{break-inside:avoid;padding:1pt 0}
+  #printArea .pb{font-family:monospace}
+  @page{margin:12mm}
+}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="wrap"><h1>高考知识点打卡器</h1><div class="cd" id="topCd"></div></div></header>
+<main><div class="wrap" id="view"></div></main>
+<nav class="tabbar"><div class="wrap">
+  <button data-act="tab" data-tab="dash"><svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>总览</button>
+  <button data-act="tab" data-tab="list"><svg viewBox="0 0 24 24"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1.2"/><circle cx="4.5" cy="12" r="1.2"/><circle cx="4.5" cy="18" r="1.2"/></svg>知识清单</button>
+  <button data-act="tab" data-tab="today"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 12l3 3 5-6"/></svg>今日打卡</button>
+  <button data-act="tab" data-tab="plan"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4M7.5 14h3M7.5 17.5h6"/></svg>复习计划</button>
+  <button data-act="tab" data-tab="set"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>设置</button>
+</div></nav>
+<div class="mask" id="mask" data-act="sheet-close"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true"></div>
+<div class="setup" id="setup"></div>
+<div class="toast" id="toast"></div>
+<div id="printArea"></div>
+<script>
+/* ==========================================================
+ * 知识点数据（可自行编辑）
+ * 结构：SYLLABUS[科目键] = { name, color, modules: [ { m: 模块名, ch: [ [章节名, [知识点...]] ] } ] }
+ * 知识点以 "*" 开头表示「高频」考点。
+ * 知识点 ID 由「科目+章节名+知识点名」哈希生成：修改名称会视为新知识点（旧进度不再对应）。
+ * ========================================================== */
+const SYLLABUS = {
+yuwen: { name: "语文", color: "#e0564b", modules: [
+  { m: "文言文阅读", ch: [
+    ["文言实词", ["常见文言实词积累（课标120个常见实词）", "*一词多义（结合语境推断词义）", "古今异义", "通假字", "*词类活用（名词作动词、使动、意动、名作状）", "偏义复词与实词推断方法（字形、语法结构、对举）"]],
+    ["文言虚词", ["常见18个虚词：而、何、乎、乃、其、且", "常见18个虚词：若、所、为、焉、也、以", "常见18个虚词：因、于、与、则、者、之", "虚词在翻译中的落实"]],
+    ["文言句式", ["判断句", "被动句", "省略句", "倒装句（宾语前置、定语后置、状语后置、主谓倒装）", "固定句式（何以……为、得无……乎、无乃……乎 等）"]],
+    ["断句、翻译与理解", ["*文言断句（名词代词、虚词、对称句式、对话标志）", "*文言翻译（直译为主：留、删、换、补、调）", "文言翻译得分点（关键实词、虚词、句式）", "*古代文化常识（官职、科举、称谓、礼俗、天文历法、地理）", "文言文内容理解与分析概括（选择题辨析）", "文言文主观简答题（概括事件、分析人物）"]]
+  ]},
+  { m: "古代诗歌阅读", ch: [
+    ["古诗鉴赏考点", ["诗歌意象与意境（营造氛围、烘托情感）", "诗歌人物形象分析", "*诗歌语言：炼字（动词、形容词、叠词）", "诗歌语言风格（清新、豪放、婉约、沉郁、平淡）", "*表达技巧：修辞手法（比喻、拟人、夸张、对偶、用典等）", "*表达技巧：表现手法（衬托、对比、虚实、动静、以乐写哀、托物言志）", "抒情方式（直抒胸臆、借景抒情、融情于景）", "诗歌结构（首尾呼应、承上启下、卒章显志、铺垫）", "*思想情感与观点态度", "诗歌题材分类（山水田园、边塞、咏史怀古、送别、羁旅思乡、咏物、闺怨）", "比较阅读（两首诗异同）", "诗歌选择题辨析（常见设误方式）"]]
+  ]},
+  { m: "名篇名句默写（教材重点背诵篇目）", ch: [
+    ["必修上册", ["沁园春·长沙（毛泽东）", "短歌行（曹操）", "归园田居（其一）（陶渊明）", "梦游天姥吟留别（李白）", "登高（杜甫）", "*琵琶行并序（白居易）", "念奴娇·赤壁怀古（苏轼）", "永遇乐·京口北固亭怀古（辛弃疾）", "声声慢（寻寻觅觅）（李清照）", "*劝学（荀子）", "*师说（韩愈）", "*赤壁赋（苏轼）", "静女（《诗经》）", "涉江采芙蓉（《古诗十九首》）", "鹊桥仙（纤云弄巧）（秦观）"]],
+    ["必修下册", ["子路、曾皙、冉有、公西华侍坐（《论语》）", "齐桓晋文之事（《孟子》）", "庖丁解牛（《庄子》）", "*阿房宫赋（杜牧）", "六国论（苏洵）", "谏太宗十思疏（魏征）", "登岳阳楼（杜甫）", "桂枝香·金陵怀古（王安石）", "念奴娇·过洞庭（张孝祥）", "游园〔皂罗袍〕（汤显祖）"]],
+    ["选择性必修上册", ["《论语》十二章", "大学之道（《礼记》）", "人皆有不忍人之心（《孟子》）", "无衣（《诗经》）", "春江花月夜（张若虚）", "将进酒（李白）", "江城子·乙卯正月二十日夜记梦（苏轼）"]],
+    ["选择性必修中册", ["过秦论（贾谊）", "五代史伶官传序（欧阳修）", "燕歌行并序（高适）", "李凭箜篌引（李贺）", "锦瑟（李商隐）", "书愤（陆游）"]],
+    ["选择性必修下册", ["氓（《诗经》）", "*离骚（节选）（屈原）", "*蜀道难（李白）", "蜀相（杜甫）", "望海潮（柳永）", "扬州慢（姜夔）", "陈情表（李密）", "项脊轩志（归有光）", "兰亭集序（王羲之）", "归去来兮辞并序（陶渊明）", "拟行路难（其四）（鲍照）", "客至（杜甫）", "登快阁（黄庭坚）", "临安春雨初霁（陆游）"]],
+    ["初中篇目与默写技巧", ["初中重点古诗文回顾（出师表、岳阳楼记、醉翁亭记、桃花源记等）", "情境式默写审题（理解型默写）", "易错字专项整理"]]
+  ]},
+  { m: "现代文阅读", ch: [
+    ["信息类文本阅读（现代文阅读Ⅰ）", ["筛选并整合文中信息", "概念理解与辨析", "*选择题常见设误方式（偷换概念、以偏概全、因果倒置、时态混淆）", "论点、论据与论证方法分析", "文本论证思路与结构", "多文本材料间关系与比较", "*信息推断与观点运用（新材料对应分析）", "主观题：概括要点、分析原因"]],
+    ["文学类文本阅读（现代文阅读Ⅱ）", ["小说情节（结构安排、情节作用）", "*小说人物形象分析", "小说环境描写的作用", "叙事视角与叙述技巧（插叙、倒叙、留白）", "*小说主题与标题意蕴", "散文线索与行文思路", "散文语言赏析（词句含义与表达效果）", "*散文情感与主旨", "艺术手法与表达效果", "文学类选择题辨析"]]
+  ]},
+  { m: "语言文字运用", ch: [
+    ["语言文字运用题型", ["*词语（成语）使用正误", "*病句辨析与修改（语序不当、搭配不当、成分残缺赘余、结构混乱、不合逻辑）", "语句衔接与排序", "*语句补写（情境补写）", "修辞手法辨析与效果", "标点符号使用", "句式变换（长短句、整散句、主被动）", "图文转换", "语言表达简明、连贯、得体", "词句含义与表达效果分析", "仿写与压缩语段"]]
+  ]},
+  { m: "整本书阅读", ch: [
+    ["整本书阅读", ["《乡土中国》核心概念（差序格局、礼治秩序、无讼、长老统治等）", "《红楼梦》人物、情节与主题", "整本书阅读情境题"]]
+  ]},
+  { m: "写作", ch: [
+    ["作文", ["*审题立意（材料作文、关键词分析）", "任务驱动型作文（情境、身份、任务）", "*新材料作文/思辨类作文（辩证分析）", "议论文结构（并列式、层进式、对照式）", "分论点设置与论证方法", "素材积累与运用（人物、时事、名言、教材素材）", "开头结尾与标题拟写", "议论文语言升格（修辞、句式）", "记叙文/散文写作基础", "限时作文训练（50分钟内完成800字以上）"]]
+  ]}
+]},
+
+shuxue: { name: "数学", color: "#3b6fe0", modules: [
+  { m: "必修第一册", ch: [
+    ["集合与常用逻辑用语", ["集合的含义与表示（元素确定性、互异性、无序性）", "集合间的基本关系（子集、真子集个数）", "*集合的基本运算（交集、并集、补集）", "*充分条件与必要条件", "全称量词与存在量词", "含量词命题的否定"]],
+    ["一元二次函数、方程和不等式", ["等式与不等式的性质", "*基本不等式及其应用（一正二定三相等、最值）", "二次函数与一元二次方程、不等式", "含参一元二次不等式的解法", "分式不等式与绝对值不等式", "不等式恒成立与能成立问题"]],
+    ["函数的概念与性质", ["函数的概念、定义域与值域", "函数的表示法与分段函数", "*函数的单调性与最值", "*函数的奇偶性", "函数的周期性与对称性", "幂函数", "函数图象变换（平移、对称、翻折）"]],
+    ["指数函数与对数函数", ["根式与指数幂的运算", "指数函数的图象与性质", "对数的概念与运算性质（换底公式）", "对数函数的图象与性质", "*指、对、幂比较大小", "反函数（同底指对函数互为反函数）", "*函数的零点与零点存在定理", "二分法求方程近似解", "函数模型的应用"]],
+    ["三角函数", ["任意角与弧度制", "三角函数的定义（单位圆）", "同角三角函数的基本关系", "诱导公式", "正弦、余弦函数的图象与性质", "正切函数的图象与性质", "*两角和与差、二倍角公式", "简单的三角恒等变换（辅助角公式）", "*函数 y=Asin(ωx+φ) 的图象与性质", "三角函数的应用"]]
+  ]},
+  { m: "必修第二册", ch: [
+    ["平面向量及其应用", ["向量的概念与线性运算", "平面向量基本定理与坐标表示", "*平面向量的数量积（夹角、模、投影向量）", "向量平行与垂直的坐标条件", "*正弦定理与余弦定理", "*解三角形（面积、最值与范围）", "向量在几何与物理中的应用"]],
+    ["复数", ["复数的概念（实部、虚部、纯虚数、共轭复数）", "复数的几何意义（复平面、模）", "*复数的四则运算", "复数的三角表示（了解）"]],
+    ["立体几何初步", ["基本立体图形的结构特征", "直观图（斜二测画法）", "*柱、锥、台、球的表面积与体积", "*外接球与内切球问题", "空间点、线、面位置关系（基本事实）", "直线与平面平行的判定与性质", "平面与平面平行的判定与性质", "*直线与平面垂直的判定与性质", "平面与平面垂直的判定与性质", "空间角的几何求法（异面直线所成角、线面角、二面角）"]],
+    ["统计", ["随机抽样（简单随机抽样、分层抽样）", "频率分布表与频率分布直方图", "*用样本估计总体（百分位数、众数、中位数、平均数）", "方差与标准差"]],
+    ["概率", ["样本空间与随机事件", "事件的关系与运算（互斥、对立）", "*古典概型", "概率的基本性质", "事件的相互独立性", "频率与概率"]]
+  ]},
+  { m: "选择性必修第一册", ch: [
+    ["空间向量与立体几何", ["空间向量及其线性运算、数量积", "空间向量基本定理与坐标表示", "用空间向量证明平行与垂直", "*用空间向量求线线角、线面角、二面角", "空间距离（点到平面距离）", "立体几何探索性问题（是否存在点）"]],
+    ["直线和圆的方程", ["直线的倾斜角与斜率", "直线方程的五种形式", "两条直线的平行与垂直", "交点坐标与距离公式（点到直线、平行线间距离）", "对称问题", "圆的标准方程与一般方程", "*直线与圆的位置关系（弦长、切线）", "圆与圆的位置关系"]],
+    ["圆锥曲线的方程", ["椭圆的定义与标准方程", "*椭圆的几何性质（离心率）", "双曲线的定义与标准方程", "*双曲线的几何性质（渐近线、离心率）", "抛物线的定义与标准方程", "抛物线的几何性质（焦点弦）", "焦点三角形问题", "*直线与圆锥曲线的位置关系（联立、韦达定理、弦长）", "中点弦问题（点差法）", "*定点、定值问题", "最值与范围问题", "轨迹方程的求法"]]
+  ]},
+  { m: "选择性必修第二册", ch: [
+    ["数列", ["数列的概念、通项公式与递推公式", "等差数列的通项与前 n 项和", "等比数列的通项与前 n 项和", "*等差、等比数列的性质", "*由递推公式求通项（累加、累乘、构造法）", "*数列求和（错位相减、裂项相消、分组、倒序相加）", "数列与不等式（放缩法）", "数学归纳法"]],
+    ["一元函数的导数及其应用", ["导数的概念与几何意义", "基本初等函数的导数与运算法则", "简单复合函数的求导", "*切线方程问题", "*利用导数研究函数单调性（含参分类讨论）", "*函数的极值与最值", "*不等式恒成立与存在性问题（分离参数）", "函数零点个数问题", "利用导数证明不等式（构造函数）", "极值点偏移与隐零点（拓展）"]]
+  ]},
+  { m: "选择性必修第三册", ch: [
+    ["计数原理", ["分类加法与分步乘法计数原理", "排列与排列数", "组合与组合数", "排列组合综合（捆绑、插空、分组分配）", "*二项式定理（通项、特定项）", "二项式系数的性质（赋值法）"]],
+    ["随机变量及其分布", ["条件概率", "乘法公式与全概率公式", "贝叶斯公式（了解）", "离散型随机变量及其分布列", "*离散型随机变量的均值与方差", "*二项分布", "超几何分布", "正态分布（3σ原则）"]],
+    ["成对数据的统计分析", ["变量的相关关系与样本相关系数", "*一元线性回归模型与最小二乘法", "残差分析与决定系数 R²", "*2×2 列联表与独立性检验（χ²）"]]
+  ]},
+  { m: "综合与题型", ch: [
+    ["综合能力", ["新定义与创新情境问题", "选择填空速解技巧（特值、排除、数形结合）", "压轴题分步得分策略"]]
+  ]}
+]},
+
+yingyu: { name: "英语", color: "#8e5bd8", modules: [
+  { m: "词汇", ch: [
+    ["课标词汇（约3000词分阶段）", ["初中基础词汇回顾（约1500词）", "必修阶段词汇（累计约2000词）", "*选择性必修阶段词汇（累计约3000词）", "*熟词生义", "词形转换（派生词：前缀、后缀）", "短语动词与固定搭配", "易混词辨析", "主题词汇：人与自我（学校生活、个人成长）", "主题词汇：人与社会（文化、科技、历史）", "主题词汇：人与自然（环境、动物、灾害）"]]
+  ]},
+  { m: "语法", ch: [
+    ["词法", ["名词（可数/不可数、所有格）", "冠词（a/an/the/零冠词）", "代词（人称、物主、反身、不定代词、it 用法）", "形容词与副词（比较级、最高级）", "介词与介词短语", "连词（并列、从属）", "情态动词（含推测用法）"]],
+    ["动词与句法", ["*动词时态（一般、进行、完成、完成进行）", "*被动语态", "主谓一致", "*非谓语动词：不定式", "*非谓语动词：动名词", "*非谓语动词：现在分词与过去分词（作定语、状语、宾补）", "*定语从句（that/which/who/whose/关系副词）", "名词性从句（主语、宾语、表语、同位语从句）", "*状语从句（时间、条件、让步、原因、目的等）", "虚拟语气", "倒装句（部分倒装、完全倒装）", "强调句（It is/was ... that ...）", "省略与替代", "there be 句型与特殊句式"]]
+  ]},
+  { m: "阅读", ch: [
+    ["阅读理解", ["*细节理解题", "*推理判断题", "主旨大意题（标题、段落大意）", "词义猜测题（词、短语、句子含义）", "作者观点态度与写作意图", "篇章结构与文体（应用文、记叙文、说明文、议论文）"]],
+    ["七选五（阅读填空）", ["段首句（主题句）", "段中句（承上启下）", "段尾句（总结）", "逻辑关系词与代词指代", "词汇复现与同义替换"]]
+  ]},
+  { m: "语言运用", ch: [
+    ["完形填空", ["上下文逻辑（转折、因果、并列）", "词汇复现与同义替换", "情感线与主题线", "*动词、名词辨析", "形容词、副词辨析与固定搭配"]],
+    ["语法填空", ["*有提示词：词性转换", "*有提示词：谓语动词（时态、语态、主谓一致）", "有提示词：非谓语动词", "无提示词：冠词、介词、连词", "无提示词：代词与从句引导词"]]
+  ]},
+  { m: "听力（按本省考试要求）", ch: [
+    ["听力", ["短对话（场景、人物关系、数字计算）", "长对话与独白（抓关键信息）", "预读题干与速记技巧"]]
+  ]},
+  { m: "写作", ch: [
+    ["应用文写作", ["书信格式与三段式结构", "*常见书信：邀请信、感谢信、建议信、申请信、道歉信", "通知、演讲稿、倡议书、新闻报道", "高级词汇与高级句式（非谓语、从句、倒装、强调）", "衔接过渡词", "书写规范与卷面"]],
+    ["读后续写", ["*情节构思与段首句衔接", "动作描写", "心理与情感描写", "环境描写与烘托", "*主题升华与结尾", "续写常用素材与句式积累"]]
+  ]}
+]},
+
+wuli: { name: "物理", color: "#1f9d8f", modules: [
+  { m: "必修第一册", ch: [
+    ["运动的描述", ["质点、参考系、坐标系", "时间与时刻、位移与路程", "速度（平均速度、瞬时速度、速率）", "加速度"]],
+    ["匀变速直线运动的研究", ["*匀变速直线运动基本公式与推论（Δx=aT²）", "*x-t 图像与 v-t 图像", "自由落体运动与竖直上抛", "追及相遇问题"]],
+    ["相互作用——力", ["重力与弹力（胡克定律）", "摩擦力（静摩擦、滑动摩擦）", "力的合成与分解", "*共点力平衡（动态平衡、整体法与隔离法）"]],
+    ["运动和力的关系", ["牛顿第一定律与惯性", "*牛顿第二定律及应用", "牛顿第三定律", "超重与失重", "*连接体问题", "*板块模型与传送带模型", "力学单位制"]]
+  ]},
+  { m: "必修第二册", ch: [
+    ["抛体运动", ["曲线运动的条件与运动的合成分解", "小船渡河与关联速度", "*平抛运动规律", "斜抛运动"]],
+    ["圆周运动", ["线速度、角速度、周期、向心加速度", "*向心力与圆周运动实例（火车转弯、拱桥、圆锥摆）", "*竖直面内圆周运动临界问题（绳模型、杆模型）", "离心现象"]],
+    ["万有引力与宇宙航行", ["开普勒定律", "万有引力定律", "*天体运动（v、ω、T、a 与轨道半径的关系）", "宇宙速度与同步卫星", "卫星变轨与双星问题"]],
+    ["机械能守恒定律", ["功与功率（机车启动）", "*动能定理", "重力势能与弹性势能", "*机械能守恒定律", "功能关系与能量守恒"]]
+  ]},
+  { m: "必修第三册", ch: [
+    ["静电场及其应用", ["电荷与库仑定律", "电场强度与电场线", "点电荷场强与电场叠加", "静电平衡与静电屏蔽"]],
+    ["静电场中的能量", ["电势能与电势", "电势差与等势面", "匀强电场中 U=Ed", "电容器与电容（动态分析）", "*带电粒子在电场中的加速与偏转"]],
+    ["电路及其应用", ["电流、电阻与电阻定律", "串联与并联电路", "电表改装"]],
+    ["电能 能量守恒定律", ["电功、电功率与焦耳定律", "*闭合电路欧姆定律（动态分析）", "电源的输出功率与效率"]],
+    ["电磁场与电磁波初步", ["磁场、磁感线与磁感应强度", "磁通量", "电磁感应现象及应用", "电磁波与能量量子化"]]
+  ]},
+  { m: "选择性必修第一册", ch: [
+    ["动量守恒定律", ["动量与冲量", "*动量定理", "*动量守恒定律", "*弹性碰撞与非弹性碰撞", "反冲与爆炸", "子弹打木块与人船模型"]],
+    ["机械振动", ["简谐运动及其图像", "单摆", "受迫振动与共振"]],
+    ["机械波", ["机械波的形成与传播", "*波的图像与振动图像", "波的干涉、衍射与多普勒效应"]],
+    ["光", ["*光的折射与折射率", "全反射", "光的双缝干涉与薄膜干涉", "光的衍射与偏振", "激光"]]
+  ]},
+  { m: "选择性必修第二册", ch: [
+    ["安培力与洛伦兹力", ["安培力", "洛伦兹力", "*带电粒子在匀强磁场中的圆周运动", "带电粒子在组合场与叠加场中的运动", "质谱仪、回旋加速器等科技应用"]],
+    ["电磁感应", ["楞次定律", "*法拉第电磁感应定律", "导体切割磁感线", "*电磁感应中的电路、力学与能量问题", "自感与涡流"]],
+    ["交变电流", ["交变电流的产生与描述（峰值、有效值）", "*变压器", "远距离输电"]],
+    ["电磁振荡与电磁波", ["LC 振荡电路", "电磁波的发射、接收与电磁波谱"]],
+    ["传感器", ["传感器原理及应用"]]
+  ]},
+  { m: "选择性必修第三册", ch: [
+    ["分子动理论", ["分子大小与阿伏加德罗常数", "布朗运动与分子热运动", "分子力与分子势能", "气体分子速率分布规律", "物体的内能"]],
+    ["固体、液体和气体", ["晶体与非晶体", "液体表面张力与液晶", "*气体实验定律（玻意耳、查理、盖-吕萨克）", "理想气体状态方程"]],
+    ["热力学定律", ["*热力学第一定律", "热力学第二定律", "能量守恒与能源"]],
+    ["原子结构和波粒二象性", ["黑体辐射与能量子", "*光电效应", "原子核式结构模型", "*玻尔模型与能级跃迁", "物质波与波粒二象性"]],
+    ["原子核", ["天然放射现象与衰变", "半衰期", "核反应方程", "核力、结合能与质量亏损", "核裂变与核聚变"]]
+  ]},
+  { m: "实验", ch: [
+    ["力学实验", ["测量匀变速直线运动的加速度（纸带）", "探究弹簧弹力与形变量的关系", "探究两个互成角度的力的合成规律", "*探究加速度与力、质量的关系", "探究平抛运动的特点", "探究向心力大小的影响因素", "验证机械能守恒定律", "验证动量守恒定律", "用单摆测量重力加速度"]],
+    ["电学、光学与热学实验", ["测量金属丝的电阻率（螺旋测微器、游标卡尺读数）", "*测量电源的电动势和内阻", "描绘小灯泡的伏安特性曲线", "多用电表的使用", "*电学实验器材选择与电路设计（内外接、分压限流）", "测量玻璃的折射率", "用双缝干涉测量光的波长", "用油膜法估测油酸分子的大小", "探究等温情况下一定质量气体压强与体积的关系", "探究变压器原、副线圈电压与匝数的关系"]]
+  ]}
+]},
+
+lishi: { name: "历史", color: "#b8742a", modules: [
+  { m: "中外历史纲要（上）", ch: [
+    ["从中华文明起源到秦汉大一统", ["中华文明的起源与早期国家（夏商周、分封制、宗法制）", "春秋战国：诸侯纷争与变法运动（商鞅变法）", "百家争鸣", "*秦统一多民族封建国家的建立（郡县制、中央集权）", "西汉与东汉：大一统国家的巩固（推恩令、独尊儒术）"]],
+    ["三国两晋南北朝与隋唐", ["三国两晋南北朝的政权更迭与民族交融（北魏孝文帝改革）", "从隋唐盛世到五代十国", "*隋唐制度的变化与创新（三省六部制、科举制、两税法）", "三国至隋唐的文化"]],
+    ["辽宋夏金多民族政权并立与元朝统一", ["两宋的政治和军事（加强中央集权、重文轻武）", "辽夏金元的统治（行省制度）", "*辽宋夏金元的经济与社会（经济重心南移、商业繁荣）", "辽宋夏金元的文化（理学、科技）"]],
+    ["明清中国版图的奠定与面临的挑战", ["从明朝建立到清军入关（废丞相、内阁）", "清朝前中期的鼎盛与危机（军机处、统一多民族国家巩固）", "*明至清中叶的经济与文化（资本主义萌芽、思想活跃）"]],
+    ["晚清时期的内忧外患与救亡图存", ["*两次鸦片战争", "太平天国运动", "洋务运动", "甲午中日战争与列强瓜分中国狂潮", "戊戌变法", "义和团运动与八国联军侵华"]],
+    ["辛亥革命与中华民国的建立", ["*辛亥革命", "北洋军阀统治时期的政治、经济与文化（新文化运动）"]],
+    ["中国共产党成立与新民主主义革命兴起", ["*五四运动与中国共产党的诞生", "国共合作与国民大革命", "中国共产党开辟革命新道路（农村包围城市）", "红军长征与遵义会议"]],
+    ["中华民族的抗日战争和人民解放战争", ["*中华民族的抗日战争（全民族抗战、抗日民族统一战线）", "人民解放战争"]],
+    ["中华人民共和国成立和社会主义革命与建设", ["中华人民共和国成立与巩固", "向社会主义过渡（三大改造、一五计划、1954年宪法）", "社会主义建设在探索中曲折发展"]],
+    ["改革开放与新时代", ["*伟大的转折（十一届三中全会）", "改革开放与中国特色社会主义道路的开辟与发展", "改革开放以来的巨大成就", "中国特色社会主义新时代"]]
+  ]},
+  { m: "中外历史纲要（下）", ch: [
+    ["古代文明的产生与发展", ["文明的产生与早期发展（大河文明）", "古代世界的帝国与文明的交流（希腊、罗马）"]],
+    ["中古时期的世界", ["中古时期的欧洲（封建制度、基督教、城市兴起）", "中古时期的亚洲（阿拉伯帝国、日本大化改新）", "古代非洲与美洲"]],
+    ["走向整体的世界", ["*全球航路的开辟", "全球联系的初步建立与世界格局的演变"]],
+    ["资本主义制度的确立", ["欧洲的思想解放运动（文艺复兴、宗教改革、启蒙运动）", "*资产阶级革命与资本主义制度的确立（英国、美国、法国）"]],
+    ["工业革命与马克思主义的诞生", ["*影响世界的工业革命（两次工业革命）", "马克思主义的诞生与传播（巴黎公社）"]],
+    ["世界殖民体系与亚非拉民族独立运动", ["世界殖民体系的形成", "亚非拉民族独立运动"]],
+    ["两次世界大战、十月革命与国际秩序的演变", ["第一次世界大战与凡尔赛-华盛顿体系", "*十月革命的胜利与苏联的社会主义实践", "第二次世界大战与战后国际秩序的形成（雅尔塔体系、联合国）"]],
+    ["20世纪下半叶世界的新变化", ["*冷战与国际格局的演变", "社会主义国家的发展与变化（苏联解体）", "亚非拉国家的新发展（不结盟运动）"]],
+    ["当代世界发展的特点与主要趋势", ["世界多极化与经济全球化", "当代世界的社会与科技文化变化", "构建人类命运共同体"]]
+  ]},
+  { m: "选择性必修1 国家制度与社会治理", ch: [
+    ["政治制度", ["*中国古代政治制度的形成与发展", "西方国家古代和近代政治制度的演变", "中国近代至当代政治体制的演变"]],
+    ["官员的选拔与管理", ["*中国古代官员的选拔与管理（察举、九品中正、科举）", "西方的文官制度", "当代中国的干部选拔与管理"]],
+    ["法律与教化", ["中国古代的法治与教化", "近代西方的法律与教化", "当代中国的法治与精神文明建设"]],
+    ["民族关系与国家关系", ["历代王朝的民族政策", "近代西方民族国家与国际法的发展", "当代中国的民族政策", "当代中国的外交"]],
+    ["货币与赋税制度", ["古代的货币与赋税（一条鞭法、摊丁入亩）", "近代以来的货币与税收制度"]],
+    ["基层治理与社会保障", ["中国古代的户籍制度与社会治理", "当代中国的基层治理与社会保障"]]
+  ]},
+  { m: "选择性必修2 经济与社会生活", ch: [
+    ["经济与社会生活", ["食物生产与社会生活（农业起源、物种交流）", "生产工具与劳作方式（从手工到工业化、信息化）", "商业贸易与日常生活", "村落、城镇与居住环境", "交通与社会变迁（交通工具、通信）", "医疗与公共卫生"]]
+  ]},
+  { m: "选择性必修3 文化交流与传播", ch: [
+    ["文化交流与传播", ["源远流长的中华文化与对外传播", "世界多元文化", "人口迁徙、文化交融与认同", "商路、贸易与文化交流（丝绸之路）", "战争与文化交锋", "文化的传承与保护"]]
+  ]},
+  { m: "史学方法与题型", ch: [
+    ["核心素养与题型", ["*时空观念：历史分期与大事年表", "史料实证：史料类型与价值", "*材料选择题解题方法", "材料分析题（概括、原因、影响、评价）", "开放性试题/小论文（论点+史实论证）"]]
+  ]}
+]},
+
+huaxue: { name: "化学", color: "#d9493a", modules: [
+  { m: "必修第一册", ch: [
+    ["物质及其变化", ["物质的分类与转化", "分散系与胶体（丁达尔效应）", "电解质与电离", "*离子反应与离子方程式正误判断", "离子共存", "*氧化还原反应基本概念", "氧化还原方程式配平与电子守恒计算"]],
+    ["海水中的重要元素——钠和氯", ["钠及其氧化物（Na₂O₂ 性质）", "碳酸钠与碳酸氢钠", "焰色试验", "氯气的性质与实验室制法", "氯水、次氯酸及漂白原理", "*物质的量、摩尔质量与气体摩尔体积", "*物质的量浓度与一定浓度溶液的配制", "*阿伏加德罗常数（NA）正误判断"]],
+    ["铁 金属材料", ["铁的单质与氧化物", "铁的氢氧化物（Fe(OH)₂ 的制备）", "*Fe²⁺ 与 Fe³⁺ 的转化与检验", "铝和氧化铝的两性", "合金与新型合金"]],
+    ["物质结构 元素周期律", ["原子构成、核素与同位素", "核外电子排布", "元素周期表的结构", "*元素周期律（金属性、非金属性递变）", "*化学键（离子键、共价键）与电子式", "分子间作用力与氢键"]]
+  ]},
+  { m: "必修第二册", ch: [
+    ["化工生产中的重要非金属元素", ["硫与二氧化硫", "硫酸及 SO₄²⁻ 的检验", "氮气与氮氧化物", "氨与铵盐（氨气的实验室制法）", "硝酸的性质", "硅与无机非金属材料", "粗盐提纯（除杂试剂顺序）"]],
+    ["化学反应与能量", ["化学反应与热能（吸热、放热）", "原电池原理", "化学电源", "化学反应速率及影响因素", "化学反应限度与化学平衡状态判断"]],
+    ["有机化合物", ["甲烷与烷烃（取代反应、同分异构）", "乙烯与加成反应", "乙醇与乙酸（酯化反应）", "基本营养物质（糖类、油脂、蛋白质）", "有机高分子材料"]],
+    ["化学与可持续发展", ["金属矿物与海水资源的开发利用", "煤、石油、天然气的综合利用", "化学品合理使用、环境保护与绿色化学"]]
+  ]},
+  { m: "选择性必修1 化学反应原理", ch: [
+    ["化学反应的热效应", ["反应热与焓变", "*热化学方程式书写与判断", "燃烧热", "*盖斯定律与反应热计算"]],
+    ["化学反应速率与化学平衡", ["反应速率计算与影响因素（活化能、碰撞理论）", "化学平衡状态的判断", "*化学平衡常数与计算（三段式、Kp）", "*化学平衡移动原理（勒夏特列原理）", "化学反应的方向（ΔG=ΔH−TΔS）", "*速率与平衡图像分析", "工业合成氨等条件选择"]],
+    ["水溶液中的离子反应与平衡", ["弱电解质的电离平衡与电离常数", "水的电离与溶液 pH 计算", "酸碱中和滴定", "*盐类水解及其应用", "*溶液中粒子浓度大小比较（电荷、物料、质子守恒）", "沉淀溶解平衡与 Ksp", "*滴定曲线与分布系数图像分析"]],
+    ["化学反应与电能", ["*原电池与新型化学电源（电极反应式书写）", "*电解池原理与应用（氯碱工业、电解精炼、电镀）", "金属的腐蚀与防护", "离子交换膜与电化学计算"]]
+  ]},
+  { m: "选择性必修2 物质结构与性质", ch: [
+    ["原子结构与性质", ["能层、能级与构造原理", "*核外电子排布式与轨道表示式", "原子结构与元素周期表（s、p、d、ds、f 区）", "*电离能与电负性的递变规律"]],
+    ["分子结构与性质", ["共价键（σ键、π键、键参数）", "*价层电子对互斥模型（VSEPR）", "*杂化轨道理论", "分子的极性", "分子间作用力、氢键对物质性质的影响", "配位键与配合物", "手性分子"]],
+    ["晶体结构与性质", ["晶体与非晶体、晶胞", "分子晶体与共价晶体", "金属晶体与离子晶体", "*晶胞计算（均摊法、密度、原子分数坐标）"]]
+  ]},
+  { m: "选择性必修3 有机化学基础", ch: [
+    ["有机化合物的结构特点与研究方法", ["有机物的分类与官能团", "*同分异构体（碳架、位置、官能团、顺反异构）数目判断与书写", "有机物的分离提纯（蒸馏、萃取、重结晶）", "有机物结构的确定（质谱、红外光谱、核磁共振氢谱）", "有机物的系统命名"]],
+    ["烃", ["烷烃", "烯烃与炔烃", "芳香烃（苯及其同系物）"]],
+    ["烃的衍生物", ["卤代烃（取代与消去）", "醇与酚", "醛与酮", "羧酸及其衍生物（酯、油脂、酰胺）", "*官能团的性质与相互转化"]],
+    ["生物大分子", ["糖类", "氨基酸与蛋白质", "核酸"]],
+    ["合成高分子", ["加聚反应与缩聚反应", "合成高分子材料", "*有机合成路线设计与有机推断"]]
+  ]},
+  { m: "实验与综合题型", ch: [
+    ["化学实验基础", ["常用仪器与基本操作", "化学实验安全", "物质的分离与提纯", "物质的检验与鉴别", "常见气体的制备、净化与收集", "*实验方案设计与评价（综合实验题）"]],
+    ["综合题型", ["*化工工艺流程题", "化学反应原理综合题", "化学计算（守恒法、关系式法）"]]
+  ]}
+]},
+
+shengwu: { name: "生物", color: "#3f9a3a", modules: [
+  { m: "必修1 分子与细胞", ch: [
+    ["走近细胞", ["细胞学说", "原核细胞与真核细胞的比较", "显微镜的使用", "病毒的结构与生活方式"]],
+    ["组成细胞的分子", ["细胞中的元素和化合物", "细胞中的水和无机盐", "糖类和脂质", "*蛋白质的结构与功能（脱水缩合相关计算）", "核酸的结构与功能", "有机物检测实验（还原糖、脂肪、蛋白质）"]],
+    ["细胞的基本结构", ["细胞膜的结构（流动镶嵌模型）与功能", "*细胞器的分工与合作（分泌蛋白的合成与运输）", "生物膜系统", "细胞核的结构与功能"]],
+    ["细胞的物质输入和输出", ["渗透作用与植物细胞质壁分离及复原实验", "*被动运输与主动运输", "胞吞与胞吐", "转运蛋白（载体蛋白、通道蛋白）"]],
+    ["细胞的能量供应和利用", ["*酶的本质、特性及影响因素实验", "ATP 的结构与功能", "*细胞呼吸（有氧呼吸、无氧呼吸过程）", "探究酵母菌细胞呼吸的方式", "绿叶中色素的提取和分离", "*光合作用过程（光反应与暗反应）", "*影响光合作用的因素与曲线分析", "光合作用与细胞呼吸综合（净光合、总光合计算）"]],
+    ["细胞的生命历程", ["细胞周期", "*有丝分裂各时期特征", "观察根尖分生区组织细胞的有丝分裂", "细胞分化与细胞的全能性", "细胞衰老与细胞凋亡（与细胞坏死的区别）"]]
+  ]},
+  { m: "必修2 遗传与进化", ch: [
+    ["遗传因子的发现", ["*分离定律（假说—演绎法）", "*自由组合定律", "遗传概率计算与 9:3:3:1 变式"]],
+    ["基因和染色体的关系", ["*减数分裂与受精作用", "减数分裂与有丝分裂图像比较", "萨顿假说与摩尔根果蝇杂交实验", "*伴性遗传与遗传系谱图分析"]],
+    ["基因的本质", ["DNA 是主要的遗传物质（肺炎链球菌转化、噬菌体侵染细菌实验）", "*DNA 双螺旋结构", "*DNA 半保留复制", "基因通常是有遗传效应的 DNA 片段"]],
+    ["基因的表达", ["*转录与翻译", "中心法则", "基因表达与性状的关系（表观遗传）"]],
+    ["基因突变及其他变异", ["基因突变", "基因重组", "染色体变异（结构变异、数目变异、染色体组、单倍体与多倍体）", "育种方法比较", "人类遗传病与遗传咨询"]],
+    ["生物的进化", ["生物进化的证据", "自然选择与适应的形成", "*种群基因频率的变化与相关计算", "隔离与物种的形成", "协同进化与生物多样性的形成"]]
+  ]},
+  { m: "选择性必修1 稳态与调节", ch: [
+    ["人体的内环境与稳态", ["内环境的组成与理化性质", "内环境稳态的调节机制"]],
+    ["神经调节", ["神经系统的结构基础", "反射与反射弧", "*兴奋在神经纤维上的传导（静息电位与动作电位）", "*兴奋在神经元之间的传递（突触）", "神经系统的分级调节", "人脑的高级功能"]],
+    ["体液调节", ["激素的发现与研究实例", "*血糖平衡调节", "甲状腺激素的分级调节与反馈调节", "体温调节与水盐平衡调节", "神经调节与体液调节的关系"]],
+    ["免疫调节", ["免疫系统的组成与功能", "*体液免疫与细胞免疫", "免疫失调（过敏反应、自身免疫病、免疫缺陷病）", "免疫学的应用（疫苗、器官移植）"]],
+    ["植物生命活动的调节", ["*生长素的发现与生理作用（浓度效应）", "其他植物激素及相互作用", "植物生长调节剂的应用", "环境因素参与调节植物生命活动（光敏色素、重力）"]]
+  ]},
+  { m: "选择性必修2 生物与环境", ch: [
+    ["种群及其动态", ["种群的数量特征", "种群密度的调查方法（样方法、标记重捕法）", "*种群数量的变化（J 形、S 形增长曲线）", "影响种群数量变化的因素", "培养液中酵母菌种群数量的变化"]],
+    ["群落及其演替", ["群落的结构（物种组成、种间关系、空间结构）", "生态位", "群落的主要类型", "群落的演替"]],
+    ["生态系统及其稳定性", ["生态系统的结构（组成成分、食物链与食物网）", "*能量流动的过程、特点与计算", "物质循环（碳循环、生物富集）", "信息传递", "生态系统的稳定性"]],
+    ["人与环境", ["人类活动对生态环境的影响（生态足迹）", "生物多样性及其保护", "生态工程的基本原理"]]
+  ]},
+  { m: "选择性必修3 生物技术与工程", ch: [
+    ["发酵工程", ["传统发酵技术（果酒、果醋、泡菜）", "微生物的培养技术（培养基、无菌技术）", "*微生物的选择培养与计数（稀释涂布平板法）", "发酵工程及其应用"]],
+    ["细胞工程", ["植物组织培养", "植物体细胞杂交", "动物细胞培养", "*单克隆抗体的制备", "动物体细胞核移植", "胚胎工程（体外受精、胚胎移植、胚胎分割）"]],
+    ["基因工程", ["*基因工程的基本工具（限制酶、DNA 连接酶、载体）", "*基因工程的基本操作程序", "PCR 技术（原理、引物设计）", "DNA 的粗提取与鉴定", "蛋白质工程"]],
+    ["生物技术的安全性与伦理问题", ["转基因产品的安全性", "关注生殖性克隆人", "禁止生物武器"]]
+  ]},
+  { m: "实验与探究", ch: [
+    ["实验与探究能力", ["*实验设计（对照原则、单一变量原则）", "实验结果分析与结论表述", "教材经典实验归纳（显微观察类、提取鉴定类、探究类）"]]
+  ]}
+]},
+
+zhengzhi: { name: "政治", color: "#c2185b", modules: [
+  { m: "必修1 中国特色社会主义", ch: [
+    ["第一课 社会主义从空想到科学、从理论到实践的发展", ["原始社会的解体和阶级社会的演进", "科学社会主义的理论与实践"]],
+    ["第二课 只有社会主义才能救中国", ["新民主主义革命的胜利", "社会主义制度在中国的确立"]],
+    ["第三课 只有中国特色社会主义才能发展中国", ["伟大的改革开放", "中国特色社会主义的创立、发展和完善"]],
+    ["第四课 只有坚持和发展中国特色社会主义才能实现中华民族伟大复兴", ["*新时代的中国特色社会主义（社会主要矛盾）", "习近平新时代中国特色社会主义思想"]]
+  ]},
+  { m: "必修2 经济与社会", ch: [
+    ["第一课 我国的生产资料所有制", ["*公有制为主体、多种所有制经济共同发展", "坚持“两个毫不动摇”"]],
+    ["第二课 我国的社会主义市场经济体制", ["*使市场在资源配置中起决定性作用", "*更好发挥政府作用（宏观调控）"]],
+    ["第三课 我国的经济发展", ["*坚持新发展理念", "建设现代化经济体系（高质量发展、新发展格局）"]],
+    ["第四课 我国的个人收入分配与社会保障", ["我国的个人收入分配（按劳分配为主体）", "我国的社会保障"]]
+  ]},
+  { m: "必修3 政治与法治", ch: [
+    ["第一课 历史和人民的选择", ["中国共产党领导人民站起来、富起来、强起来", "*中国共产党领导是中国特色社会主义最本质的特征"]],
+    ["第二课 中国共产党的先进性", ["*始终坚持以人民为中心", "始终走在时代前列"]],
+    ["第三课 坚持和加强党的全面领导", ["坚持党的领导", "巩固党的执政地位"]],
+    ["第四课 人民民主专政的社会主义国家", ["人民民主专政的本质：人民当家作主", "坚持人民民主专政"]],
+    ["第五课 我国的根本政治制度", ["*人民代表大会：我国的国家权力机关", "人民代表大会制度：我国的根本政治制度"]],
+    ["第六课 我国的基本政治制度", ["*中国共产党领导的多党合作和政治协商制度", "民族区域自治制度", "基层群众自治制度"]],
+    ["第七课 治国理政的基本方式", ["我国法治建设的历程", "全面推进依法治国的总目标与原则"]],
+    ["第八课 法治中国建设", ["法治国家", "法治政府", "法治社会"]],
+    ["第九课 全面依法治国的基本要求", ["科学立法", "严格执法", "公正司法", "全民守法"]]
+  ]},
+  { m: "必修4 哲学与文化", ch: [
+    ["第一课 时代精神的精华", ["追求智慧的学问", "哲学的基本问题（唯物主义与唯心主义）", "科学的世界观和方法论（马克思主义哲学）"]],
+    ["第二课 探究世界的本质", ["*世界的物质性", "运动的规律性（尊重规律与发挥主观能动性）"]],
+    ["第三课 把握世界的规律", ["*世界是普遍联系的（整体与部分、系统优化）", "*世界是永恒发展的（前进性与曲折性、量变与质变）", "*唯物辩证法的实质与核心（矛盾分析法）"]],
+    ["第四课 探索认识的奥秘", ["*人的认识从何而来（实践与认识的关系）", "在实践中追求和发展真理"]],
+    ["第五课 寻觅社会的真谛", ["社会历史的本质（社会存在与社会意识）", "社会历史的发展（基本矛盾、改革）", "*社会历史的主体（人民群众、群众观点与群众路线）"]],
+    ["第六课 实现人生的价值", ["价值与价值观", "价值判断与价值选择", "价值的创造与实现"]],
+    ["第七课 继承发展中华优秀传统文化", ["文化的内涵与功能", "正确认识中华传统文化", "*弘扬中华优秀传统文化与民族精神"]],
+    ["第八课 学习借鉴外来文化的有益成果", ["文化的民族性与多样性", "文化交流与文化交融", "学习借鉴外来文化的有益成果"]],
+    ["第九课 发展中国特色社会主义文化", ["文化发展的必然选择", "*文化强国与文化自信（社会主义核心价值观）"]]
+  ]},
+  { m: "选择性必修1 当代国际政治与经济", ch: [
+    ["第一单元 各具特色的国家", ["国家是什么（国家性质、国体）", "国家的政权组织形式（政体）", "政党和利益集团", "主权统一与政权分层", "单一制和复合制"]],
+    ["第二单元 世界多极化", ["世界多极化的发展与影响", "和平与发展：时代的主题与挑战", "中国外交政策的形成与发展", "*中国的外交：推动构建人类命运共同体"]],
+    ["第三单元 经济全球化", ["认识经济全球化", "日益开放的世界经济", "*开放是当代中国的鲜明标识（高水平对外开放）", "做大共同利益的“蛋糕”（“一带一路”）"]],
+    ["第四单元 国际组织", ["日益重要的国际组织", "联合国", "区域性国际组织（欧盟、东盟等）", "中国与联合国、中国与新兴国际组织（上合、金砖）"]]
+  ]},
+  { m: "选择性必修2 法律与生活", ch: [
+    ["第一单元 民事权利与义务", ["在生活中学民法用民法（民事权利能力与行为能力）", "*依法有效保护财产权（物权、知识产权）", "订约履约 诚信为本（合同）", "侵权责任与权利界限"]],
+    ["第二单元 家庭与婚姻", ["在和睦家庭中成长（监护、赡养、继承）", "珍惜婚姻关系"]],
+    ["第三单元 就业与创业", ["*做个明白的劳动者（劳动合同、劳动权益保护）", "自主创业 公平竞争（反不正当竞争、消费者权益）"]],
+    ["第四单元 社会争议解决", ["纠纷的多元解决方式（调解、仲裁）", "诉讼实现公平正义（民事诉讼程序、证据）"]]
+  ]},
+  { m: "选择性必修3 逻辑与思维", ch: [
+    ["第一单元 树立科学思维观念", ["走进思维世界", "把握逻辑要义（思维的基本规律：同一律、矛盾律、排中律）", "领会科学思维"]],
+    ["第二单元 遵循逻辑思维规则", ["*准确把握概念（内涵外延、概念间关系、定义与划分）", "*正确运用判断（直言、联言、选言、假言判断）", "*掌握演绎推理方法（三段论、假言推理）", "学会归纳与类比推理"]],
+    ["第三单元 运用辩证思维方法", ["把握辩证分合（分析与综合）", "理解质量互变", "推动认识发展（辩证否定、抽象与具体）"]],
+    ["第四单元 提高创新思维能力", ["创新思维的含义与特征", "发散思维与聚合思维", "逆向思维与正向思维", "联想思维与超前思维"]]
+  ]},
+  { m: "时政与题型", ch: [
+    ["时政与答题方法", ["年度重大时政热点（政府工作报告、重要会议精神）", "*主观题答题模板（原因类、措施类、意义类、体现类）", "选择题排序与组合型解法"]]
+  ]}
+]},
+
+dili: { name: "地理", color: "#0f8bb4", modules: [
+  { m: "必修第一册（自然地理基础）", ch: [
+    ["宇宙中的地球", ["地球的宇宙环境（天体、天体系统）", "太阳对地球的影响（太阳辐射、太阳活动）", "地球的历史（地层与化石、地质年代）", "*地球的圈层结构"]],
+    ["地球上的大气", ["大气的组成和垂直分层", "*大气受热过程（温室效应、逆温）", "*热力环流", "大气的水平运动——风"]],
+    ["地球上的水", ["*水循环及其地理意义", "海水的性质（温度、盐度、密度）", "海水的运动（波浪、潮汐、洋流初步）"]],
+    ["地貌", ["常见地貌类型（喀斯特、河流、风沙、海岸地貌）", "地貌的观察"]],
+    ["植被与土壤", ["植被与环境", "土壤的形成与养护"]],
+    ["自然灾害", ["气象灾害（洪涝、干旱、台风、寒潮）", "地质灾害（地震、滑坡、泥石流）", "防灾减灾", "地理信息技术在防灾减灾中的应用（RS、GNSS、GIS）"]]
+  ]},
+  { m: "必修第二册（人文地理基础）", ch: [
+    ["人口", ["人口分布", "*人口迁移", "人口容量"]],
+    ["乡村和城镇", ["乡村和城镇空间结构", "*城镇化", "地域文化与城乡景观"]],
+    ["产业区位因素", ["*农业区位因素及其变化", "*工业区位因素及其变化", "服务业区位因素及其变化"]],
+    ["交通运输布局与区域发展", ["区域发展对交通运输布局的影响", "交通运输布局对区域发展的影响"]],
+    ["环境与发展", ["人类面临的主要环境问题", "走向人地协调——可持续发展", "中国国家发展战略举例"]]
+  ]},
+  { m: "选择性必修1 自然地理基础", ch: [
+    ["地球的运动", ["*地球的自转与公转", "*昼夜交替与地方时、时区计算", "*昼夜长短与正午太阳高度的变化", "四季与五带", "晨昏线与光照图判读"]],
+    ["地表形态的塑造", ["塑造地表形态的力量（内力、外力作用）", "岩石圈物质循环", "*构造地貌的形成（褶皱、断层）", "*河流地貌的发育（侵蚀、堆积地貌）"]],
+    ["大气的运动", ["*常见天气系统（锋面、气旋、反气旋）", "*气压带和风带", "*气压带和风带对气候的影响（气候类型判读）"]],
+    ["水的运动", ["陆地水体及其相互关系", "*洋流（分布规律及对地理环境的影响）", "海—气相互作用（厄尔尼诺与拉尼娜）"]],
+    ["自然环境的整体性与差异性", ["*自然环境的整体性", "自然环境的地域差异性（地带性与非地带性）"]]
+  ]},
+  { m: "选择性必修2 区域发展", ch: [
+    ["区域与区域发展", ["多种多样的区域", "区域发展阶段"]],
+    ["资源、环境与区域发展", ["区域发展的自然环境基础", "资源枯竭型城市的转型发展", "*生态脆弱区的综合治理（荒漠化、水土流失、石漠化）"]],
+    ["城市、产业与区域发展", ["城市的辐射功能", "地区产业结构变化", "*产业转移"]],
+    ["区际联系与区域协调发展", ["流域内协调发展", "*资源跨区域调配（南水北调、西气东输）", "区域合作"]]
+  ]},
+  { m: "选择性必修3 资源、环境与国家安全", ch: [
+    ["资源、环境与人类活动", ["自然资源及其利用", "自然环境与人类社会发展的关系"]],
+    ["资源安全与国家安全", ["资源安全对国家安全的影响", "*耕地资源与国家粮食安全", "能源资源与国家安全", "海洋空间资源与国家安全"]],
+    ["环境安全与国家安全", ["环境安全对国家安全的影响", "生态保护与国家安全（自然保护地）", "污染物跨境转移与环境安全"]],
+    ["保障国家安全的资源、环境战略与行动", ["*碳排放与国际减排合作（碳达峰、碳中和）", "国家战略与区域可持续发展"]]
+  ]},
+  { m: "地理技能与区域地理", ch: [
+    ["地理技能与区域地理", ["*等高线地形图判读", "地理信息技术综合应用", "中国地理（地形、气候、河流、分区）", "世界地理（大洲大洋、主要国家与地区）", "*综合题答题思路（区位分析、影响评价、措施建议）"]]
+  ]}
+]}
+};
+
+/* 科目元信息 */
+const SUBJECT_ORDER = ["yuwen", "shuxue", "yingyu", "wuli", "lishi", "huaxue", "shengwu", "zhengzhi", "dili"];
+const REQUIRED = ["yuwen", "shuxue", "yingyu"];
+
+/* ==================== 应用逻辑 ==================== */
+(function () {
+'use strict';
+const $ = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+
+/* ---------- 日期工具（本地时区，格式 YYYY-MM-DD） ---------- */
+const pad = n => String(n).padStart(2, '0');
+const fmt = d => d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+const parse = s => { const a = s.split('-').map(Number); return new Date(a[0], a[1] - 1, a[2]); };
+const today = () => fmt(new Date());
+const addDays = (s, n) => { const d = parse(s); d.setDate(d.getDate() + n); return fmt(d); };
+const diffDays = (a, b) => Math.round((parse(b) - parse(a)) / 864e5);
+const mondayOf = s => { const d = parse(s); d.setDate(d.getDate() - (d.getDay() + 6) % 7); return fmt(d); };
+const md = s => { const d = parse(s); return (d.getMonth() + 1) + '/' + d.getDate(); };
+const WK = '日一二三四五六';
+const isDate = s => /^\d{4}-\d{2}-\d{2}$/.test(s || '');
+
+/* ---------- 知识点索引 ---------- */
+function hash(str) { let h = 5381; for (let i = 0; i < str.length; i++) h = ((h << 5) + h + str.charCodeAt(i)) | 0; return (h >>> 0).toString(36); }
+const PTS = [], PT = {};
+SUBJECT_ORDER.forEach(sk => {
+  const sub = SYLLABUS[sk]; if (!sub) return;
+  sub.key = sk; sub.chs = []; sub.pts = [];
+  sub.modules.forEach(mod => mod.ch.forEach(([cn, arr]) => {
+    const ch = { key: sk + '-' + hash(mod.m + '|' + cn), sk, m: mod.m, name: cn, pts: [] };
+    arr.forEach(raw => {
+      const hf = raw.charAt(0) === '*';
+      const name = (hf ? raw.slice(1) : raw).trim();
+      let id = sk + '_' + hash(cn + '|' + name);
+      while (PT[id]) id += 'x';
+      const p = { id, sk, name, hf, ch };
+      PTS.push(p); PT[id] = p; ch.pts.push(p); sub.pts.push(p);
+    });
+    sub.chs.push(ch);
+  }));
+});
+
+/* ---------- 存储 ---------- */
+const LS = 'gaokao-tracker-v1';
+const blankUI = () => ({ tab: 'dash', subj: null, filter: 'all', hf: false, q: '', open: {}, fclosed: {}, wkOpen: {} });
+const blank = () => ({ v: 1, setup: null, pts: {}, tasks: {}, checkins: {}, plan: null, ui: blankUI() });
+function normalize(o) {
+  const b = blank();
+  if (!o || typeof o !== 'object' || !o.v) return b;
+  const r = Object.assign(b, o);
+  r.ui = Object.assign(blankUI(), o.ui || {});
+  ['pts', 'tasks', 'checkins'].forEach(k => { if (!r[k] || typeof r[k] !== 'object') r[k] = {}; });
+  return r;
+}
+function load() { try { return normalize(JSON.parse(localStorage.getItem(LS))); } catch (e) { return blank(); } }
+let S = load();
+function save() { try { localStorage.setItem(LS, JSON.stringify(S)); } catch (e) { toast('保存失败：浏览器存储不可用'); } }
+
+/* ---------- 选科 ---------- */
+const MODES = {
+  '312': { name: '新高考 3+1+2', desc: '物理/历史二选一，化生政地四选二' },
+  '33': { name: '新高考 3+3', desc: '物化生政史地任选3科' },
+  'li': { name: '老高考 理科', desc: '语数英 + 理综' },
+  'wen': { name: '老高考 文科', desc: '语数英 + 文综' }
+};
+function fullScore(sk, mode) {
+  if (REQUIRED.indexOf(sk) >= 0) return 150;
+  if (mode === 'li') return { wuli: 110, huaxue: 100, shengwu: 90 }[sk] || 100;
+  return 100;
+}
+function subjectsOf(c) {
+  let el = [];
+  if (c.mode === '312') el = [c.first].concat(c.second || []);
+  else if (c.mode === '33') el = c.three || [];
+  else if (c.mode === 'li') el = ['wuli', 'huaxue', 'shengwu'];
+  else el = ['zhengzhi', 'lishi', 'dili'];
+  return REQUIRED.concat(SUBJECT_ORDER.filter(k => el.indexOf(k) >= 0 && REQUIRED.indexOf(k) < 0));
+}
+const subs = () => (S.setup ? S.setup.subjects.filter(k => SYLLABUS[k]) : []);
+const activePts = () => subs().reduce((a, k) => a.concat(SYLLABUS[k].pts), []);
+const totalFull = () => subs().reduce((a, k) => a + fullScore(k, S.setup.mode), 0);
+
+/* ---------- 状态 ---------- */
+const STN = ['未学', '学过', '掌握', '需复习'];
+const gs = id => (S.pts[id] && S.pts[id].s) || 0;
+function setS(id, s) { const o = S.pts[id] || {}; o.s = s; o.t = today(); S.pts[id] = o; save(); }
+function setNote(id, n) { const o = S.pts[id] || { s: 0 }; o.note = n; o.t = today(); S.pts[id] = o; save(); }
+function stats(pts) { const c = [0, 0, 0, 0]; pts.forEach(p => c[gs(p.id)]++); return c; }
+const pct = (a, b) => (b ? Math.round(a / b * 1000) / 10 : 0);
+function barHTML(c, thin) {
+  const t = c[0] + c[1] + c[2] + c[3] || 1;
+  return '<div class="bar' + (thin ? ' thin' : '') + '"><i class="b2" style="width:' + (c[2] / t * 100) + '%"></i><i class="b1" style="width:' + (c[1] / t * 100) + '%"></i><i class="b3" style="width:' + (c[3] / t * 100) + '%"></i></div>';
+}
+const LEGEND = '<div class="legend"><span><i class="l2"></i>掌握</span><span><i class="l1"></i>学过</span><span><i class="l3"></i>需复习</span><span><i class="l0"></i>未学</span></div>';
+
+/* ---------- 阶段 ---------- */
+const PHN = { 1: '一轮复习', 2: '二轮复习', 3: '考前冲刺' };
+const PHD = {
+  1: '一轮：按章节全面过一遍所有知识点，夯实基础，把「未学」变成「学过/掌握」。',
+  2: '二轮：专题突破，重点攻克「需复习」与高频考点，二刷尚未掌握的知识点。',
+  3: '冲刺：回归高频考点与错题，限时套卷模拟，保持手感与作息。'
+};
+function phaseOf(d) { const c = S.setup; return d <= c.r1 ? 1 : d <= c.r2 ? 2 : 3; }
+function phaseEnd(ph) { const c = S.setup; return ph === 1 ? c.r1 : ph === 2 ? c.r2 : c.exam; }
+const daysLeft = () => diffDays(today(), S.setup.exam);
+
+/* ---------- 今日任务 ---------- */
+function tasksOf(d) { return (S.tasks[d] || []).filter(t => PT[t.id]); }
+function inToday(id) { return tasksOf(today()).some(t => t.id === id); }
+function addToday(id) { const t = today(); const l = S.tasks[t] || (S.tasks[t] = []); if (!l.some(x => x.id === id)) l.push({ id, done: false }); save(); }
+function removeToday(id) { const t = today(); S.tasks[t] = (S.tasks[t] || []).filter(x => x.id !== id); save(); }
+function toggleDone(id) {
+  const x = (S.tasks[today()] || []).find(t => t.id === id); if (!x) return;
+  x.done = !x.done; if (x.done && gs(id) === 0) setS(id, 1); save();
+}
+
+/* 按比例从多个科目列表中均衡抽取 n 个 */
+function balance(lists, n) {
+  const total = lists.reduce((a, l) => a + l.length, 0); n = Math.min(n, total);
+  const taken = lists.map(() => 0), out = [];
+  for (let k = 0; k < n; k++) {
+    let best = -1, bv = -Infinity;
+    lists.forEach((l, i) => { if (taken[i] >= l.length) return; const v = l.length / total * (k + 1) - taken[i]; if (v > bv) { bv = v; best = i; } });
+    out.push(lists[best][taken[best]++]);
+  }
+  return out;
+}
+/* 各阶段待办池（每科一个有序列表） */
+function poolFor(ph) {
+  return subs().map(sk => {
+    const ps = SYLLABUS[sk].pts, by = s => ps.filter(p => gs(p.id) === s);
+    let arr;
+    if (ph === 1) arr = by(3).concat(by(0), by(1));
+    else if (ph === 2) arr = by(3).concat(by(0), by(1), ps.filter(p => p.hf && gs(p.id) === 2));
+    else arr = by(3).concat(ps.filter(p => p.hf && (gs(p.id) === 0 || gs(p.id) === 1)), ps.filter(p => !p.hf && (gs(p.id) === 0 || gs(p.id) === 1)), ps.filter(p => p.hf && gs(p.id) === 2));
+    return arr.map(p => p.id);
+  });
+}
+function planWeekOf(d) { return S.plan && S.plan.weeks ? S.plan.weeks.find(w => w.start <= d && d <= w.end) || null : null; }
+function doneInRange(a, b) { const set = new Set(); Object.keys(S.tasks).forEach(d => { if (d >= a && d < b) S.tasks[d].forEach(x => { if (x.done) set.add(x.id); }); }); return set; }
+
+/* 计算今日建议：返回 {lists, rem, days, n, src} */
+function suggestion(exclude) {
+  const t = today(), cap = S.setup.daily || 20, ex = exclude || new Set();
+  const wk = planWeekOf(t);
+  if (wk) {
+    const before = doneInRange(wk.start, t);
+    const lists = subs().map(sk => (wk.items[sk] || []).filter(id => PT[id] && gs(id) !== 2 && !ex.has(id) && !before.has(id)));
+    const rem = lists.reduce((a, l) => a + l.length, 0), days = diffDays(t, wk.end) + 1;
+    if (rem > 0) return { lists, rem, days, n: Math.min(cap, Math.ceil(rem / days)), src: '按复习计划·本周剩余' };
+  }
+  const ph = phaseOf(t);
+  const lists = poolFor(ph).map(l => l.filter(id => !ex.has(id)));
+  const rem = lists.reduce((a, l) => a + l.length, 0), days = Math.max(1, diffDays(t, phaseEnd(ph)) + 1);
+  if (rem > 0) return { lists, rem, days, n: Math.min(cap, Math.ceil(rem / days)), src: PHN[ph] + '·剩余' };
+  // 全部掌握：循环复习最久未更新的知识点（高频优先）
+  const rec = activePts().filter(p => !ex.has(p.id)).sort((a, b) => (b.hf - a.hf) || ((S.pts[a.id] || {}).t || '').localeCompare((S.pts[b.id] || {}).t || ''));
+  return { lists: [rec.map(p => p.id)], rem: rec.length, days, n: Math.min(cap, 10, rec.length), src: '全部已掌握·循环复习' };
+}
+function autoSchedule() {
+  if (!S.setup) return;
+  const t = today();
+  if (t > S.setup.exam) { toast('高考日期已过，请在设置中更新'); return; }
+  const cur = S.tasks[t] || [];
+  const kept = cur.filter(x => PT[x.id] && (x.done || !x.auto));
+  const have = new Set(kept.map(x => x.id));
+  const sg = suggestion(have);
+  const picks = balance(sg.lists, sg.n);
+  S.tasks[t] = kept.concat(picks.map(id => ({ id, done: false, auto: true })));
+  save();
+  toast(picks.length ? '已自动安排 ' + picks.length + ' 个知识点' : '没有需要安排的知识点');
+  render();
+}
+
+/* ---------- 打卡 ---------- */
+function streak() { let d = today(); if (!S.checkins[d]) d = addDays(d, -1); let n = 0; while (S.checkins[d]) { n++; d = addDays(d, -1); } return n; }
+function longest() { const ds = Object.keys(S.checkins).sort(); let best = 0, cur = 0, prev = null; ds.forEach(d => { cur = prev && addDays(prev, 1) === d ? cur + 1 : 1; best = Math.max(best, cur); prev = d; }); return best; }
+function checkin() {
+  const t = today(), l = tasksOf(t), done = l.filter(x => x.done).length, now = new Date();
+  S.checkins[t] = { at: pad(now.getHours()) + ':' + pad(now.getMinutes()), n: done, total: l.length };
+  save(); toast(done ? '打卡成功！今天完成了 ' + done + ' 个知识点' : '打卡成功！记得完成今日任务'); render();
+}
+
+/* ---------- 复习计划 ---------- */
+function planPool(ph, sk, hasP1) {
+  const ps = SYLLABUS[sk].pts;
+  if (ph === 1) return ps.filter(p => gs(p.id) !== 2).map(p => p.id);
+  if (ph === 2) return ps.filter(p => hasP1 ? (p.hf || gs(p.id) !== 2) : (gs(p.id) !== 2 || p.hf)).map(p => p.id);
+  return ps.filter(p => p.hf || gs(p.id) === 3).map(p => p.id);
+}
+function genPlan() {
+  const c = S.setup, t = today();
+  if (t > c.exam) { toast('高考日期已过'); return; }
+  const keep = {};
+  (S.plan ? S.plan.weeks : []).forEach(w => { if (w.confirmed) keep[w.start] = w; });
+  const weeks = [];
+  for (let s = mondayOf(t); s <= c.exam; s = addDays(s, 7)) {
+    if (keep[s]) { weeks.push(keep[s]); continue; }
+    const e = addDays(s, 6) < c.exam ? addDays(s, 6) : c.exam;
+    weeks.push({ start: s, end: e, ph: phaseOf(s < t ? t : s), items: {}, confirmed: false, note: '' });
+  }
+  const hasP1 = weeks.some(w => w.ph === 1);
+  [1, 2, 3].forEach(ph => {
+    const ws = weeks.filter(w => w.ph === ph && !w.confirmed); if (!ws.length) return;
+    const used = new Set();
+    weeks.filter(w => w.ph === ph && w.confirmed).forEach(w => Object.keys(w.items).forEach(k => w.items[k].forEach(id => used.add(id))));
+    subs().forEach(sk => {
+      // 按每周实际可用天数加权分配（本周只剩几天时少分一些）
+      const ids = planPool(ph, sk, hasP1).filter(id => !used.has(id)), L = ids.length;
+      const dys = ws.map(w => diffDays(w.start < t ? t : w.start, w.end) + 1), D = dys.reduce((a, b) => a + b, 0);
+      let acc = 0;
+      ws.forEach((w, i) => { const a = Math.round(acc / D * L); acc += dys[i]; w.items[sk] = ids.slice(a, Math.round(acc / D * L)); });
+    });
+  });
+  S.plan = { created: t, weeks };
+  save(); toast('已生成 ' + weeks.length + ' 周复习计划'); render();
+}
+const weekCount = w => Object.keys(w.items).reduce((a, k) => a + (subs().indexOf(k) >= 0 ? w.items[k].filter(id => PT[id]).length : 0), 0);
+
+/* ---------- 通用 UI ---------- */
+let toastTimer;
+function toast(msg) { const el = $('#toast'); el.textContent = msg; el.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => el.classList.remove('show'), 2200); }
+const subTag = sk => '<span class="tag" style="--c:' + SYLLABUS[sk].color + '">' + SYLLABUS[sk].name + '</span>';
+
+/* ---------- 设置表单 ---------- */
+function defaultCfg() { const exam = '2027-06-07'; return { mode: '312', first: 'wuli', second: ['huaxue', 'shengwu'], three: ['wuli', 'huaxue', 'shengwu'], exam, r1: addDays(exam, -99), r2: addDays(exam, -28), target: '', daily: 20 }; }
+function cc(type, name, k, on) { return '<label class="cc"><input type="' + type + '" name="' + name + '" value="' + k + '"' + (on ? ' checked' : '') + '><span>' + SYLLABUS[k].name + '</span></label>'; }
+function setupFormHTML(c) {
+  c = Object.assign(defaultCfg(), c || {});
+  return '<div class="sf" data-mode="' + c.mode + '">' +
+    '<div class="fl">选科模式</div><div class="modes">' + Object.keys(MODES).map(k => '<label class="mode"><input type="radio" name="mode" value="' + k + '"' + (c.mode === k ? ' checked' : '') + '><span><b>' + MODES[k].name + '</b><small>' + MODES[k].desc + '</small></span></label>').join('') + '</div>' +
+    '<div class="pick p312"><div class="fl">首选科目 <small>（二选一）</small></div><div class="chipset">' + ['wuli', 'lishi'].map(k => cc('radio', 'first', k, c.first === k)).join('') + '</div>' +
+    '<div class="fl">再选科目 <small>（四选二）</small></div><div class="chipset">' + ['huaxue', 'shengwu', 'zhengzhi', 'dili'].map(k => cc('checkbox', 'second', k, (c.second || []).indexOf(k) >= 0)).join('') + '</div></div>' +
+    '<div class="pick p33"><div class="fl">选考科目 <small>（六选三）</small></div><div class="chipset">' + ['wuli', 'huaxue', 'shengwu', 'zhengzhi', 'lishi', 'dili'].map(k => cc('checkbox', 'three', k, (c.three || []).indexOf(k) >= 0)).join('') + '</div></div>' +
+    '<div class="pick pli"><p class="hint">考试科目：语文、数学、英语（各150）+ 理科综合300（物理110、化学100、生物90）</p></div>' +
+    '<div class="pick pwen"><p class="hint">考试科目：语文、数学、英语（各150）+ 文科综合300（政治、历史、地理各100）</p></div>' +
+    '<div class="fl">考试与目标</div><div class="grid2">' +
+    '<label class="f"><span>高考日期</span><input type="date" name="exam" value="' + esc(c.exam) + '"></label>' +
+    '<label class="f"><span>目标总分（选填，满分750）</span><input type="number" name="target" inputmode="numeric" min="0" max="750" placeholder="如 600" value="' + esc(c.target == null ? '' : c.target) + '"></label></div>' +
+    '<div class="fl">复习阶段 <small>默认：一轮至考前约100天，二轮至考前4周</small></div><div class="grid2">' +
+    '<label class="f"><span>一轮结束日期</span><input type="date" name="r1" value="' + esc(c.r1) + '"></label>' +
+    '<label class="f"><span>二轮结束日期</span><input type="date" name="r2" value="' + esc(c.r2) + '"></label>' +
+    '<label class="f"><span>每日任务上限（个）</span><input type="number" name="daily" inputmode="numeric" min="1" max="100" value="' + esc(c.daily || 20) + '"></label></div>' +
+    '</div>';
+}
+function readSetup(root) {
+  const q = n => root.querySelector('[name="' + n + '"]');
+  const mode = (root.querySelector('[name=mode]:checked') || {}).value || '312';
+  const first = (root.querySelector('[name=first]:checked') || {}).value;
+  const second = $$('[name=second]:checked', root).map(i => i.value);
+  const three = $$('[name=three]:checked', root).map(i => i.value);
+  if (mode === '312' && (!first || second.length !== 2)) return '请选择首选科目1科、再选科目2科';
+  if (mode === '33' && three.length !== 3) return '请选择3门选考科目';
+  const exam = q('exam').value;
+  if (!isDate(exam)) return '请设置高考日期';
+  const r1 = isDate(q('r1').value) ? q('r1').value : addDays(exam, -99);
+  const r2 = isDate(q('r2').value) ? q('r2').value : addDays(exam, -28);
+  if (!(r1 < r2 && r2 < exam)) return '阶段日期需满足：一轮结束 < 二轮结束 < 高考日期';
+  const tv = q('target').value.trim();
+  const target = tv === '' ? null : clamp(Math.round(+tv) || 0, 0, 750);
+  const daily = clamp(Math.round(+q('daily').value) || 20, 1, 100);
+  const c = { mode, first: first || 'wuli', second, three, exam, r1, r2, target, daily };
+  c.subjects = subjectsOf(c);
+  return c;
+}
+function onSetupChange(e) {
+  const el = e.target, sf = el.closest('.sf'); if (!sf) return;
+  if (el.name === 'mode') sf.dataset.mode = el.value;
+  if ((el.name === 'second' && $$('[name=second]:checked', sf).length > 2) || (el.name === 'three' && $$('[name=three]:checked', sf).length > 3)) {
+    el.checked = false; toast(el.name === 'second' ? '再选科目只能选2科' : '选考科目只能选3科');
+  }
+  if (el.name === 'exam' && isDate(el.value)) {
+    const r1 = sf.querySelector('[name=r1]'), r2 = sf.querySelector('[name=r2]');
+    if (!r1.dataset.touched) r1.value = addDays(el.value, -99);
+    if (!r2.dataset.touched) r2.value = addDays(el.value, -28);
+  }
+  if (el.name === 'r1' || el.name === 'r2') el.dataset.touched = '1';
+}
+
+/* ---------- 首次设置 ---------- */
+function showSetup() {
+  const el = $('#setup');
+  el.innerHTML = '<div class="inner"><h1>欢迎使用高考知识点打卡器</h1><p class="muted">按新课标·新教材（人教版/统编版）整理了各科章节与知识点，共 ' + PTS.length + ' 个。先完成下面的设置，之后可在「设置」中修改。</p>' +
+    '<div class="card">' + setupFormHTML(null) + '</div>' +
+    '<div class="note-box">进度保存在本设备的浏览器中，换设备请用「设置 → 导出/导入备份」。</div>' +
+    '<button class="btn" style="width:100%;min-height:52px;font-size:17px" data-act="setup-finish">开始使用</button></div>';
+  el.classList.add('show');
+}
+
+/* ---------- 视图：总览 ---------- */
+function viewDash() {
+  const c = S.setup, all = activePts(), st = stats(all), n = all.length, dl = daysLeft(), t = today(), ph = phaseOf(t);
+  const tl = tasksOf(t), done = tl.filter(x => x.done).length;
+  const a = st[2] / n * 100, b = a + st[1] / n * 100, d = b + st[3] / n * 100;
+  let h = '<div class="card cdcard"><div class="row2" style="justify-content:space-between;align-items:flex-end"><div><div class="muted">距离 ' + c.exam.replace(/-/g, '.') + ' 高考还有</div><div class="big">' + (dl >= 0 ? dl : 0) + '<span style="font-size:18px;font-weight:600"> 天</span></div></div>' +
+    '<div style="text-align:right"><div class="muted">当前阶段</div><div style="font-weight:700;font-size:16px">' + (dl >= 0 ? PHN[ph] : '已结束') + '</div>' + (c.target ? '<div class="muted">目标 ' + c.target + ' / ' + totalFull() + ' 分</div>' : '<div class="muted">满分 ' + totalFull() + ' 分</div>') + '</div></div></div>';
+  h += '<div class="card"><h3>总体进度</h3><div class="hero"><div class="ring" style="background:conic-gradient(var(--c2) 0 ' + a + '%,var(--c1) ' + a + '% ' + b + '%,var(--c3) ' + b + '% ' + d + '%,var(--track) ' + d + '% 100%)"><div><b>' + Math.round(pct(st[2], n)) + '%</b><small>掌握率</small></div></div>' +
+    '<div class="kv"><div><span>掌握</span><b style="color:var(--c2)">' + st[2] + '</b></div><div><span>学过</span><b style="color:var(--c1)">' + st[1] + '</b></div><div><span>需复习</span><b style="color:var(--c3)">' + st[3] + '</b></div><div><span>未学</span><b>' + st[0] + '</b></div><div><span>总知识点</span><b>' + n + '</b></div><div><span>已学覆盖</span><b>' + Math.round(pct(n - st[0], n)) + '%</b></div></div></div></div>';
+  h += '<div class="card"><div class="stats3"><div><b>' + done + '/' + tl.length + '</b><span>今日任务</span></div><div><b>' + streak() + '</b><span>连续打卡(天)</span></div><div><b>' + Object.keys(S.checkins).length + '</b><span>累计打卡(天)</span></div></div>' +
+    '<div class="bigbtns"><button class="btn ghost" data-act="tab" data-tab="today">去今日打卡</button><button class="btn ghost" data-act="tab" data-tab="plan">看复习计划</button></div></div>';
+  h += '<div class="card" style="padding-bottom:8px"><h3>各科进度</h3>' + LEGEND + '</div>';
+  subs().forEach(sk => {
+    const sub = SYLLABUS[sk], s2 = stats(sub.pts);
+    h += '<details class="card subj" style="--sc:' + sub.color + '"><summary><div class="subj-t"><b>' + sub.name + '</b><span class="muted">满分' + fullScore(sk, c.mode) + ' · 掌握 ' + s2[2] + '/' + sub.pts.length + '（' + Math.round(pct(s2[2], sub.pts.length)) + '%）</span></div>' + barHTML(s2) +
+      '<div class="muted" style="margin-top:6px">学过 ' + s2[1] + ' · 需复习 ' + s2[3] + ' · 未学 ' + s2[0] + ' <span style="float:right">章节进度 ›</span></div></summary><div class="subj-body">' +
+      sub.chs.map(ch => { const c3 = stats(ch.pts); return '<div class="chrow"><div class="row2"><span>' + esc(ch.name) + '</span><span class="muted">' + c3[2] + '/' + ch.pts.length + '</span></div>' + barHTML(c3, true) + '</div>'; }).join('') +
+      '<button class="btn ghost sm" style="margin-top:10px;width:100%" data-act="go-subj" data-sk="' + sk + '">打开' + sub.name + '清单</button></div></details>';
+  });
+  const weak = [];
+  subs().forEach(sk => SYLLABUS[sk].chs.forEach(ch => { const k = stats(ch.pts)[3]; if (k) weak.push([k, ch]); }));
+  weak.sort((x, y) => y[0] - x[0]);
+  if (weak.length) h += '<div class="card"><h3>需复习最多的章节</h3><ul class="weak" style="padding-left:18px;margin:0">' + weak.slice(0, 6).map(w => '<li>' + subTag(w[1].sk) + esc(w[1].name) + ' <span class="muted">· ' + w[0] + ' 个需复习</span></li>').join('') + '</ul></div>';
+  return h;
+}
+
+/* ---------- 视图：知识清单 ---------- */
+let TODAYSET = new Set();
+function filtering() { return S.ui.filter !== 'all' || S.ui.hf || !!S.ui.q.trim(); }
+function matches(p) {
+  const f = S.ui.filter;
+  if (f !== 'all' && gs(p.id) !== +f) return false;
+  if (S.ui.hf && !p.hf) return false;
+  const q = S.ui.q.trim();
+  if (q) { const note = (S.pts[p.id] && S.pts[p.id].note) || ''; if (p.name.indexOf(q) < 0 && p.ch.name.indexOf(q) < 0 && note.indexOf(q) < 0) return false; }
+  return true;
+}
+function listSubs() { return S.ui.subj === 'all' ? subs() : [S.ui.subj]; }
+function viewList() {
+  if (S.ui.subj !== 'all' && subs().indexOf(S.ui.subj) < 0) S.ui.subj = subs()[0];
+  return '<div class="lhead"><div class="search"><input id="q" type="search" placeholder="搜索知识点 / 章节 / 备注" value="' + esc(S.ui.q) + '" enterkeyhint="search"><button class="tog' + (S.ui.hf ? ' on' : '') + '" data-act="hf">只看高频</button></div><div class="chips" id="subChips"></div></div>' +
+    '<div class="chips" id="fChips" style="padding-top:0"></div><div class="subsum" id="subSum"></div><div id="list"></div>';
+}
+function renderListCtl() {
+  const scope = listSubs().reduce((a, k) => a.concat(SYLLABUS[k].pts), []);
+  const st = stats(scope);
+  $('#subChips').innerHTML = '<button class="chip' + (S.ui.subj === 'all' ? ' on' : '') + '" data-act="subj" data-sk="all">全部</button>' +
+    subs().map(sk => { const p = SYLLABUS[sk].pts; return '<button class="chip' + (S.ui.subj === sk ? ' on' : '') + '" data-act="subj" data-sk="' + sk + '">' + SYLLABUS[sk].name + ' <small>' + Math.round(pct(stats(p)[2], p.length)) + '%</small></button>'; }).join('');
+  const fs = [['all', '全部', scope.length], ['0', '未学', st[0]], ['1', '学过', st[1]], ['2', '掌握', st[2]], ['3', '需复习', st[3]]];
+  $('#fChips').innerHTML = fs.map(f => '<button class="chip' + (S.ui.filter === f[0] ? ' on' : '') + '" data-act="filter" data-f="' + f[0] + '">' + f[1] + ' <small>' + f[2] + '</small></button>').join('') +
+    '<button class="chip" data-act="expand">全部展开</button><button class="chip" data-act="collapse">全部折叠</button>';
+  $('#subSum').innerHTML = (S.ui.subj === 'all' ? '全部科目' : SYLLABUS[S.ui.subj].name) + '：共 ' + scope.length + ' 个知识点，掌握 ' + st[2] + '（' + Math.round(pct(st[2], scope.length)) + '%）· 点状态按钮可循环切换，点文字可写备注';
+}
+function chOpen(ch) { return filtering() ? !S.ui.fclosed[ch.key] : !!S.ui.open[ch.key]; }
+function chHeadInner(ch) {
+  const c = stats(ch.pts);
+  return '<div class="row2"><span class="nm">' + esc(ch.name) + '</span><span class="ct">' + c[2] + '/' + ch.pts.length + ' 掌握<span class="chev">›</span></span></div>' + barHTML(c, true);
+}
+function rowHTML(p) {
+  const s = gs(p.id), o = S.pts[p.id] || {}, on = TODAYSET.has(p.id);
+  return '<div class="row" data-row="' + p.id + '"><button class="st s' + s + '" data-act="cyc" data-id="' + p.id + '" aria-label="切换状态">' + STN[s] + '</button>' +
+    '<div class="row-main" data-act="open" data-id="' + p.id + '"><div class="row-t">' + (p.hf ? '<span class="hf">高频</span>' : '') + esc(p.name) + '</div>' +
+    (o.note || o.t ? '<div class="row-m"><span class="nt">' + (o.note ? '备注：' + esc(o.note) : '') + '</span>' + (o.t ? '<span>' + md(o.t) + ' 更新</span>' : '') + '</div>' : '') + '</div>' +
+    '<button class="add' + (on ? ' on' : '') + '" data-act="add" data-id="' + p.id + '" aria-label="' + (on ? '移出今日任务' : '加入今日任务') + '">' + (on ? '✓' : '+') + '</button></div>';
+}
+function renderList() {
+  TODAYSET = new Set(tasksOf(today()).map(t => t.id));
+  const multi = S.ui.subj === 'all';
+  let h = '', shown = 0;
+  listSubs().forEach(sk => {
+    const sub = SYLLABUS[sk]; let lastM = null, sh = '';
+    sub.chs.forEach(ch => {
+      const ps = ch.pts.filter(matches); if (!ps.length) return;
+      shown += ps.length;
+      if (ch.m !== lastM) { sh += '<div class="mod-h">' + esc(ch.m) + '</div>'; lastM = ch.m; }
+      const open = chOpen(ch);
+      sh += '<section class="ch' + (open ? ' open' : '') + '" data-ch="' + ch.key + '"><button class="ch-h" data-act="ch" data-k="' + ch.key + '">' + chHeadInner(ch) + '</button><div class="ch-b">' + (open ? ps.map(rowHTML).join('') : '') + '</div></section>';
+    });
+    if (sh) h += (multi ? '<div class="sub-h">' + subTag(sk) + sub.name + '</div>' : '') + sh;
+  });
+  $('#list').innerHTML = shown ? h : '<div class="empty">没有符合条件的知识点</div>';
+}
+function refreshPoint(id) {
+  if (S.ui.tab === 'list' && $('#list')) {
+    TODAYSET = new Set(tasksOf(today()).map(t => t.id));
+    const p = PT[id], row = $('[data-row="' + id + '"]');
+    if (row) row.outerHTML = rowHTML(p);
+    const sec = $('[data-ch="' + p.ch.key + '"] .ch-h'); if (sec) sec.innerHTML = chHeadInner(p.ch);
+    renderListCtl();
+  } else render();
+}
+
+/* ---------- 视图：今日打卡 ---------- */
+function heatmap(weeks) {
+  const t = today(), start = addDays(mondayOf(t), -7 * (weeks - 1));
+  let cols = '<div class="hm-lab"><span>一</span><span></span><span>三</span><span></span><span>五</span><span></span><span>日</span></div>';
+  for (let w = 0; w < weeks; w++) {
+    let cells = '';
+    for (let d = 0; d < 7; d++) {
+      const ds = addDays(start, w * 7 + d);
+      if (ds > t) { cells += '<i class="hmf"></i>'; continue; }
+      const c = S.checkins[ds], dn = tasksOf(ds).filter(x => x.done).length;
+      const lv = c ? (dn >= 10 ? 4 : dn >= 5 ? 3 : dn >= 1 ? 2 : 1) : 0;
+      cells += '<i class="hm' + lv + (ds === t ? ' hm-today' : '') + '" title="' + ds + (c ? ' 已打卡，完成' + dn + '个' : '') + '"></i>';
+    }
+    cols += '<div class="hm-col">' + cells + '</div>';
+  }
+  return '<div class="hm-wrap"><div class="hm-grid">' + cols + '</div></div>';
+}
+function viewToday() {
+  const t = today(), d = parse(t), l = tasksOf(t), done = l.filter(x => x.done).length, ci = S.checkins[t], ph = phaseOf(t);
+  const sg = suggestion(new Set(l.filter(x => x.done || !x.auto).map(x => x.id)));
+  let h = '<div class="card"><div class="row2" style="justify-content:space-between"><div><b style="font-size:17px">' + (d.getMonth() + 1) + '月' + d.getDate() + '日 周' + WK[d.getDay()] + '</b> <span class="phase ph' + ph + '">' + PHN[ph] + '</span></div><span class="muted">距高考 ' + Math.max(0, daysLeft()) + ' 天</span></div>' +
+    '<div class="stats3" style="margin-top:12px"><div><b>' + done + '/' + l.length + '</b><span>今日完成</span></div><div><b>' + streak() + '</b><span>连续打卡</span></div><div><b>' + longest() + '</b><span>最长连续</span></div></div>' +
+    '<div class="bigbtns"><button class="btn ghost" data-act="auto">自动安排</button>' + (ci ? '<button class="btn done" data-act="uncheckin">✓ 已打卡 ' + esc(ci.at || '') + '</button>' : '<button class="btn" data-act="checkin">今日打卡</button>') + '</div>' +
+    '<p class="muted" style="margin:10px 0 0">' + sg.src + ' <b>' + sg.rem + '</b> 个待学/待复习，还有 <b>' + sg.days + '</b> 天 → 建议每天约 <b>' + sg.n + '</b> 个（上限 ' + S.setup.daily + '，可在设置中调整）。「自动安排」会替换未完成的自动任务，保留手动添加的任务。</p></div>';
+  h += '<div class="card"><h3>今日任务</h3>';
+  if (!l.length) h += '<div class="empty" style="padding:20px 8px">还没有任务。<br>点「自动安排」，或到「知识清单」点知识点右侧的 ＋ 加入今日任务。</div>';
+  else h += l.map(x => { const p = PT[x.id], s = gs(x.id); return '<div class="task' + (x.done ? ' done' : '') + '"><button class="chk" data-act="tdone" data-id="' + p.id + '" aria-label="完成">✓</button><div class="row-main" data-act="open" data-id="' + p.id + '"><div class="row-t">' + subTag(p.sk) + (p.hf ? '<span class="hf">高频</span>' : '') + esc(p.name) + '</div><div class="row-m"><span class="nt">' + esc(p.ch.name) + '</span></div></div><button class="st s' + s + '" data-act="cyc" data-id="' + p.id + '">' + STN[s] + '</button><button class="x" data-act="tremove" data-id="' + p.id + '" aria-label="移除">×</button></div>'; }).join('');
+  const y = addDays(t, -1), yl = tasksOf(y).filter(x => !x.done && !inToday(x.id));
+  if (yl.length) h += '<button class="btn line sm" style="width:100%;margin-top:10px" data-act="carry">把昨天未完成的 ' + yl.length + ' 个任务转入今天</button>';
+  h += '<p class="muted" style="margin:10px 0 0">勾选完成会把「未学」自动标为「学过」；学会了请点状态按钮标为「掌握」，没把握就标「需复习」。</p></div>';
+  h += '<div class="card"><h3>打卡日历 <span class="muted" style="font-weight:400">近18周 · 累计 ' + Object.keys(S.checkins).length + ' 天</span></h3>' + heatmap(18) +
+    '<div class="legend"><span><i class="hm0"></i>未打卡</span><span><i class="hm1"></i>已打卡</span><span><i class="hm2"></i>完成1-4个</span><span><i class="hm3"></i>5-9个</span><span><i class="hm4"></i>10个以上</span></div></div>';
+  return h;
+}
+
+/* ---------- 视图：复习计划 ---------- */
+function viewPlan() {
+  const c = S.setup, t = today(), P = S.plan;
+  const d1 = Math.max(0, diffDays(t, c.r1) + 1), d2 = Math.max(0, diffDays(t > c.r1 ? t : addDays(c.r1, 1), c.r2) + 1), d3 = Math.max(0, diffDays(t > c.r2 ? t : addDays(c.r2, 1), c.exam));
+  const tot = d1 + d2 + d3 || 1;
+  let h = '<div class="card"><h3>复习阶段</h3><div class="tl">' +
+    (d1 ? '<div class="ph1" style="flex:' + d1 + '">一轮 ' + d1 + '天</div>' : '') + (d2 ? '<div class="ph2" style="flex:' + d2 + '">二轮 ' + d2 + '天</div>' : '') + (d3 ? '<div class="ph3" style="flex:' + d3 + '">冲刺 ' + d3 + '天</div>' : '') + (tot <= 1 && !d1 && !d2 && !d3 ? '<div>已结束</div>' : '') + '</div>' +
+    '<p class="muted" style="margin:4px 0">一轮至 ' + c.r1 + '，二轮至 ' + c.r2 + '，高考 ' + c.exam + '（可在设置中修改）。</p>' +
+    '<p class="muted" style="margin:4px 0">计划按剩余周数把各科未掌握的知识点按章节顺序平均分配到每周：一轮覆盖全部未掌握知识点；二轮二刷未掌握+高频；冲刺回归高频与需复习。已确认的周在重新生成时保留不变。</p>' +
+    '<div class="btns" style="margin-top:10px"><button class="btn" data-act="gen-plan">' + (P ? '重新生成计划' : '生成复习计划') + '</button>' + (P ? '<button class="btn ghost" data-act="confirm-all">全部确认</button>' : '') + '</div></div>';
+  if (!P || !P.weeks.length) return h + '<div class="empty">还没有复习计划，点击上方「生成复习计划」。</div>';
+  const nConf = P.weeks.filter(w => w.confirmed).length;
+  h += '<div class="muted" style="margin:0 4px 8px">生成于 ' + P.created + ' · 共 ' + P.weeks.length + ' 周 · 已确认 ' + nConf + '/' + P.weeks.length + ' 周</div>';
+  P.weeks.forEach((w, i) => {
+    const cur = w.start <= t && t <= w.end, past = w.end < t, cnt = weekCount(w);
+    let mast = 0; Object.keys(w.items).forEach(k => w.items[k].forEach(id => { if (PT[id] && gs(id) === 2) mast++; }));
+    const open = !!S.ui.wkOpen[w.start];
+    h += '<section class="card wk' + (cur ? ' cur' : '') + (w.confirmed ? ' ok' : '') + '"' + (past ? ' style="opacity:.6"' : '') + '><div class="wk-h"><div><b>第' + (i + 1) + '周</b> <span class="muted">' + md(w.start) + '–' + md(w.end) + '</span> <span class="phase ph' + w.ph + '">' + PHN[w.ph] + '</span>' + (cur ? '<span class="badge">本周</span>' : '') + '</div><span class="wk-st">' + (w.confirmed ? '已确认' : '待确认') + '</span></div>' +
+      '<div class="wk-sum">' + subs().map(sk => { const n = (w.items[sk] || []).filter(id => PT[id]).length; return n ? '<span class="tag" style="--c:' + SYLLABUS[sk].color + '">' + SYLLABUS[sk].name + ' ' + n + '</span>' : ''; }).join('') + '<span class="muted">共 ' + cnt + ' 个 · 已掌握 ' + mast + '</span></div>' +
+      (w.note ? '<div class="wk-tip">备注：' + esc(w.note) + '</div>' : '') +
+      '<div class="wk-act"><button class="btn line sm" data-act="wk-open" data-i="' + i + '">' + (open ? '收起明细' : '查看/编辑明细') + '</button><button class="btn sm ' + (w.confirmed ? 'line' : '') + '" data-act="wk-confirm" data-i="' + i + '">' + (w.confirmed ? '取消确认' : '确认本周') + '</button>' + (cur ? '<button class="btn ghost sm" data-act="auto">按本周计划安排今日</button>' : '') + '</div>';
+    if (open) {
+      h += '<div class="wk-b"><div class="wk-tip" style="padding:4px 0">' + PHD[w.ph] + '</div>';
+      subs().forEach(sk => {
+        const ids = (w.items[sk] || []).filter(id => PT[id]); if (!ids.length) return;
+        h += '<h4>' + subTag(sk) + ids.length + ' 个</h4>' + ids.map(id => { const p = PT[id], s = gs(id); return '<div class="wi"><i class="dot l' + s + '"></i><span class="n">' + (p.hf ? '<span class="hf">高频</span>' : '') + esc(p.name) + '<span class="muted"> · ' + esc(p.ch.name) + '</span></span>' + (i < P.weeks.length - 1 ? '<button data-act="wk-next" data-i="' + i + '" data-sk="' + sk + '" data-id="' + id + '">移到下周</button>' : '') + '<button data-act="wk-rm" data-i="' + i + '" data-sk="' + sk + '" data-id="' + id + '">移除</button></div>'; }).join('');
+      });
+      h += '<textarea data-wknote="' + i + '" placeholder="本周备注（如：周末做一套数学卷、月考安排…）">' + esc(w.note || '') + '</textarea></div>';
+    }
+    h += '</section>';
+  });
+  return h;
+}
+
+/* ---------- 视图：设置 ---------- */
+function viewSet() {
+  const c = S.setup;
+  return '<div class="note-box">进度保存在本设备，换设备请用导出/导入备份。</div>' +
+    '<div class="card"><h3>选科与目标</h3><div id="setForm">' + setupFormHTML(c) + '</div><button class="btn" style="width:100%;margin-top:14px" data-act="save-setup">保存设置</button></div>' +
+    '<div class="card"><h3>数据备份</h3><p class="muted" style="margin-top:0">导出的 JSON 文件包含全部进度、备注、打卡与计划。</p><div class="btns"><button class="btn ghost" data-act="export">导出备份文件</button><button class="btn ghost" data-act="copy-export">复制备份文本</button>' +
+    '<label class="btn ghost" style="cursor:pointer">导入备份文件<input type="file" id="importFile" accept=".json,application/json,text/plain" style="display:none"></label></div>' +
+    '<textarea class="inp" id="importText" style="margin-top:10px" placeholder="也可把备份文本粘贴到这里，再点「从文本导入」"></textarea><button class="btn line sm" style="margin-top:8px" data-act="import-text">从文本导入</button></div>' +
+    '<div class="card"><h3>打印 / 导出清单</h3><p class="muted" style="margin-top:0">生成适合打印的完整知识点清单（含状态与备注），可在打印对话框中选择「存储为 PDF」。</p><div class="btns"><button class="btn ghost" data-act="print" data-mode="all">打印全部清单</button><button class="btn ghost" data-act="print" data-mode="un">只打印未掌握</button></div></div>' +
+    '<div class="card"><h3>添加到手机主屏幕</h3><p class="muted" style="margin:0">iPhone：用 Safari 打开 → 点底部「分享」→「添加到主屏幕」。<br>安卓：浏览器菜单 →「添加到主屏幕 / 安装应用」。<br>添加后像 App 一样打开，首次加载后断网也能使用。</p></div>' +
+    '<div class="card"><h3>重置</h3><p class="muted" style="margin-top:0">清空本设备上的全部进度、打卡、计划和设置。建议先导出备份。</p><button class="btn warn" data-act="reset">重置所有数据</button></div>' +
+    '<p class="muted" style="text-align:center">知识点共 ' + PTS.length + ' 个（当前选科 ' + activePts().length + ' 个）· 依据新课标新教材整理，仅供复习参考</p>';
+}
+
+/* ---------- 底部弹层（知识点详情） ---------- */
+let sheetId = null, noteTimer;
+function openSheet(id) {
+  const p = PT[id]; if (!p) return; sheetId = id;
+  const s = gs(id), o = S.pts[id] || {}, on = inToday(id);
+  $('#sheet').innerHTML = '<div class="grab"></div><div class="muted">' + subTag(p.sk) + esc(p.ch.m) + ' · ' + esc(p.ch.name) + '</div><h2>' + (p.hf ? '<span class="hf">高频</span>' : '') + esc(p.name) + '</h2>' +
+    '<div class="sts">' + STN.map((n, i) => '<button class="s' + i + (s === i ? ' on' : '') + '" data-act="ss" data-s="' + i + '">' + n + '</button>').join('') + '</div>' +
+    '<textarea class="inp" id="noteIn" maxlength="200" placeholder="备注（选填）：易错点、错题页码、老师提醒…">' + esc(o.note || '') + '</textarea>' +
+    '<div class="muted" style="margin:6px 0 12px">' + (o.t ? '最近更新：' + o.t : '尚未更新') + '</div>' +
+    '<div class="btns"><button class="btn ' + (on ? 'line' : 'ghost') + '" data-act="sheet-add">' + (on ? '移出今日任务' : '加入今日任务') + '</button><button class="btn" data-act="sheet-close">完成</button></div>';
+  $('#mask').classList.add('show'); $('#sheet').classList.add('show');
+}
+function closeSheet() {
+  if (!sheetId) return;
+  const ta = $('#noteIn'); clearTimeout(noteTimer);
+  const id = sheetId; sheetId = null;
+  if (ta && ta.value.trim() !== ((S.pts[id] && S.pts[id].note) || '')) setNote(id, ta.value.trim());
+  $('#mask').classList.remove('show'); $('#sheet').classList.remove('show');
+  refreshPoint(id);
+}
+
+/* ---------- 打印 ---------- */
+function doPrint(mode) {
+  const c = S.setup, SY = ['□', '◐', '■', '！'];
+  let h = '<h1>高考知识点清单' + (mode === 'un' ? '（未掌握）' : '') + '</h1><p>' + MODES[c.mode].name + ' · ' + subs().map(k => SYLLABUS[k].name).join('、') + ' · 打印日期 ' + today() + ' · 距高考 ' + Math.max(0, daysLeft()) + ' 天</p><p>图例：□ 未学　◐ 学过　■ 掌握　！ 需复习　★ 高频</p>';
+  subs().forEach(sk => {
+    const sub = SYLLABUS[sk], st = stats(sub.pts); let lastM = null, body = '';
+    sub.chs.forEach(ch => {
+      const ps = ch.pts.filter(p => mode !== 'un' || gs(p.id) !== 2); if (!ps.length) return;
+      if (ch.m !== lastM) { body += '<h3>' + esc(ch.m) + '</h3>'; lastM = ch.m; }
+      body += '<h4>' + esc(ch.name) + '</h4><ul>' + ps.map(p => { const o = S.pts[p.id] || {}; return '<li><span class="pb">' + SY[gs(p.id)] + '</span> ' + esc(p.name) + (p.hf ? ' ★' : '') + (o.note ? '（' + esc(o.note) + '）' : '') + '</li>'; }).join('') + '</ul>';
+    });
+    h += '<h2>' + sub.name + '（满分' + fullScore(sk, c.mode) + '）　掌握 ' + st[2] + '/' + sub.pts.length + '</h2>' + (body || '<p>全部已掌握</p>');
+  });
+  $('#printArea').innerHTML = h;
+  setTimeout(() => window.print(), 50);
+}
+
+/* ---------- 备份 ---------- */
+function exportData() { return JSON.stringify({ app: 'gaokao-tracker', exportedAt: new Date().toISOString(), data: S }, null, 1); }
+function importData(text) {
+  let o; try { o = JSON.parse(text); } catch (e) { toast('导入失败：不是有效的 JSON'); return; }
+  const d = o && o.data ? o.data : o;
+  if (!d || !d.v || typeof d.pts !== 'object') { toast('导入失败：不是本应用的备份'); return; }
+  if (!confirm('导入将覆盖本设备当前的全部数据，确定继续？')) return;
+  S = normalize(d); S.ui.tab = 'dash'; save(); toast('导入成功'); boot();
+}
+
+/* ---------- 渲染 ---------- */
+function render() {
+  if (!S.setup) { showSetup(); return; }
+  $('#setup').classList.remove('show');
+  const dl = daysLeft();
+  $('#topCd').innerHTML = dl >= 0 ? '距高考 <b>' + dl + '</b> 天' : '高考已结束';
+  $$('.tabbar button').forEach(b => b.classList.toggle('on', b.dataset.tab === S.ui.tab));
+  const v = $('#view'), tab = S.ui.tab;
+  if (tab === 'list') { v.innerHTML = viewList(); renderListCtl(); renderList(); }
+  else v.innerHTML = tab === 'today' ? viewToday() : tab === 'plan' ? viewPlan() : tab === 'set' ? viewSet() : viewDash();
+}
+function boot() { if (!S.ui.subj) S.ui.subj = 'all'; render(); }
+
+/* ---------- 事件 ---------- */
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-act]'); if (!el) return;
+  const a = el.dataset.act, id = el.dataset.id;
+  switch (a) {
+    case 'tab': S.ui.tab = el.dataset.tab; save(); render(); window.scrollTo(0, 0); break;
+    case 'go-subj': S.ui.tab = 'list'; S.ui.subj = el.dataset.sk; save(); render(); window.scrollTo(0, 0); break;
+    case 'subj': S.ui.subj = el.dataset.sk; save(); renderListCtl(); renderList(); break;
+    case 'filter': S.ui.filter = el.dataset.f; S.ui.fclosed = {}; save(); renderListCtl(); renderList(); break;
+    case 'hf': S.ui.hf = !S.ui.hf; S.ui.fclosed = {}; el.classList.toggle('on', S.ui.hf); save(); renderListCtl(); renderList(); break;
+    case 'expand': case 'collapse':
+      listSubs().forEach(sk => SYLLABUS[sk].chs.forEach(ch => { if (filtering()) S.ui.fclosed[ch.key] = a === 'collapse'; else S.ui.open[ch.key] = a === 'expand'; }));
+      save(); renderList(); break;
+    case 'ch': {
+      const k = el.dataset.k;
+      if (filtering()) S.ui.fclosed[k] = !S.ui.fclosed[k]; else S.ui.open[k] = !S.ui.open[k];
+      save(); renderList(); break;
+    }
+    case 'cyc': setS(id, (gs(id) + 1) % 4); refreshPoint(id); break;
+    case 'open': openSheet(id); break;
+    case 'add': if (inToday(id)) { removeToday(id); toast('已移出今日任务'); } else { addToday(id); toast('已加入今日任务'); } refreshPoint(id); break;
+    case 'ss': { const s = +el.dataset.s; setS(sheetId, s); $$('#sheet .sts button').forEach((b, i) => b.classList.toggle('on', i === s)); break; }
+    case 'sheet-add': if (inToday(sheetId)) removeToday(sheetId); else addToday(sheetId); el.textContent = inToday(sheetId) ? '移出今日任务' : '加入今日任务'; el.className = 'btn ' + (inToday(sheetId) ? 'line' : 'ghost'); break;
+    case 'sheet-close': closeSheet(); break;
+    case 'auto': autoSchedule(); break;
+    case 'checkin': checkin(); break;
+    case 'uncheckin': if (confirm('撤销今天的打卡？')) { delete S.checkins[today()]; save(); render(); } break;
+    case 'tdone': toggleDone(id); render(); break;
+    case 'tremove': removeToday(id); render(); break;
+    case 'carry': { const y = addDays(today(), -1); tasksOf(y).filter(x => !x.done).forEach(x => addToday(x.id)); toast('已转入今天'); render(); break; }
+    case 'gen-plan':
+      if (S.plan && !confirm('重新生成会按当前进度重排所有「待确认」的周（已确认的周保留），继续？')) break;
+      genPlan(); break;
+    case 'confirm-all': S.plan.weeks.forEach(w => { w.confirmed = true; }); save(); toast('已确认全部 ' + S.plan.weeks.length + ' 周计划'); render(); break;
+    case 'wk-open': { const w = S.plan.weeks[+el.dataset.i]; S.ui.wkOpen[w.start] = !S.ui.wkOpen[w.start]; save(); render(); break; }
+    case 'wk-confirm': { const w = S.plan.weeks[+el.dataset.i]; w.confirmed = !w.confirmed; save(); render(); break; }
+    case 'wk-rm': case 'wk-next': {
+      const i = +el.dataset.i, sk = el.dataset.sk, w = S.plan.weeks[i];
+      w.items[sk] = (w.items[sk] || []).filter(x => x !== id);
+      if (a === 'wk-next') { const nw = S.plan.weeks[i + 1]; nw.items[sk] = [id].concat((nw.items[sk] || []).filter(x => x !== id)); toast('已移到下周'); }
+      save(); render(); break;
+    }
+    case 'setup-finish': case 'save-setup': {
+      const root = a === 'setup-finish' ? $('#setup') : $('#setForm');
+      const c = readSetup(root);
+      if (typeof c === 'string') { toast(c); break; }
+      const changed = S.setup && (S.setup.subjects.join() !== c.subjects.join() || S.setup.r1 !== c.r1 || S.setup.r2 !== c.r2 || S.setup.exam !== c.exam);
+      S.setup = c; if (a === 'setup-finish') { S.ui.tab = 'dash'; S.ui.subj = 'all'; }
+      save(); render(); window.scrollTo(0, 0);
+      toast(a === 'setup-finish' ? '设置完成，开始打卡吧！' : changed && S.plan ? '已保存。选科或日期有变化，建议重新生成复习计划' : '设置已保存');
+      break;
+    }
+    case 'export': {
+      const blob = new Blob([exportData()], { type: 'application/json' });
+      const url = URL.createObjectURL(blob), link = document.createElement('a');
+      link.href = url; link.download = '高考打卡备份-' + today() + '.json';
+      document.body.appendChild(link); link.click(); link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      toast('已导出备份文件'); break;
+    }
+    case 'copy-export': {
+      const txt = exportData();
+      const fallback = () => { const ta = $('#importText'); ta.value = txt; ta.select(); try { document.execCommand('copy'); toast('已复制到剪贴板'); } catch (err) { toast('请手动复制文本框中的内容'); } };
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(txt).then(() => toast('已复制备份文本，可粘贴到备忘录/微信保存'), fallback); else fallback();
+      break;
+    }
+    case 'import-text': { const v = $('#importText').value.trim(); if (!v) toast('请先粘贴备份文本'); else importData(v); break; }
+    case 'print': doPrint(el.dataset.mode); break;
+    case 'reset':
+      if (confirm('确定要清空所有进度、打卡、计划和设置吗？此操作不可撤销。') && confirm('再次确认：真的要重置吗？')) {
+        localStorage.removeItem(LS); S = blank(); toast('已重置'); window.scrollTo(0, 0); render();
+      }
+      break;
+  }
+});
+document.addEventListener('change', e => {
+  onSetupChange(e);
+  if (e.target.id === 'importFile' && e.target.files[0]) {
+    const r = new FileReader(); r.onload = () => importData(String(r.result)); r.readAsText(e.target.files[0]); e.target.value = '';
+  }
+});
+let qTimer;
+document.addEventListener('input', e => {
+  const el = e.target;
+  if (el.id === 'q') { clearTimeout(qTimer); qTimer = setTimeout(() => { S.ui.q = el.value; S.ui.fclosed = {}; save(); renderListCtl(); renderList(); }, 200); }
+  if (el.id === 'noteIn' && sheetId) { const id = sheetId; clearTimeout(noteTimer); noteTimer = setTimeout(() => setNote(id, el.value.trim()), 500); }
+  if (el.dataset && el.dataset.wknote != null && S.plan) { const w = S.plan.weeks[+el.dataset.wknote]; if (w) { w.note = el.value; clearTimeout(noteTimer); noteTimer = setTimeout(save, 400); } }
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSheet(); });
+// 跨天自动刷新（例如 App 挂在后台过夜）
+let lastDay = today();
+document.addEventListener('visibilitychange', () => { if (!document.hidden && today() !== lastDay) { lastDay = today(); render(); } });
+
+boot();
+
+/* ---------- 离线（仅在 http/https 下注册 Service Worker，直接打开本地文件时跳过） ---------- */
+if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
+  window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
+}
+window.__gk = { S: () => S, PTS, SYLLABUS, autoSchedule, genPlan };
+})();
+
+</script>
+</body>
+</html>
