@@ -1,0 +1,646 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#3b5bdb">
+<meta name="gk-manual" content="gaokao-manual-v1"><title>高考知识点打卡器 · 操作手册</title><style>*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;font-family:"Noto Sans CJK SC","Noto Sans SC",sans-serif;font-size:10.5pt;line-height:1.78;color:#1f2430;text-align:justify}
+b{font-weight:700;color:#141925}
+p{margin:0 0 2.2mm}
+.muted{color:#6b7385}
+.url{font-family:"Noto Sans Mono CJK SC",monospace;color:#3b5bdb;font-size:9.5pt;word-break:break-all}
+h2{font-size:19pt;line-height:1.3;margin:0 0 5mm;padding:0 0 3mm;border-bottom:2.5px solid #3b5bdb;color:#1b2a6b;display:flex;align-items:center;gap:3mm;break-after:avoid}
+h2.pb{break-before:page}
+h2 .no{display:inline-flex;align-items:center;justify-content:center;min-width:10mm;height:10mm;padding:0 2mm;border-radius:2.5mm;background:#3b5bdb;color:#fff;font-size:14pt}
+h3{font-size:12.5pt;color:#3b5bdb;margin:6mm 0 2.5mm;padding-left:3mm;border-left:4px solid #3b5bdb;line-height:1.4;break-after:avoid}
+h3.grp{font-size:10pt;color:#fff;background:#1b2a6b;border:0;display:inline-block;padding:1mm 4mm;border-radius:1.5mm;margin:6mm 0 1mm}
+.lead{font-size:11pt;color:#343b4c}
+.k{display:inline;background:#eaf0ff;color:#2f4ac0;border:1px solid #c9d5fb;border-radius:1.2mm;padding:0 1.3mm;font-weight:700;font-size:9.8pt;-webkit-box-decoration-break:clone;box-decoration-break:clone;white-space:normal}
+.n{display:inline-flex;align-items:center;justify-content:center;width:4.6mm;height:4.6mm;border-radius:50%;background:#e03131;color:#fff;font-size:8pt;font-weight:700;vertical-align:.2mm;line-height:1}
+ol.steps{list-style:none;counter-reset:st;margin:0 0 2mm;padding:0}
+ol.steps>li{counter-increment:st;position:relative;padding-left:8mm;margin:0 0 1.8mm}
+ol.steps>li::before{content:counter(st);position:absolute;left:0;top:.9mm;width:5.4mm;height:5.4mm;border-radius:50%;background:#3b5bdb;color:#fff;font-size:8.5pt;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1}
+ul.dots{margin:0 0 2mm;padding-left:6mm}
+ul.dots li{margin-bottom:1mm}
+.side{display:flex;gap:7mm;align-items:flex-start;break-inside:avoid}
+.side .txt{flex:1;min-width:0}
+figure{margin:0;flex:none;break-inside:avoid}
+.shot{position:relative;border:1px solid #cfd6e6;border-radius:3mm;overflow:hidden;box-shadow:0 1mm 3mm rgba(30,50,110,.12);line-height:0}
+.shot img{width:100%;display:block}
+figcaption{font-size:8.5pt;color:#6b7385;text-align:center;margin-top:1.5mm;line-height:1.4}
+.figrow{display:flex;gap:10mm;justify-content:center;margin:3mm 0 2mm;break-inside:avoid}
+.mk{position:absolute;border:2px solid #e03131;border-radius:1.5mm;box-shadow:0 0 0 1px rgba(255,255,255,.7)}
+.mk b{position:absolute;left:-2.4mm;top:-2.4mm;width:5mm;height:5mm;border-radius:50%;background:#e03131;color:#fff;font-size:8pt;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1;border:1.5px solid #fff}
+.mk b.in{left:.8mm}
+section.how{margin-bottom:3mm}
+.call{border-radius:2mm;padding:2.5mm 3.5mm 2.5mm 3.5mm;margin:3mm 0;font-size:10pt;break-inside:avoid;border-left:4px solid}
+.call>b{display:inline-block;margin-right:2mm;padding:0 2mm;border-radius:1mm;color:#fff;font-size:8.8pt}
+.call.tip{background:#eef3ff;border-color:#3b5bdb}.call.tip>b{background:#3b5bdb}
+.call.warn{background:#fff5e6;border-color:#f08c00}.call.warn>b{background:#f08c00}
+.call.key{background:#ebfbee;border-color:#2b8a3e}.call.key>b{background:#2b8a3e}
+.tb{width:100%;border-collapse:collapse;font-size:9.6pt;margin:2mm 0 3mm;break-inside:avoid;line-height:1.55}
+.tb th{background:#1b2a6b;color:#fff;font-weight:700;padding:1.8mm 2mm;text-align:left}
+.tb td{border-bottom:1px solid #e1e6f0;padding:1.6mm 2mm;vertical-align:top}
+.tb tr:nth-child(even) td{background:#f6f8fc}
+.tb.subj td:nth-child(2),.tb.subj td:nth-child(3),.tb.subj td:nth-child(4),.tb.subj th:nth-child(2),.tb.subj th:nth-child(3),.tb.subj th:nth-child(4){text-align:center;white-space:nowrap}
+.tb tr.tot td{font-weight:700;background:#eaf0ff;border-top:2px solid #3b5bdb}
+.tb.cmp td:first-child{font-weight:700;white-space:nowrap;color:#1b2a6b}
+.states{display:flex;flex-wrap:wrap;gap:2mm 5mm;align-items:center;font-size:9.6pt;margin:1mm 0 3mm}
+.states span{display:inline-block;padding:.3mm 2.5mm;border-radius:10mm;font-weight:700;margin-right:1mm}
+.s0{background:#eef0f4;color:#495057}.s1{background:#e3efff;color:#1c6ee8}.s2{background:#e3f7e8;color:#16803c}.s3{background:#fff1d6;color:#b36200}
+.grid2c{display:grid;grid-template-columns:1fr 1fr;gap:3mm;margin:3mm 0}
+.feat{border:1px solid #dbe2f1;border-radius:2mm;padding:2.5mm 3.5mm;background:#fafbff;break-inside:avoid}
+.feat b{display:block;color:#3b5bdb;font-size:10.5pt}
+.feat span{font-size:9.6pt;color:#434a5c;line-height:1.6}
+.linkbox{display:flex;gap:6mm;align-items:center;border:1px solid #dbe2f1;border-radius:3mm;padding:4mm;margin-top:4mm;break-inside:avoid}
+.linkbox img{width:30mm;height:30mm}
+.flow{position:relative;margin-top:2mm}
+.fl-i{display:flex;gap:4mm;margin-bottom:2.6mm;break-inside:avoid}
+.fl-n{flex:none;width:8mm;height:8mm;border-radius:50%;background:#3b5bdb;color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:11pt;margin-top:.5mm}
+.fl-i b{font-size:11pt}
+.fl-i .tm{display:inline-block;margin-left:2mm;font-size:8.5pt;color:#2b8a3e;background:#ebfbee;border-radius:1mm;padding:0 1.5mm;vertical-align:.3mm}
+.fl-i p{margin:.5mm 0 0;color:#343b4c}
+.ck{border:1.5px solid #c9d5fb;border-radius:3mm;padding:3mm 4mm 2mm;margin-bottom:4mm;break-inside:avoid}
+.ck-h{display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed #c9d5fb;padding-bottom:1.5mm;margin-bottom:2mm}
+.ck-h b{font-size:12pt;color:#1b2a6b}.ck-h span{font-size:9pt;color:#2b8a3e;font-weight:700}
+.ck-i{display:flex;gap:3mm;margin-bottom:1.8mm;align-items:flex-start}
+.ck-i .box{flex:none;width:4.2mm;height:4.2mm;border:1.6px solid #3b5bdb;border-radius:1mm;margin-top:1.2mm}
+.why{display:grid;grid-template-columns:1fr;gap:2.5mm}
+.wy{border-left:4px solid #3b5bdb;background:#f6f8fc;border-radius:0 2mm 2mm 0;padding:2.2mm 4mm;break-inside:avoid}
+.wy b{color:#1b2a6b;font-size:11pt}.wy p{margin:.5mm 0 0}
+.faq .q{border-bottom:1px solid #e1e6f0;padding:2.2mm 0;break-inside:avoid}
+.faq .q b{color:#1b2a6b}.faq .q p{margin:.8mm 0 0;color:#343b4c}
+.tochead{border-bottom:2.5px solid #3b5bdb}
+.toc .t2,.toc .t3{display:flex;align-items:baseline;gap:2mm}
+.toc .t2{font-weight:700;font-size:11pt;margin-top:2.2mm;color:#1b2a6b}
+.toc .t3{font-size:9.6pt;padding-left:9mm;color:#343b4c;line-height:1.62}
+.toc .tn{min-width:7mm}
+.toc .t3 .tn{min-width:9mm;color:#6b7385}
+.toc .dots{flex:1;border-bottom:1px dotted #aab3c5;transform:translateY(-1mm)}
+.toc .tp{min-width:6mm;text-align:right}
+/* cover */
+body.cover{margin:0}
+.cv{width:210mm;height:297mm;background:linear-gradient(160deg,#3b5bdb 0%,#4c6ef5 55%,#5c7cfa 100%);color:#fff;position:relative;overflow:hidden;padding:26mm 20mm 0}
+.cv-tag{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.4);border-radius:10mm;padding:1mm 5mm;font-size:11pt}
+.cv h1{font-size:34pt;line-height:1.25;margin:6mm 0 4mm;color:#fff}
+.cv h1 span{font-size:30pt;font-weight:400;opacity:.95}
+.cv-sub{font-size:12.5pt;opacity:.92;max-width:150mm;color:#fff}
+.cv-mid{position:absolute;left:0;right:0;top:112mm;height:120mm}
+.cv-shot{position:absolute;width:62mm;border-radius:5mm;box-shadow:0 4mm 10mm rgba(0,0,0,.28);border:2px solid rgba(255,255,255,.7);left:45mm;top:0}
+.cv-shot.s2{left:112mm;top:12mm}
+.cv-bot{position:absolute;left:0;right:0;bottom:0;height:52mm;background:#fff;color:#1f2430;display:flex;align-items:center;gap:8mm;padding:0 20mm}
+.cv-qr{width:36mm;height:36mm}
+.cv-l{font-size:14pt;font-weight:700;color:#1b2a6b}
+.cv-bot .url{font-size:12pt}
+.tb td,.tb th{text-align:left}
+.tb.ui td:nth-child(1),.tb.ui td:nth-child(2){white-space:nowrap}
+.tb.subj td:first-child{white-space:nowrap}
+.states{display:grid;grid-template-columns:1fr 1fr;gap:2mm 6mm}
+.states>div{display:flex;align-items:center;gap:2mm}
+.toc .t3{font-size:9.2pt;line-height:1.5}
+.toc .t2{margin-top:1.4mm;font-size:10.5pt}
+.grp{display:table;font-size:10pt;color:#fff;background:#1b2a6b;padding:.8mm 4mm;border-radius:1.5mm;margin:6mm 0 0;font-weight:700;break-after:avoid;line-height:1.6}
+.grp+h3{margin-top:2.5mm}
+ol.steps{break-inside:avoid}
+.faq .q{padding:1.5mm 0}.faq .q p{margin-top:.4mm}
+.shot img{height:auto}
+/* ===== phone overrides (100x178mm) ===== */
+
+
+body.phone{font-size:11pt;line-height:1.7;text-align:left;orphans:2;widows:2}
+body.phone p{margin:0 0 2.4mm}
+.phone .lead{font-size:11.5pt}
+.phone h2{font-size:16pt;gap:2.5mm;margin:0 0 4mm;padding-bottom:2.2mm;border-bottom-width:2px}
+.phone h2 .no{min-width:8.5mm;height:8.5mm;font-size:12.5pt;border-radius:2mm}
+.phone h2.pb{break-before:auto;margin-top:9mm}
+.phone h2.tochead,.phone h2#s1{break-before:page;margin-top:0}
+.phone h3{font-size:13pt;margin:5.5mm 0 2.4mm;padding-left:2.5mm;border-left-width:3.5px}
+.phone .grp{font-size:10pt;margin:6mm 0 0}
+.phone .k{font-size:10.4pt;padding:0 1.1mm}
+.phone .n{width:5mm;height:5mm;font-size:8.5pt}
+.phone ol.steps{break-inside:auto;margin-bottom:2.5mm}
+.phone ol.steps>li{padding-left:8mm;margin-bottom:2.2mm;break-inside:avoid}
+.phone ol.steps>li::before{width:5.8mm;height:5.8mm;font-size:9pt;top:.8mm}
+.phone ul.dots{padding-left:5mm}
+.phone .side{display:block;break-inside:auto}
+.phone .side .txt{display:block}
+.phone .figrow{display:block;margin:0}
+.phone figure,.phone figure.pf{width:100%!important;margin:3mm 0 3.5mm;break-inside:avoid}
+.phone .shot{border-radius:2.5mm}
+.phone figcaption{font-size:9pt;margin-top:1.6mm}
+.phone .mk{border-width:2px}
+.phone .mk b{width:5.6mm;height:5.6mm;font-size:9pt;left:-2.2mm;top:-2.6mm}
+.phone .mk b.in{left:.8mm}
+.phone .call{font-size:10.5pt;padding:2.4mm 3mm;margin:3mm 0;line-height:1.65}
+.phone .call>b{font-size:9pt}
+/* ui table as stacked cards */
+.phone .tb{font-size:10.5pt;break-inside:auto}
+.phone .tb.ui,.phone .tb.ui tbody{display:block;width:100%}
+.phone .tb.ui tr:first-child{display:none}
+.phone .tb.ui tr{display:grid;grid-template-columns:auto 1fr;column-gap:2mm;align-items:center;border:1px solid #dbe2f1;border-radius:2mm;padding:1.8mm 2.6mm;margin-bottom:2mm;background:#fafbff;break-inside:avoid}
+.phone .tb.ui td{display:block;border:0;padding:0;background:none!important;white-space:normal!important}
+.phone .tb.ui td:nth-child(2){font-weight:700;color:#1b2a6b}
+.phone .tb.ui td:nth-child(3){grid-column:1/-1;margin-top:.8mm;color:#343b4c;line-height:1.6}
+/* cards for cmp / subjects */
+.pcard{border:1px solid #dbe2f1;border-radius:2.5mm;margin:3mm 0;overflow:hidden;break-inside:avoid;font-size:10.5pt;line-height:1.6}
+.pc-h{background:#1b2a6b;color:#fff;font-weight:700;padding:1.6mm 3mm;font-size:11pt}
+.pc-r{padding:1.8mm 3mm;border-top:1px solid #e1e6f0}
+.pc-r span{display:block;font-size:9pt;color:#3b5bdb;font-weight:700}
+.sgrid{display:block}
+.scard{border:1px solid #dbe2f1;border-radius:2mm;padding:2mm 3mm;margin-bottom:2.2mm;break-inside:avoid;background:#fafbff}
+.sc-h{display:flex;align-items:baseline;gap:2.5mm;flex-wrap:wrap}
+.sc-h b{font-size:12pt;color:#1b2a6b}
+.sc-h span{font-size:9.5pt;color:#3b5bdb;font-weight:700}
+.sc-b{font-size:10pt;color:#434a5c;line-height:1.6;margin-top:.6mm}
+.scard.tot{background:#eaf0ff;border-color:#3b5bdb}
+.phone .states{grid-template-columns:1fr;gap:1.5mm;font-size:10.5pt}
+.phone .grid2c{grid-template-columns:1fr;gap:2.2mm}
+.phone .feat b{font-size:11pt}.phone .feat span{font-size:10.4pt}
+.phone .linkbox{flex-direction:column;align-items:flex-start;gap:2mm;padding:3mm}
+.phone .linkbox img{width:30mm;height:30mm}
+.phone .url{font-size:10pt;text-decoration:none}
+.phone .fl-i{gap:3mm}
+.phone .fl-n{width:7.5mm;height:7.5mm;font-size:11pt}
+.phone .fl-i b{font-size:11.5pt}
+.phone .ck{padding:2.6mm 3mm 1.6mm}
+.phone .ck-h{flex-wrap:wrap}
+.phone .ck-h b{font-size:12pt}
+.phone .ck-i .box{width:4.6mm;height:4.6mm}
+.phone .wy b{font-size:11.5pt}.phone .wy{padding:2mm 3mm}
+.phone .faq .q b{font-size:11pt}
+/* toc */
+.phone .toc a{text-decoration:none;color:inherit}
+.phone .toc .t2{font-size:11.5pt;margin-top:2.2mm;line-height:1.5}
+.phone .toc .t3{font-size:10.2pt;padding-left:7.5mm;line-height:1.75}
+.phone .toc .tn{min-width:6.5mm}
+.phone .toc .t3 .tn{min-width:8.5mm}
+.phone .toc .tp{color:#3b5bdb;font-weight:700}
+/* cover */
+.pcover{page:cover;width:100mm;height:178mm;overflow:hidden;position:relative;background:linear-gradient(160deg,#3b5bdb 0%,#4c6ef5 55%,#5c7cfa 100%);color:#fff;padding:13mm 8mm 0;break-after:page}
+.pcv-tag{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.45);border-radius:6mm;padding:.6mm 3.2mm;font-size:9.5pt}
+.pcv-h{font-size:23pt;line-height:1.3;margin:4mm 0 2.5mm;color:#fff}
+.pcv-h span{font-size:16pt;font-weight:400}
+.pcv-sub{font-size:10.5pt;line-height:1.6;color:#fff;opacity:.95;margin:0}
+.pcv-shots{position:absolute;left:0;right:0;top:78mm;height:70mm}
+.pcv-shots img{position:absolute;width:38mm;border-radius:3.5mm;border:1.5px solid rgba(255,255,255,.75);box-shadow:0 2.5mm 6mm rgba(0,0,0,.28)}
+.pcv-shots img:first-child{left:10mm;top:0}
+.pcv-shots img:last-child{left:52mm;top:7mm}
+.pcv-bot{position:absolute;left:0;right:0;bottom:0;height:32mm;background:#fff;color:#1f2430;display:flex;align-items:center;gap:4mm;padding:0 7mm}
+.pcv-bot img{width:24mm;height:24mm;flex:none}
+.pcv-bot b{display:block;font-size:12pt;color:#1b2a6b}
+.pcv-bot .url{display:block;font-size:9pt;margin:.5mm 0}
+.pcv-bot span{font-size:8.5pt;color:#6b7385}
+.phone .ck{break-inside:auto}.phone .ck-h{break-after:avoid}.phone .ck-i{break-inside:avoid}
+.phone h2,.phone h3{break-inside:avoid}.phone p{break-inside:avoid}.phone .faq .q{padding:1.6mm 0}
+.phone .faq .q{break-inside:auto}.phone .faq .q b{display:block;break-after:avoid}
+/* ===== web reader ===== */
+:root{--fs:17px;--bar:52px;--nav:58px;--blue:#3b5bdb;--ink:#1f2430}
+html,body{margin:0;height:100%;overflow:hidden;background:#eef1f7;-webkit-text-size-adjust:100%}
+body.phone.rd{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Noto Sans SC","Microsoft YaHei",sans-serif;font-size:var(--fs);line-height:1.7;color:var(--ink)}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.bar{position:fixed;left:0;right:0;top:0;height:calc(var(--bar) + env(safe-area-inset-top));padding-top:env(safe-area-inset-top);background:var(--blue);color:#fff;display:flex;align-items:center;gap:2px;z-index:20;box-shadow:0 1px 4px rgba(0,0,0,.15)}
+.bar .ib{width:48px;height:var(--bar);display:flex;align-items:center;justify-content:center;flex:none}
+.bar .ib svg{width:24px;height:24px}
+.bar #ttl{flex:1;min-width:0;font-size:16px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center}
+.bar #bFont{font-size:15px;font-weight:700;width:44px}
+#stage{position:fixed;left:0;right:0;top:calc(var(--bar) + env(safe-area-inset-top));bottom:calc(var(--nav) + env(safe-area-inset-bottom));overflow:hidden;touch-action:pan-y pinch-zoom}
+.pg{position:absolute;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;background:#fff;padding:18px 16px 40px;display:none;will-change:transform}
+.pg.on{display:block}
+.pg>:first-child{margin-top:0!important}
+.pg-end{margin-top:26px;padding-top:12px;border-top:1px dashed #d5dbe8;color:#8a93a6;font-size:13px;text-align:center}
+.nav{position:fixed;left:0;right:0;bottom:0;height:calc(var(--nav) + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom);background:#fff;border-top:1px solid #dde3ef;display:flex;align-items:center;justify-content:space-between;z-index:20}
+.nav button{height:var(--nav);padding:0 16px;font-size:16px;font-weight:700;color:var(--blue);min-width:108px}
+.nav button:disabled{color:#c3c9d6}
+.nav #ind{font-size:15px;color:#4a5263;font-variant-numeric:tabular-nums;padding:8px 12px;border-radius:18px;background:#f1f4fb}
+.nav #bNext{text-align:right}
+/* content scale for screen */
+.rd .pg p{margin:0 0 .7em}
+.rd .pg .lead{font-size:1.02em}
+.rd .pg h2{font-size:1.4em;margin:0 0 .8em;padding-bottom:.4em;gap:10px}
+.rd .pg h2 .no{min-width:1.45em;height:1.45em;font-size:.82em;border-radius:7px}
+.rd .pg h3{font-size:1.14em;margin:1.2em 0 .55em;padding-left:10px}
+.rd .pg .grp{font-size:.82em;margin:0 0 4px}
+.rd .pg .k{font-size:.92em;padding:0 4px;border-radius:4px}
+.rd .pg .n{width:1.2em;height:1.2em;font-size:.72em}
+.rd .pg ol.steps>li{padding-left:2.1em;margin-bottom:.6em}
+.rd .pg ol.steps>li::before{width:1.45em;height:1.45em;font-size:.78em;top:.15em}
+.rd .pg ul.dots{padding-left:1.3em}
+.rd .pg figure{margin:14px 0 16px}
+.rd .pg figcaption{font-size:13px;margin-top:6px}
+.rd .pg .mk b{width:22px;height:22px;font-size:13px;left:-8px;top:-10px}
+.rd .pg .mk b.in{left:3px}
+.rd .pg .call{font-size:.94em;padding:10px 12px;margin:12px 0}
+.rd .pg .call>b{font-size:.82em;padding:1px 7px}
+.rd .pg .tb{font-size:.94em}
+.rd .pg .tb.ui tr{padding:8px 11px;margin-bottom:8px;border-radius:8px}
+.rd .pg .pcard,.rd .pg .scard{font-size:.94em;border-radius:9px}
+.rd .pg .pc-h{font-size:1em;padding:7px 12px}.rd .pg .pc-r{padding:7px 12px}.rd .pg .pc-r span{font-size:.82em}
+.rd .pg .scard{padding:8px 12px;margin-bottom:8px}.rd .pg .sc-h b{font-size:1.08em}.rd .pg .sc-h span{font-size:.85em}.rd .pg .sc-b{font-size:.92em}
+.rd .pg .states{font-size:.94em}
+.rd .pg .feat{padding:9px 12px;border-radius:8px}.rd .pg .feat b{font-size:1em}.rd .pg .feat span{font-size:.92em}
+.rd .pg .fl-n{width:1.7em;height:1.7em;font-size:.9em}
+.rd .pg .fl-i b{font-size:1.02em}.rd .pg .fl-i .tm{font-size:.74em}
+.rd .pg .ck{padding:10px 12px 6px;border-radius:10px;margin-bottom:14px}
+.rd .pg .ck-h b{font-size:1.06em}.rd .pg .ck-h span{font-size:.8em}
+.rd .pg .ck-i .box{width:18px;height:18px;margin-top:.3em}
+.rd .pg .wy{padding:9px 12px}.rd .pg .wy b{font-size:1.02em}
+.rd .pg .faq .q{padding:10px 0}.rd .pg .faq .q b{font-size:1em}
+.rd .pg .url{font-size:.9em}
+.rd .pg .linkbox{padding:12px;border-radius:10px}
+.rd .pg .linkbox img{width:120px;height:120px}
+mark.hl{background:#ffe066;color:inherit;border-radius:2px;padding:0 1px}
+mark.hl.cur{background:#ff922b;color:#fff;box-shadow:0 0 0 2px #ff922b}
+/* cover page */
+.wcover{background:linear-gradient(160deg,#3b5bdb 0%,#4c6ef5 55%,#5c7cfa 100%);color:#fff;margin:-18px -16px -40px;min-height:calc(100% + 58px);padding:30px 22px 28px;display:flex;flex-direction:column}
+.wcover .pcv-tag{align-self:flex-start;font-size:14px}
+.wcover h1{font-size:30px;line-height:1.3;margin:14px 0 8px;color:#fff}
+.wcover h1 span{font-size:21px;font-weight:400}
+.wcover p{font-size:16px;opacity:.95;margin:0 0 18px}
+.wc-shots{display:flex;gap:12px;justify-content:center;margin:6px 0 22px}
+.wc-shots img{width:44%;max-width:180px;border-radius:14px;border:2px solid rgba(255,255,255,.75);box-shadow:0 8px 20px rgba(0,0,0,.25)}
+.wc-shots img:last-child{margin-top:22px}
+.wc-how{background:rgba(255,255,255,.14);border-radius:12px;padding:12px 14px;font-size:15px;line-height:1.75;margin-bottom:16px}
+.wc-how b{color:#fff}
+.wc-btns{display:flex;gap:10px;flex-wrap:wrap}
+.wc-btns button,.wc-btns a{flex:1;min-width:130px;text-align:center;background:#fff;color:var(--blue);font-weight:700;border-radius:12px;padding:12px 10px;font-size:16px;text-decoration:none}
+.wc-btns a{background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.5)}
+/* panels */
+#mask{position:fixed;inset:0;background:rgba(20,25,40,.45);z-index:30;opacity:0;pointer-events:none;transition:opacity .2s}
+#mask.on{opacity:1;pointer-events:auto}
+#drawer{position:fixed;top:0;bottom:0;left:0;width:min(86vw,360px);background:#fff;z-index:31;transform:translateX(-102%);transition:transform .25s ease;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top)}
+#drawer.on{transform:none}
+.dh{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid #e3e8f2}
+.dh b{font-size:18px;color:#1b2a6b}
+.dh a{font-size:14px;font-weight:700;color:#fff;background:var(--blue);border-radius:16px;padding:5px 12px;text-decoration:none}
+#tocList{flex:1;overflow-y:auto;padding:6px 0 30px;-webkit-overflow-scrolling:touch}
+#tocList button{display:flex;width:100%;text-align:left;gap:8px;padding:9px 16px;font-size:15px;line-height:1.45;color:#343b4c}
+#tocList button.l1{font-weight:700;color:#1b2a6b;font-size:16px;margin-top:4px}
+#tocList button.l2{padding-left:30px}
+#tocList button .tp{margin-left:auto;color:#9aa3b5;font-size:13px;font-weight:400;flex:none}
+#tocList button.cur{background:#eaf0ff;color:var(--blue)}
+#search{position:fixed;inset:0;background:#f5f7fb;z-index:32;display:none;flex-direction:column;padding-top:env(safe-area-inset-top)}
+#search.on{display:flex}
+.sbar{display:flex;gap:8px;align-items:center;padding:10px 12px;background:var(--blue)}
+.sbar input{flex:1;min-width:0;font:inherit;font-size:17px;border:0;border-radius:10px;padding:10px 12px;outline:none;-webkit-appearance:none}
+.sbar button{color:#fff;font-size:16px;font-weight:700;padding:8px 4px}
+#sInfo{padding:10px 14px 4px;color:#6b7385;font-size:14px}
+#sHints{padding:4px 12px;display:flex;flex-wrap:wrap;gap:8px}
+#sHints button{background:#fff;border:1px solid #d5dcef;border-radius:16px;padding:5px 12px;font-size:15px;color:#2f4ac0}
+#sRes{flex:1;overflow-y:auto;padding:4px 12px 30px;-webkit-overflow-scrolling:touch}
+.sr{display:block;width:100%;text-align:left;background:#fff;border:1px solid #e1e6f1;border-radius:10px;padding:10px 12px;margin-bottom:8px}
+.sr .st{display:flex;gap:8px;font-size:13px;color:#3b5bdb;font-weight:700;margin-bottom:3px}
+.sr .st span:last-child{margin-left:auto;color:#9aa3b5;font-weight:400;flex:none}
+.sr .ss{font-size:15px;line-height:1.6;color:#343b4c}
+.sr mark{background:#ffe066;color:inherit;border-radius:2px}
+#hitbar{position:fixed;left:10px;right:10px;bottom:calc(var(--nav) + env(safe-area-inset-bottom) + 10px);z-index:25;background:#1b2a6b;color:#fff;border-radius:14px;display:none;align-items:center;gap:4px;padding:4px 6px 4px 14px;box-shadow:0 6px 18px rgba(0,0,0,.25);font-size:15px}
+#hitbar.on{display:flex}
+#hitbar #hbT{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#hitbar button{width:40px;height:38px;font-size:20px;color:#fff;border-radius:10px}
+#toast{position:fixed;left:50%;top:calc(var(--bar) + env(safe-area-inset-top) + 12px);transform:translateX(-50%);background:rgba(27,42,107,.95);color:#fff;border-radius:22px;padding:8px 8px 8px 16px;font-size:14px;z-index:26;display:none;align-items:center;gap:10px;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+#toast.on{display:flex}
+#toast button{background:#fff;color:#1b2a6b;font-weight:700;border-radius:16px;padding:3px 12px;font-size:14px}
+@media (min-width:700px){.pg{padding:28px max(24px,calc(50% - 330px)) 50px}.wcover{margin:-28px calc(-1 * max(24px,calc(50% - 330px))) -50px;padding:40px max(24px,calc(50% - 300px))}}
+@media print{.bar,.nav,#hitbar{display:none}}
+.dh-r{display:flex;align-items:center;gap:6px}.dh-r button{width:40px;height:36px;font-size:26px;color:#6b7385;line-height:1}
+</style></head>
+<body class="phone rd">
+<header class="bar"><button class="ib" id="bToc" aria-label="目录"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><div id="ttl">操作手册</div><button class="ib" id="bFont" aria-label="调字号">Aa</button><button class="ib" id="bSearch" aria-label="搜索"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button></header>
+<main id="stage" aria-live="polite"></main>
+<nav class="nav"><button id="bPrev">‹ 上一页</button><button id="ind" aria-label="页码，点开目录">1 / 1</button><button id="bNext">下一页 ›</button></nav>
+<div id="hitbar"><span id="hbT"></span><button id="hbPrev" aria-label="上一处">‹</button><button id="hbNext" aria-label="下一处">›</button><button id="hbX" aria-label="关闭">×</button></div>
+<div id="toast"></div><div id="mask"></div>
+<aside id="drawer"><div class="dh"><b>目录</b><span class="dh-r"><a href="../">返回应用</a><button id="dX" aria-label="关闭目录">×</button></span></div><div id="tocList"></div></aside>
+<div id="search"><div class="sbar"><input id="q" type="search" enterkeyhint="search" placeholder="搜索，如：备份、番茄钟" autocomplete="off"><button id="sClose">取消</button></div><div id="sInfo"></div><div id="sHints"><button>备份</button><button>番茄钟</button><button>快照</button><button>闪卡</button><button>诊断</button><button>添加到桌面</button><button>打不开</button><button>深色</button></div><div id="sRes"></div></div>
+<template id="src"><div class="wcover"><div class="pcv-tag">给高三同学的使用指南</div><h1>高考知识点打卡器<br><span>操作手册</span></h1>
+<p>从第一次打开，到每天 10 分钟的使用流程；每个按钮怎么点，都在这里。</p>
+<div class="wc-shots"><img src="img/cover-a.jpg" alt="总览页"><img src="img/cover-b.jpg" alt="今日打卡页"></div>
+<div class="wc-how"><b>怎么看这本手册：</b>手指<b>左右滑动</b>翻页，也可以点屏幕左右边缘或底部的「上一页 / 下一页」；点左上角 <b>☰</b> 看目录，点右上角 <b>放大镜</b> 搜索；<b>Aa</b> 可以调字号。下次打开会回到你上次读到的地方。</div>
+<div class="wc-btns"><button data-go="start">开始阅读</button><button data-go="toc">看目录</button></div><div class="wc-btns" style="margin-top:10px"><a href="../">返回应用</a></div></div>
+<h2 id="s1" class="pb"><span class="no">1</span>这是什么</h2>
+<p>「高考知识点打卡器」是一个装在手机上的复习小助手。它把高考各科按新教材整理成一条条知识点，帮你<b>每天自动安排要学、要复习的内容</b>，学完用几秒钟自测一下，它就会记住你哪些会了、哪些快忘了，到时间提醒你复习。你还可以用它计时专注、记录错因、每周复盘，把有限的时间花在最能提分的地方。</p>
+<p>它不用注册，不用登录，打开网页就能用；添加到手机桌面后，没网也能打开。你的进度只存在你自己的手机上，不会上传到任何地方。</p>
+<div class="grid2c"><div class="feat"><b>知识点清单</b><span>9 科共 1167 个知识点，其中 251 个标为「高频」，按教材章节排好。</span></div><div class="feat"><b>每天自动安排</b><span>按你的选科、复习阶段和薄弱科目，一键排好今天的任务。</span></div><div class="feat"><b>自测与间隔复习</b><span>学完合上书自测，按 1、3、7、15 天提醒复习，快忘时再看一遍。</span></div><div class="feat"><b>闪卡自测</b><span>到期的知识点做成卡片，几分钟过一遍。</span></div><div class="feat"><b>专注计时</b><span>番茄钟式计时，自动记下每科学了多少分钟。</span></div><div class="feat"><b>诊断与复盘</b><span>按模考成绩和目标分给各科分配时间，每周日复盘调整计划。</span></div></div>
+<div class="call tip"><b>小提示</b>本手册里的截图都是<b>示例数据</b>（一位选了物理、化学、生物的同学），你的手机上显示的数字会不一样，按钮和位置是一样的。</div>
+<div class="linkbox"><img src="img/qr.png"><div><b>打开地址</b><br><a class="url" href="https://001huang.github.io/gaokao-tracker/">https://001huang.github.io/gaokao-tracker/</a><br><span class="muted">用手机相机或微信扫左边的二维码即可打开。当前版本 3.1。</span></div></div>
+<h2 id="s2" class="pb"><span class="no">2</span>界面说明</h2>
+<div class="side"><div class="txt"><p>打开应用后，屏幕最下面有 5 个按钮，点一下就切换到对应的页面；右上角的齿轮是「设置」。</p><table class="tb ui"><tr><th>标记</th><th>名称</th><th>用来做什么</th></tr><tr><td><span class="n">1</span></td><td>总览</td><td>倒计时、今天的进度、各科掌握情况，一眼看全局。</td></tr><tr><td><span class="n">2</span></td><td>知识清单</td><td>所有知识点，可搜索、筛选，改状态，写要点和备注。</td></tr><tr><td><span class="n">3</span></td><td>今日打卡</td><td>今天的任务、复习提醒、闪卡、打卡日历。<b>每天最常用。</b></td></tr><tr><td><span class="n">4</span></td><td>复习计划</td><td>按周排好的复习计划，可以确认和调整。</td></tr><tr><td><span class="n">5</span></td><td>分析</td><td>诊断、统计、复盘、学习方法四个小页面。</td></tr><tr><td><span class="n">6</span></td><td>设置（齿轮）</td><td>改选科和日期、备份、深色模式、打不开怎么办，还能打开这本操作手册。</td></tr><tr><td><span class="n">7</span></td><td>倒计时</td><td>离高考还有几天、现在是哪个复习阶段。</td></tr><tr><td><span class="n">8</span></td><td>今天的大按钮</td><td>会随情况变成「一键安排今天的任务」「继续今日任务」「全部完成，打卡」。</td></tr></table></div><figure class="pf"><div class="shot"><img src="img/doc-dashboard-0.jpg" loading="lazy" decoding="async" width="780" height="790" alt="总览页（示例数据）"><div class="mk" style="left:86.15%;top:3.04%;width:9.74%;height:9.62%"><b class="">6</b></div><div class="mk" style="left:3.08%;top:19.24%;width:93.85%;height:23.56%"><b class="">7</b></div><div class="mk" style="left:6.67%;top:78.35%;width:86.67%;height:13.16%"><b class="">8</b></div></div></figure><figure class="pf"><div class="shot"><img src="img/doc-dashboard-1.jpg" loading="lazy" decoding="async" width="780" height="460" alt="总览页（示例数据）"><div class="mk" style="left:0.00%;top:75.30%;width:20.00%;height:24.70%"><b class="in">1</b></div><div class="mk" style="left:20.00%;top:75.30%;width:20.00%;height:24.70%"><b class="">2</b></div><div class="mk" style="left:40.00%;top:75.30%;width:20.00%;height:24.70%"><b class="">3</b></div><div class="mk" style="left:60.00%;top:75.30%;width:20.00%;height:24.70%"><b class="">4</b></div><div class="mk" style="left:80.00%;top:75.30%;width:20.00%;height:24.70%"><b class="">5</b></div></div><figcaption>总览页（示例数据）</figcaption></figure></div>
+<p>知识点有 4 种状态，颜色在整个应用里都一样：</p><div class="states"><div><span class="s0">未学</span>还没学过</div><div><span class="s1">学过</span>学过了，会按时提醒复习</div><div><span class="s2">掌握</span>已经很熟，很少再排</div><div><span class="s3">需复习</span>忘了或不熟，每天提醒</div></div>
+<div class="call tip"><b>小提示</b>页面上会弹出一些提示卡片，比如「添加到主屏幕」「做个 2 分钟诊断」「该备份了」。看完点「知道了」「先跳过」或「7 天后再提醒」就能收起。</div>
+<h2 id="s3" class="pb"><span class="no">3</span>快速上手</h2>
+<h3 id="s3-1">3.1　打开应用</h3>
+<ol class="steps"><li>用手机相机或微信扫封面上的二维码，或者在浏览器地址栏输入 <span class="url">001huang.github.io/gaokao-tracker</span>。</li>
+<li><b>如果是在微信里打开的</b>，页面顶部会提示你换浏览器。请点微信右上角的「…」，再点「在浏览器打开」。在微信里也能用，但进度可能被微信清理，也没法没网打开。</li>
+<li>iPhone 请用 <b>Safari</b> 打开；安卓手机用系统自带的浏览器或 Chrome 打开。</li></ol>
+<h3 id="s3-2">3.2　添加到手机桌面（强烈建议）</h3>
+<div class="side"><div class="txt"><p>添加以后，桌面上会多一个图标，点它就像打开一个 App。<b>整个应用已经存在手机里了，没网或网址暂时打不开时，从图标进去照样能用，进度也都在。</b></p>
+<p><b>iPhone（Safari）</b></p><ol class="steps"><li>用 Safari 打开应用。</li><li>点屏幕底部中间的「分享」按钮（一个方框加向上的箭头）。</li><li>往下滑，点「添加到主屏幕」，再点右上角「添加」。</li></ol>
+<p><b>安卓手机</b></p><ol class="steps"><li>用系统浏览器或 Chrome 打开应用。</li><li>点浏览器右上角或右下角的菜单（三个点或三条横线）。</li><li>点「添加到主屏幕」或「安装应用」，再确认。</li><li>有的安卓手机会直接在总览页的提示卡片里显示「添加到主屏幕」按钮，点它也可以。</li></ol></div><figure class="pf"><div class="shot"><img src="img/doc-a2hs-0.jpg" loading="lazy" decoding="async" width="780" height="840" alt="总览页的「添加到主屏幕」提示卡片"></div><figcaption>总览页的「添加到主屏幕」提示卡片</figcaption></figure></div>
+<div class="call key"><b>记住</b>以后每次都<b>从桌面图标打开</b>，不要一会儿用图标、一会儿用微信或别的浏览器打开，不同的打开方式进度是分开存的。</div>
+<h3 id="s3-3">3.3　完成第一次设置</h3>
+<div class="side"><div class="txt"><ol class="steps"><li>在「选科模式」里点你的类型：<span class="k">新高考 3+1+2</span>、<span class="k">新高考 3+3</span>、<span class="k">老高考 理科</span> 或 <span class="k">老高考 文科</span>。</li>
+<li>选 3+1+2 的同学：在「首选科目（二选一）」里点物理或历史，在「再选科目（四选二）」里点两门。选 3+3 的同学在「选考科目（六选三）」里点三门。</li>
+<li>检查「高考日期」，默认是 2027 年 6 月 7 日，按你的实际情况修改。</li>
+<li>「目标总分（选填）」可以先空着，之后在诊断里再填。</li>
+<li>「一轮结束日期」「二轮结束日期」会自动算好（一轮到考前约 100 天，二轮到考前 4 周），一般不用改。</li>
+<li>「每日任务上限（个）」默认 20，表示每天最多安排 20 个知识点。</li>
+<li>点最下面蓝色的 <span class="k">开始使用</span>。</li></ol></div><figure class="pf"><div class="shot"><img src="img/doc-setup-0.jpg" loading="lazy" decoding="async" width="780" height="840" alt="第一次打开时的设置页"></div><figcaption>第一次打开时的设置页</figcaption></figure></div>
+<h3 id="s3-4">3.4　看完三步引导</h3>
+<div class="side"><div class="txt"><p>设置完成后会弹出「快速上手」三步引导，分别告诉你每天怎么用、怎么做诊断、进度存在哪里。</p><ol class="steps"><li>看完一页点 <span class="k">下一步</span>。</li><li>最后一页点 <span class="k">去诊断</span>（推荐，马上填诊断），或点 <span class="k">开始使用</span>。</li><li>不想看可以随时点右上角 <span class="k">跳过</span>。</li></ol></div><figure class="pf"><div class="shot"><img src="img/doc-guide-0.jpg" loading="lazy" decoding="async" width="780" height="808" alt="三步引导的第一页"></div><figcaption>三步引导的第一页</figcaption></figure></div>
+<h2 id="s4" class="pb"><span class="no">4</span>第一天这样用</h2>
+<p class="lead">第一天大约花 15 分钟把应用设置好，之后每天只需要几分钟操作。按下面的顺序做一遍就行：</p>
+<div class="flow"><div class="fl-i"><div class="fl-n">1</div><div><b>打开并添加到桌面</b><span class=tm>2 分钟</span><p>扫码打开应用，按第 3.2 节把它添加到手机桌面，以后都从桌面图标进入。</p></div></div><div class="fl-i"><div class="fl-n">2</div><div><b>完成第一次设置</b><span class=tm>1 分钟</span><p>选好选科模式和科目，确认高考日期，点 <span class="k">开始使用</span>。</p></div></div><div class="fl-i"><div class="fl-n">3</div><div><b>做个诊断</b><span class=tm>3 分钟</span><p>看完引导点 <span class="k">去诊断</span>，或者点底部 <span class="k">分析</span> 再点 <span class="k">诊断</span>。填最近一次模考各科成绩、目标总分、工作日和周末每天能用来学习的小时数，点 <span class="k">保存诊断并分配时间</span>。没有成绩也可以只填时间。</p></div></div><div class="fl-i"><div class="fl-n">4</div><div><b>生成复习计划</b><span class=tm>半分钟</span><p>点底部 <span class="k">复习计划</span>，再点 <span class="k">生成复习计划</span>。应用会把到高考前的内容按周排好。</p></div></div><div class="fl-i"><div class="fl-n">5</div><div><b>安排今天的任务</b><span class=tm>10 秒</span><p>回到 <span class="k">总览</span>，点 <span class="k">一键安排今天的任务</span>。</p></div></div><div class="fl-i"><div class="fl-n">6</div><div><b>开始学第一个知识点</b><p>点 <span class="k">今日打卡</span>，在「今日任务」里挑第一个。学之前可以点 <span class="k">⏱ 开始专注 25 分钟</span> 并选科目，开始计时。</p></div></div><div class="fl-i"><div class="fl-n">7</div><div><b>学完就自测</b><span class=tm>每个 1 分钟</span><p>点这个任务左边的 <span class="k">✓</span>，合上书回忆要点、做 1 到 2 道题，然后按真实情况点 <span class="k">完全记得</span>、<span class="k">模糊</span> 或 <span class="k">忘了</span>。</p></div></div><div class="fl-i"><div class="fl-n">8</div><div><b>顺手写下要点</b><span class=tm>每个 1 分钟</span><p>点任务的文字打开详情，在「我的要点/公式」里用自己的话写两三行。以后做闪卡时会显示出来给你对照。</p></div></div><div class="fl-i"><div class="fl-n">9</div><div><b>完成全部任务</b><p>今天的任务全部点完 ✓ 后，应用会<b>自动帮你打卡</b>。做不完也没关系，睡前点「今日打卡」照样算打卡。</p></div></div></div>
+<div class="call tip"><b>小提示</b>第一天先别追求多，任务上限默认 20 个，如果觉得太多，可以在设置里把「每日任务上限」调小，比如 12。</div>
+<h2 id="s5" class="pb"><span class="no">5</span>每天 10 分钟流程</h2>
+<p class="lead">下面是每天<b>操作应用</b>要花的时间（学习本身的时间另算）。可以把这一页打印出来贴在桌上，照着勾。</p>
+<div class="ck"><div class="ck-h"><b>开始学习前</b><span>约 2 分钟</span></div><div class="ck-i"><span class="box"></span><span>从桌面图标打开应用，看「总览」最上面的「今天」卡片。</span></div><div class="ck-i"><span class="box"></span><span>点 <span class="k">一键安排今天的任务</span>；如果已经安排过，点 <span class="k">继续今日任务</span>。</span></div><div class="ck-i"><span class="box"></span><span>如果看到 <span class="k">把昨天未完成的 N 个任务转入今天</span>，按需要点一下。</span></div></div>
+<div class="ck"><div class="ck-h"><b>学习过程中</b><span>每个知识点约 1 分钟</span></div><div class="ck-i"><span class="box"></span><span>开始学一科前，点 <span class="k">⏱ 开始专注 25 分钟</span>，选这一科。</span></div><div class="ck-i"><span class="box"></span><span>学完一个点，点 <span class="k">✓</span>，合上书自测，再点 <span class="k">完全记得</span> / <span class="k">模糊</span> / <span class="k">忘了</span>。</span></div><div class="ck-i"><span class="box"></span><span>选了「忘了」就顺手点一个错因，比如「方法不会」。</span></div><div class="ck-i"><span class="box"></span><span>有新体会就写进「我的要点/公式」。</span></div><div class="ck-i"><span class="box"></span><span>计时结束后点 <span class="k">休息5分</span> 休息一下，休息结束后点 <span class="k">开始专注</span> 开始下一轮；不想休息就直接点 <span class="k">再来一轮</span>。</span></div></div>
+<div class="ck"><div class="ck-h"><b>睡前</b><span>约 5 分钟</span></div><div class="ck-i"><span class="box"></span><span>点 <span class="k">闪卡自测</span>，把到期的卡片过一遍（一轮最多 20 张）。</span></div><div class="ck-i"><span class="box"></span><span>看一眼「今天」卡片是否显示已打卡；没全做完就点「今日打卡」页的「今日打卡」按钮。</span></div></div>
+<div class="ck"><div class="ck-h"><b>每周日多花 5 分钟</b><span></span></div><div class="ck-i"><span class="box"></span><span>点总览里的 <span class="k">开始复盘</span>（或 分析 页的 <span class="k">复盘</span>），写下本周最薄弱的地方，点 <span class="k">保存并重新分配下周计划</span>。</span></div><div class="ck-i"><span class="box"></span><span>看到「该备份了」卡片，就点 <span class="k">一键分享备份</span>，发到微信「文件传输助手」或网盘。</span></div><div class="ck-i"><span class="box"></span><span>有新的模考成绩，就在诊断或复盘里填上。</span></div></div>
+<h2 id="s6" class="pb"><span class="no">6</span>各功能操作说明</h2>
+<p class="lead">每一节讲一件事怎么做。红色圆圈里的数字对应截图上的位置，步骤里写的按钮名称和手机上显示的一模一样。</p>
+<section class="how" id="s6-1"><div class="grp">今日打卡页</div><h3>6.1　如何自动安排今日任务</h3><ol class="steps"><li>点底部 <span class="k">今日打卡</span>。</li><li>点 <span class="n">1</span> <span class="k">自动安排</span>。应用会先放到期要复习的知识点，再按复习计划和各科时间分配挑新内容，不会超过每日上限。</li><li>想知道它怎么挑的，点 <span class="n">4</span>「「自动安排」怎么选任务？」展开说明。</li><li>也可以直接在总览页点 <span class="k">一键安排今天的任务</span>，效果一样。</li></ol><div class="call tip"><b>小提示</b>再点一次「自动安排」只会替换<b>还没完成的自动任务</b>，你已经完成的和自己手动加的任务都会保留。</div><figure class="pf"><div class="shot"><img src="img/doc-today-0.jpg" loading="lazy" decoding="async" width="780" height="480" alt="今日打卡页顶部"><div class="mk" style="left:6.67%;top:14.36%;width:42.05%;height:20.83%"><b class="">1</b></div><div class="mk" style="left:51.28%;top:14.36%;width:42.05%;height:20.83%"><b class="">2</b></div><div class="mk" style="left:6.67%;top:39.36%;width:86.67%;height:18.33%"><b class="">3</b></div><div class="mk" style="left:6.67%;top:72.75%;width:86.67%;height:13.39%"><b class="">4</b></div></div><figcaption>今日打卡页顶部</figcaption></figure></section>
+<section class="how" id="s6-2"><h3>6.2　如何完成任务并自测打分</h3><ol class="steps"><li>在「今日任务」里找到学完的知识点，点它左边的 <span class="n">1</span> <span class="k">✓</span>。</li><li>弹出 <span class="n">5</span>「先合上书自测」：说出或写出这个知识点的要点，再做 1 到 2 道相关的题。</li><li>如果你写过「我的要点」，点 <span class="k">自测完了，显示我的要点</span> 对照一下。</li><li>按真实情况点 <span class="n">6</span> 里的一个：<span class="k">完全记得</span>（间隔拉长）、<span class="k">模糊</span>（明天再复习）、<span class="k">忘了</span>（标为需复习）。</li><li>选了「忘了」会接着问原因，点一个或几个（可以跳过），再点 <span class="k">完成</span>。</li><li>实在没时间自测，可以点 <span class="n">7</span> <span class="k">跳过自测，直接完成</span>。</li></ol><p>任务列表里：点 <span class="n">2</span> 知识点文字可以打开详情；<span class="n">3</span> 是状态按钮，点一下换一种状态；<span class="n">4</span> <span class="k">×</span> 把任务移出今天。每条任务下面的小字说明为什么优先排它，比如「差距大」「到期复习」「没记住 2 次」。</p><div class="call tip"><b>小提示</b>自测时要诚实。点「完全记得」后下次复习会隔得更久，点错了反而容易忘。</div><figure class="pf"><div class="shot"><img src="img/doc-today-tasks-0.jpg" loading="lazy" decoding="async" width="780" height="460" alt="今日任务列表"><div class="mk" style="left:6.67%;top:43.68%;width:7.69%;height:13.04%"><b class="">1</b></div><div class="mk" style="left:16.92%;top:25.02%;width:46.67%;height:50.35%"><b class="">2</b></div><div class="mk" style="left:66.15%;top:43.24%;width:14.87%;height:13.91%"><b class="">3</b></div><div class="mk" style="left:83.59%;top:41.94%;width:9.74%;height:16.52%"><b class="">4</b></div></div><figcaption>今日任务列表</figcaption></figure><figure class="pf"><div class="shot"><img src="img/doc-recall-0.jpg" loading="lazy" decoding="async" width="780" height="688" alt="点 ✓ 后弹出的自测"><div class="mk" style="left:4.10%;top:10.17%;width:91.79%;height:25.89%"><b class="">5</b></div><div class="mk" style="left:4.10%;top:63.95%;width:91.79%;height:18.02%"><b class="">6</b></div><div class="mk" style="left:4.10%;top:84.88%;width:91.79%;height:10.47%"><b class="">7</b></div></div><figcaption>点 ✓ 后弹出的自测</figcaption></figure></section>
+<section class="how" id="s6-3"><h3>6.3　如何撤销、移除和补昨天的任务</h3><ol class="steps"><li><b>点错了 ✓：</b>再点一次同一个 <span class="k">✓</span> 就撤销，知识点会完全恢复到之前的状态。</li><li><b>不想做某个任务：</b>点任务右边的 <span class="k">×</span>。</li><li><b>昨天没做完：</b>任务列表下方会出现 <span class="k">把昨天未完成的 N 个任务转入今天</span>，点一下就搬过来（不超过每日上限）。</li><li><b>想自己加任务：</b>到「知识清单」点知识点右边的 <span class="k">+</span>，见 6.10 节。</li></ol></section>
+<section class="how" id="s6-4"><h3>6.4　如何打卡</h3><ol class="steps"><li><b>自动打卡：</b>今天的任务全部完成时，应用会自动帮你打卡。</li><li><b>手动打卡：</b>没全做完也想打卡，点「今日打卡」页上方的 <span class="k">今日打卡</span>（6.1 节截图中的 <span class="n">2</span>），或者总览里的 <span class="k">全部完成，打卡</span>。</li><li><b>撤销打卡：</b>打卡后按钮会变成 <span class="k">✓ 已打卡 21:40</span> 这样的样子，点它并确认「撤销今天的打卡？」。</li><li>「今日打卡」页最下面有<b>打卡日历</b>，颜色越深表示那天完成得越多；总览的「今天」卡片会显示连续打卡天数。</li></ol></section>
+<section class="how" id="s6-5"><h3>6.5　如何处理复习提醒</h3><ol class="steps"><li>「今日打卡」页往下滑，找到「复习提醒」，这里列出今天到期该复习的知识点。</li><li>在心里回忆一遍，记得就点 <span class="n">2</span> <span class="k">记住了</span>，下次间隔会拉长；想不起来就点 <span class="n">3</span> <span class="k">没记住</span>，它会变成「需复习」并问你原因。</li><li>想把它们放进今天的任务里慢慢做，点 <span class="n">4</span> <span class="k">加入今日任务（不超过上限）</span>。</li><li>到期的多时，用上面的 <span class="n">1</span> <span class="k">闪卡自测</span> 更快，见下一节。</li></ol><figure class="pf"><div class="shot"><img src="img/doc-review-due-0.jpg" loading="lazy" decoding="async" width="780" height="460" alt="复习提醒"><div class="mk" style="left:6.67%;top:26.96%;width:86.67%;height:19.13%"><b class="">1</b></div><div class="mk" style="left:58.21%;top:58.06%;width:16.54%;height:15.65%"><b class="">2</b></div><div class="mk" style="left:76.28%;top:58.06%;width:17.05%;height:15.65%"><b class="">3</b></div></div></figure><figure class="pf"><div class="shot"><img src="img/doc-review-due-1.jpg" loading="lazy" decoding="async" width="780" height="460" alt="复习提醒"><div class="mk" style="left:40.26%;top:42.28%;width:53.07%;height:15.65%"><b class="">4</b></div></div><figcaption>复习提醒</figcaption></figure></section>
+<section class="how" id="s6-6"><h3>6.6　如何做闪卡自测</h3><ol class="steps"><li>在总览或「今日打卡」页点 <span class="k">闪卡自测 · N 张</span>。一轮最多 20 张，最该复习的排在前面。</li><li>看到卡片上的知识点名称后，先在心里或纸上回忆要点、公式、例子，再点 <span class="n">1</span> <span class="k">回忆完了，显示要点</span>。</li><li>对照你写的「我的要点」，点 <span class="n">2</span> 里的 <span class="k">完全记得</span>、<span class="k">模糊</span> 或 <span class="k">忘了</span>，自动翻到下一张。</li><li>点了「忘了」可以选个原因，再点 <span class="k">下一张</span>。</li><li>做完会显示本轮统计，点 <span class="k">完成</span>；中途想停就点 <span class="n">3</span> <span class="k">结束自测</span>。</li></ol><div class="call tip"><b>小提示</b>闪卡显示的是你自己写的「我的要点」。没写的话会提示你对照课本自查，所以学的时候顺手写两三行，复习起来快很多。</div><figure class="pf"><div class="shot"><img src="img/doc-flash-ask-0.jpg" loading="lazy" decoding="async" width="780" height="460" alt="先回忆，再显示要点"><div class="mk" style="left:7.95%;top:40.43%;width:84.10%;height:19.13%"><b class="">1</b></div></div><figcaption>先回忆，再显示要点</figcaption></figure><figure class="pf"><div class="shot"><img src="img/doc-flashcard-0.jpg" loading="lazy" decoding="async" width="780" height="460" alt="显示要点后打分"><div class="mk" style="left:4.10%;top:46.09%;width:91.79%;height:26.96%"><b class="">2</b></div><div class="mk" style="left:4.10%;top:77.39%;width:91.79%;height:15.65%"><b class="">3</b></div></div><figcaption>显示要点后打分</figcaption></figure></section>
+<section class="how" id="s6-7"><h3>6.7　如何开始番茄钟（专注计时）</h3><ol class="steps"><li>点 <span class="k">⏱ 开始专注 25 分钟</span>。这个按钮在「今日打卡」页、总览的「今日时间分配」、知识点详情和「分析 · 统计」里都有。</li><li>在弹出的科目里点 <span class="n">1</span> 你要学的那一科。每个科目下面会显示「今日已学 / 计划」分钟数。</li><li>屏幕底部出现计时条：<span class="n">2</span> <span class="k">暂停</span>（暂停后变成 <span class="k">继续</span>），<span class="n">3</span> <span class="k">结束</span> 提前结束，满 1 分钟也会记下来。</li><li>时间到了会有提示音（安卓手机还会振动），计时条上出现 <span class="k">休息5分</span> 和 <span class="k">再来一轮</span>，点 <span class="k">×</span> 关掉。</li></ol><div class="call tip"><b>小提示</b>专注时长和休息时长默认 25 分钟和 5 分钟，可以在「设置 · 学习参数」里改。计时过程中切到别的应用或锁屏，时间照样算，回来会接着显示。</div><figure class="pf"><div class="shot"><img src="img/doc-timer-pick-0.jpg" loading="lazy" decoding="async" width="780" height="460" alt="选择科目"><div class="mk" style="left:4.10%;top:37.16%;width:44.87%;height:26.02%"><b class="">1</b></div></div><figcaption>选择科目</figcaption></figure><figure class="pf"><div class="shot"><img src="img/doc-stats-0.jpg" loading="lazy" decoding="async" width="780" height="460" alt="计时中，底部的计时条"><div class="mk" style="left:70.26%;top:53.48%;width:12.05%;height:15.65%"><b class="">2</b></div><div class="mk" style="left:83.85%;top:53.48%;width:12.05%;height:15.65%"><b class="">3</b></div></div><figcaption>计时中，底部的计时条</figcaption></figure></section>
+<section class="how" id="s6-8"><div class="grp">知识清单页</div><h3>6.8　如何查找知识点</h3><ol class="steps"><li>点底部 <span class="k">知识清单</span>。</li><li>在 <span class="n">1</span> 搜索框输入关键字，比如「导数」，可以搜知识点、章节名和你写的备注。</li><li>点 <span class="n">2</span> <span class="k">只看高频</span> 只显示高频考点（标着红色「高频」）。</li><li>在 <span class="n">3</span> 这一排点科目名，只看这一科；点 <span class="k">全部</span> 看所有科目。科目名后面的百分比是掌握率。</li><li>在 <span class="n">4</span> 这一排按状态筛选：<span class="k">未学</span>、<span class="k">学过</span>、<span class="k">掌握</span>、<span class="k">需复习</span>、<span class="k">错题/难点</span>。往右滑还有 <span class="k">全部展开</span> 和 <span class="k">全部折叠</span>。</li><li>点 <span class="n">5</span> 章节标题展开或收起这一章。</li></ol><figure class="pf"><div class="shot"><img src="img/doc-list-0.jpg" loading="lazy" decoding="async" width="780" height="792" alt="知识清单页"><div class="mk" style="left:3.08%;top:8.59%;width:70.77%;height:10.61%"><b class="">1</b></div><div class="mk" style="left:75.90%;top:8.59%;width:21.03%;height:10.61%"><b class="">2</b></div><div class="mk" style="left:3.08%;top:19.19%;width:93.85%;height:11.62%"><b class="">3</b></div><div class="mk" style="left:3.08%;top:34.34%;width:93.85%;height:9.60%"><b class="">4</b></div><div class="mk" style="left:3.08%;top:76.34%;width:93.85%;height:15.21%"><b class="">5</b></div></div></figure><figure class="pf"><div class="shot"><img src="img/doc-list-1.jpg" loading="lazy" decoding="async" width="780" height="460" alt="知识清单页"><div class="mk" style="left:3.08%;top:4.05%;width:93.85%;height:26.20%"><b class="">5</b></div><div class="mk" style="left:6.15%;top:43.19%;width:14.87%;height:13.91%"><b class="">6</b></div><div class="mk" style="left:23.59%;top:34.16%;width:57.95%;height:31.97%"><b class="">7</b></div><div class="mk" style="left:84.10%;top:41.45%;width:10.26%;height:17.39%"><b class="">8</b></div></div><figcaption>知识清单页</figcaption></figure></section>
+<section class="how" id="s6-9"><h3>6.9　如何标记知识点状态</h3><ol class="steps"><li><b>快速切换：</b>点知识点左边的状态按钮（6.8 节截图中的 <span class="n">6</span>），每点一下按 未学、学过、掌握、需复习 的顺序换一种。</li><li><b>直接选：</b>点知识点文字（6.8 节截图中的 <span class="n">7</span>）打开详情，在最上面一排点你要的状态（6.11 节截图中的 <span class="n">1</span>）。</li><li><b>不用天天手动改：</b>你在任务和闪卡里自测打分时，状态会自动变化。「学过」的点连续几次都「完全记得」，会自动变成「掌握」；点「忘了」会变成「需复习」。</li></ol><div class="call tip"><b>小提示</b>刚开始用时，可以先把已经很熟的章节快速标成「掌握」，这样自动安排就不会再排它们，时间留给没学好的内容。</div></section>
+<section class="how" id="s6-10"><h3>6.10　如何手动把知识点加入今日任务</h3><ol class="steps"><li>在知识清单里找到它，点右边的 <span class="k">+</span>（6.8 节截图中的 <span class="n">8</span>），变成 <span class="k">✓</span> 就加好了。再点一次就移出。</li><li>或者打开知识点详情，点 <span class="k">加入今日任务</span>。</li></ol></section>
+<section class="how" id="s6-11"><h3>6.11　如何写要点、备注，标记错题/难点</h3><ol class="steps"><li>点知识点文字，打开详情。</li><li>在 <span class="n">2</span>「我的要点/公式」里用自己的话写下要点（最多 300 字），闪卡自测时会显示出来。</li><li>在 <span class="n">3</span>「备注」里写易错点、错题在哪一页、老师的提醒等。</li><li>这道题总错或者很难，点 <span class="n">4</span> <span class="k">标记错题/难点</span>，它会带上紫色「难点」标签，在清单里可以用「错题/难点」筛选出来。标记后这个按钮会变成 <span class="k">取消错题/难点</span>，再点一次就取消。</li><li>标记后下面会出现 <span class="n">6</span> 错因：<span class="k">概念不懂</span>、<span class="k">方法不会</span>、<span class="k">计算粗心</span>、<span class="k">审题失误</span>、<span class="k">记忆遗忘</span>，点一个或几个。</li><li>点 <span class="n">5</span> <span class="k">加入今日任务</span> 可以把它放进今天的任务；<span class="n">7</span> 可以直接开始这一科的专注计时。写完点 <span class="k">完成</span>，内容自动保存。</li></ol><figure class="pf"><div class="shot"><img src="img/doc-point-0.jpg" loading="lazy" decoding="async" width="780" height="752" alt="知识点详情"><div class="mk" style="left:4.10%;top:9.13%;width:91.79%;height:12.77%"><b class="">1</b></div><div class="mk" style="left:4.10%;top:25.62%;width:91.79%;height:19.04%"><b class="">2</b></div><div class="mk" style="left:4.10%;top:48.45%;width:91.79%;height:19.04%"><b class="">3</b></div><div class="mk" style="left:4.10%;top:79.30%;width:45.87%;height:11.70%"><b class="">4</b></div><div class="mk" style="left:52.02%;top:79.30%;width:43.87%;height:11.70%"><b class="">5</b></div></div></figure><figure class="pf"><div class="shot"><img src="img/doc-point-1.jpg" loading="lazy" decoding="async" width="780" height="460" alt="知识点详情"><div class="mk" style="left:4.10%;top:23.42%;width:91.79%;height:34.78%"><b class="">6</b></div><div class="mk" style="left:4.10%;top:73.91%;width:54.05%;height:19.13%"><b class="">7</b></div></div><figcaption>知识点详情</figcaption></figure></section>
+<section class="how" id="s6-12"><h3>6.12　如何按「提分优先」排序</h3><ol class="steps"><li>在知识清单点 <span class="n">1</span> <span class="k">⇅ 提分优先</span>。</li><li>列表会把最值得先学的知识点排在最前面，每条下面的小字 <span class="n">2</span> 说明原因，比如「差距大」「逾期 3 天」「没记住 2 次」「难点」。</li><li>一次显示 60 个，往下滑点 <span class="k">显示更多</span>。再点一次 <span class="k">⇅ 提分优先</span> 回到按章节显示。</li></ol><figure class="pf"><div class="shot"><img src="img/doc-list-prio-0.jpg" loading="lazy" decoding="async" width="780" height="570" alt="按提分优先排序"><div class="mk" style="left:3.08%;top:11.93%;width:25.93%;height:12.63%"><b class="">1</b></div><div class="mk" style="left:23.59%;top:81.93%;width:57.95%;height:6.25%"><b class="">2</b></div></div><figcaption>按提分优先排序</figcaption></figure></section>
+<section class="how" id="s6-13"><div class="grp">分析页</div><h3>6.13　如何填写诊断</h3><ol class="steps"><li>点底部 <span class="k">分析</span>，再点上方的 <span class="k">诊断</span>。</li><li>在「最近一次模考」里选 <span class="n">1</span> 考试日期，在 <span class="n">2</span> 填各科分数。成绩不全可以只填一部分。</li><li>在 <span class="n">3</span> 填「目标总分」。「各科目标」可以空着，应用会自动拆分；想统一重新拆分就点 <span class="n">4</span> <span class="k">按目标总分自动拆分</span>。</li><li>往下滑，在「每天可用学习时间」里填 <span class="n">5</span> 工作日和 <span class="n">6</span> 周末/假期每天能自己学习的小时数（不含上课）。</li><li>点 <span class="n">7</span> <span class="k">保存诊断并分配时间</span>。</li><li>页面最上面出现「诊断结果」表：每科当前分、目标、差距，以及工作日和周末每天建议学多少分钟。</li></ol><div class="call tip"><b>小提示</b>每次有新的模考成绩，就换个考试日期再填一次并保存，下面的「模考记录与趋势」会画出每科的变化。日期相同会覆盖那次成绩。想回到各科平均分配，点「清除诊断（恢复平均分配）」。</div><figure class="pf"><div class="shot"><img src="img/doc-diag-form-0.jpg" loading="lazy" decoding="async" width="780" height="830" alt="诊断：成绩和目标"><div class="mk" style="left:6.67%;top:8.43%;width:42.05%;height:10.60%"><b class="">1</b></div><div class="mk" style="left:6.67%;top:19.03%;width:86.67%;height:34.77%"><b class="">2</b></div><div class="mk" style="left:6.67%;top:81.30%;width:42.05%;height:10.60%"><b class="">3</b></div></div></figure><figure class="pf"><div class="shot"><img src="img/doc-diag-form-1.jpg" loading="lazy" decoding="async" width="780" height="460" alt="诊断：成绩和目标"><div class="mk" style="left:6.67%;top:42.32%;width:37.82%;height:15.65%"><b class="">4</b></div></div><figcaption>诊断：成绩和目标</figcaption></figure><figure class="pf"><div class="shot"><img src="img/doc-diag-form2-0.jpg" loading="lazy" decoding="async" width="780" height="460" alt="诊断：每天可用时间"><div class="mk" style="left:6.67%;top:27.90%;width:42.05%;height:19.13%"><b class="">5</b></div><div class="mk" style="left:51.28%;top:27.90%;width:42.05%;height:19.13%"><b class="">6</b></div><div class="mk" style="left:6.67%;top:53.12%;width:86.67%;height:19.13%"><b class="">7</b></div></div><figcaption>诊断：每天可用时间</figcaption></figure></section>
+<section class="how" id="s6-14"><h3>6.14　如何查看今天每科学多久</h3><ol class="steps"><li>做过诊断后，总览里会出现「今日时间分配」卡片。</li><li>点这张卡片展开，可以看到每科今天建议的分钟数、和目标差几分、今天已经专注了多少分钟。</li><li>点卡片里的 <span class="k">⏱ 开始专注</span> 直接开始计时，点 <span class="k">查看诊断</span> 回到诊断页。</li></ol><figure class="pf"><div class="shot"><img src="img/doc-alloc-0.jpg" loading="lazy" decoding="async" width="780" height="900" alt="展开后的「今日时间分配」"></div><figcaption>展开后的「今日时间分配」</figcaption></figure></section>
+<section class="how" id="s6-15"><h3>6.15　如何查看学习统计</h3><ol class="steps"><li>点 <span class="k">分析</span>，再点 <span class="k">统计</span>。</li><li>「本周专注时间」：每科这周实际专注了多少分钟，竖线表示按计划到今天应该到的位置。</li><li>「投入多但没提分？」：如果某科最近花的时间很多、进步却很少，这里会提醒你换个学法。</li><li>「错因分布」：近 4 周各种错因出现的次数，并给出针对最常见错因的建议。</li><li>「自测记录」：近 7 天完全记得、模糊、忘了各多少次和记得率。记得率长期低于 60%，说明新内容推进太快，可以少学新的、多复习。</li></ol><div class="call tip"><b>小提示</b>统计里的时间只算用「专注计时」记下的分钟，没开计时的学习不会算进去。</div></section>
+<section class="how" id="s6-16"><h3>6.16　如何每周复盘</h3><ol class="steps"><li>周日打开应用，总览会出现「今天周日，花 3 分钟做本周复盘」，点 <span class="k">开始复盘</span>。其他时间也可以点 <span class="k">分析</span> 再点 <span class="k">复盘</span>。</li><li>先看上半部分：本周专注分钟、新掌握个数、自测记得率、各科投入、错因分布，以及哪些科目落后于计划。</li><li>在「记录与调整」里，有本周模考或周测成绩就填在 <span class="n">1</span>（选填），在 <span class="n">2</span>「本周最薄弱的地方」写一两句。</li><li>点 <span class="n">4</span> <span class="k">保存并重新分配下周计划</span>，应用会用最新成绩和进度重新算各科时间，并从下周开始重排计划。只想记录不想改计划，就点 <span class="k">保存复盘</span>。</li><li>已经确认过的周默认不会被改；想连它们一起重排，先打开 <span class="n">3</span>「同时重排已确认的周」开关。</li></ol><figure class="pf"><div class="shot"><img src="img/doc-weekly-0.jpg" loading="lazy" decoding="async" width="780" height="840" alt="本周复盘"></div><figcaption>本周复盘</figcaption></figure><figure class="pf"><div class="shot"><img src="img/doc-weekly-form-0.jpg" loading="lazy" decoding="async" width="780" height="754" alt="记录与调整"><div class="mk" style="left:6.67%;top:9.10%;width:86.67%;height:38.27%"><b class="">1</b></div><div class="mk" style="left:6.67%;top:58.96%;width:86.67%;height:18.99%"><b class="">2</b></div><div class="mk" style="left:80.51%;top:83.05%;width:12.82%;height:7.96%"><b class="">3</b></div></div></figure><figure class="pf"><div class="shot"><img src="img/doc-weekly-form-1.jpg" loading="lazy" decoding="async" width="780" height="460" alt="记录与调整"><div class="mk" style="left:80.51%;top:20.92%;width:12.82%;height:13.04%"><b class="">3</b></div><div class="mk" style="left:37.82%;top:40.48%;width:55.51%;height:19.13%"><b class="">4</b></div></div><figcaption>记录与调整</figcaption></figure></section>
+<section class="how" id="s6-17"><h3>6.17　如何看学习方法建议</h3><ol class="steps"><li>点 <span class="k">分析</span>，再点 <span class="k">方法</span>，这里有主动回忆、间隔复习、交替练习、优先补短板、专注与休息、保证睡眠、每周复盘七条建议，以及这个应用是怎么帮你做到的。</li></ol></section>
+<section class="how" id="s6-18"><div class="grp">复习计划页</div><h3>6.18　如何生成和调整复习计划</h3><ol class="steps"><li>点底部 <span class="k">复习计划</span>，上面的彩色条显示一轮、二轮、冲刺各还剩几天。</li><li>点 <span class="n">1</span> <span class="k">生成复习计划</span>，应用把到高考前的知识点按章节分到每一周：一轮覆盖所有没掌握的，二轮再刷没掌握的和高频的，冲刺回到高频、需复习和错题。</li><li>每周是一张卡片，点 <span class="n">3</span> <span class="k">查看/编辑明细</span> 看这周要学哪些知识点。在明细里，点知识点后面的 <span class="n">5</span> <span class="k">下周</span> 把它挪到下一周，点 <span class="n">6</span> <span class="k">移除</span> 从这周去掉，最下面可以写「本周备注」，比如「周末做一套数学卷」。</li><li>这周的安排没问题，点 <span class="n">4</span> <span class="k">确认本周</span>。确认过的周在重新生成时会原样保留；想全部确认就点 <span class="n">2</span> <span class="k">全部确认</span>。</li><li>进度变化大了，点 <span class="k">重新生成计划</span>，只会重排「待确认」的周。</li><li>本周卡片上有 <span class="k">按本周计划安排今日</span>，点它就按这周的计划安排今天的任务。</li></ol><figure class="pf"><div class="shot"><img src="img/doc-plan-0.jpg" loading="lazy" decoding="async" width="780" height="602" alt="复习计划页"><div class="mk" style="left:6.67%;top:11.62%;width:46.15%;height:14.62%"><b class="">1</b></div><div class="mk" style="left:54.87%;top:11.62%;width:38.46%;height:14.62%"><b class="">2</b></div><div class="mk" style="left:6.67%;top:76.90%;width:28.78%;height:11.96%"><b class="">3</b></div><div class="mk" style="left:37.50%;top:76.90%;width:20.51%;height:11.96%"><b class="">4</b></div></div><figcaption>复习计划页</figcaption></figure><figure class="pf"><div class="shot"><img src="img/doc-plan-week-0.jpg" loading="lazy" decoding="async" width="780" height="460" alt="一周的明细"><div class="mk" style="left:68.20%;top:42.83%;width:11.54%;height:14.78%"><b class="">5</b></div><div class="mk" style="left:81.79%;top:42.83%;width:11.54%;height:14.78%"><b class="">6</b></div></div><figcaption>一周的明细</figcaption></figure></section>
+<section class="how" id="s6-19"><div class="grp">设置（右上角齿轮）</div><h3>6.19　如何修改选科、高考日期、每日上限</h3><ol class="steps"><li>点右上角的齿轮进入设置。</li><li>在「选科与目标」里，<span class="n">1</span> 改选科模式，<span class="n">2</span> 改选的科目。</li><li>往下滑，<span class="n">3</span> 改「高考日期」，<span class="n">4</span> 改「目标总分（选填）」，<span class="n">5</span> 改一轮、二轮结束日期，<span class="n">6</span> 改「每日任务上限（个）」（1 到 100）。</li><li>改完一定要点 <span class="n">7</span> <span class="k">保存设置</span>。</li></ol><div class="call tip"><b>小提示</b>换掉的科目进度不会删除，只是暂时不显示，以后选回来就恢复了。</div><figure class="pf"><div class="shot"><img src="img/doc-settings-0.jpg" loading="lazy" decoding="async" width="780" height="804" alt="选科与目标"><div class="mk" style="left:6.67%;top:8.50%;width:86.67%;height:41.46%"><b class="">1</b></div><div class="mk" style="left:6.67%;top:53.45%;width:86.67%;height:38.15%"><b class="">2</b></div></div><figcaption>选科与目标</figcaption></figure><figure class="pf"><div class="shot"><img src="img/doc-settings2-0.jpg" loading="lazy" decoding="async" width="780" height="824" alt="日期与每日上限"><div class="mk" style="left:6.67%;top:8.27%;width:42.05%;height:10.68%"><b class="">3</b></div><div class="mk" style="left:51.28%;top:8.27%;width:42.05%;height:10.68%"><b class="">4</b></div><div class="mk" style="left:6.67%;top:35.41%;width:42.05%;height:10.68%"><b class="">5</b></div><div class="mk" style="left:6.67%;top:54.38%;width:42.05%;height:10.68%"><b class="">6</b></div><div class="mk" style="left:6.67%;top:81.14%;width:86.67%;height:10.68%"><b class="">7</b></div></div><figcaption>日期与每日上限</figcaption></figure></section>
+<section class="how" id="s6-20"><h3>6.20　如何调整学习参数、切换深色模式和大字号</h3><ol class="steps"><li>在设置的「学习参数」里可以改：<span class="n">1</span>「新学一个知识点（分钟）」默认 25、「复习一个知识点（分钟）」默认 10，<span class="n">2</span>「专注时长（分钟）」默认 25、「休息时长（分钟）」默认 5。改完点 <span class="n">3</span> <span class="k">保存学习参数</span>。</li><li>在「显示」里打开 <span class="n">4</span>「大字号模式」开关，字会变大。</li><li>在「外观」<span class="n">5</span> 点 <span class="k">跟随系统</span>、<span class="k">浅色</span> 或 <span class="k">深色</span>。晚上学习用深色更不刺眼。</li></ol><div class="call tip"><b>小提示</b>「新学/复习一个知识点」的分钟数会影响自动安排：数字越大，每天排的知识点越少。</div><figure class="pf"><div class="shot"><img src="img/doc-pref-0.jpg" loading="lazy" decoding="async" width="780" height="812" alt="学习参数与显示"><div class="mk" style="left:6.67%;top:8.44%;width:42.05%;height:10.84%"><b class="">1</b></div><div class="mk" style="left:6.67%;top:27.68%;width:42.05%;height:10.84%"><b class="">2</b></div><div class="mk" style="left:6.67%;top:53.37%;width:86.67%;height:10.84%"><b class="">3</b></div><div class="mk" style="left:80.51%;top:84.35%;width:12.82%;height:7.39%"><b class="">4</b></div></div></figure><figure class="pf"><div class="shot"><img src="img/doc-pref-1.jpg" loading="lazy" decoding="async" width="780" height="460" alt="学习参数与显示"><div class="mk" style="left:80.51%;top:6.73%;width:12.82%;height:13.04%"><b class="">4</b></div><div class="mk" style="left:6.67%;top:39.20%;width:86.67%;height:21.74%"><b class="">5</b></div></div><figcaption>学习参数与显示</figcaption></figure><figure class="pf"><div class="shot"><img src="img/doc-dark-0.jpg" loading="lazy" decoding="async" width="780" height="840" alt="深色模式的样子"></div><figcaption>深色模式的样子</figcaption></figure></section>
+<section class="how" id="s6-21"><h3>6.21　如何打印知识清单</h3><ol class="steps"><li>在设置里找到「打印 / 导出清单」。</li><li>点 <span class="k">打印全部清单</span>、<span class="k">只打印未掌握</span> 或 <span class="k">打印错题/难点</span>。</li><li>在弹出的打印窗口里选打印机，或者选「存储为 PDF」保存到手机。</li></ol></section>
+<section class="how" id="s6-22"><h3>6.22　如何清空一科或重置全部</h3><ol class="steps"><li>在设置最下面的「清空与重置」里，<span class="n">1</span> 选一个科目，点 <span class="n">2</span> <span class="k">清空该科进度</span> 并确认，只清这一科。</li><li>点 <span class="k">重置所有数据</span> 会清空所有进度、打卡、计划和设置，要确认两次。</li><li>两种操作之前应用都会自动存一份快照，后悔了可以按 7.4 节恢复。</li></ol><figure class="pf"><div class="shot"><img src="img/doc-clear-0.jpg" loading="lazy" decoding="async" width="780" height="460" alt="清空与重置"></div><figcaption>清空与重置</figcaption></figure></section>
+<h2 id="s7" class="pb"><span class="no">7</span>进度保存与备份</h2>
+<h3 id="s7-1">7.1　你的进度存在哪里</h3>
+<p>你的所有进度（状态、要点、备注、打卡、计划、诊断）都<b>只存在这部手机的这个浏览器里</b>，不上传，也不需要账号。好处是隐私安全、没网也能用；但要注意下面几种情况会让进度丢失或看不到：</p>
+<ul class="dots"><li>换了手机，或者把应用卸载、浏览器数据清理了；</li><li>换了一个浏览器，或者在微信里打开（每个浏览器各存各的）；</li><li>打开了不同的网址或文件（每个网址、每个文件各存各的）。</li></ul>
+<p>所以请记住两件事：<b>固定从桌面图标打开</b>，<b>每周备份一次</b>。</p>
+<div class="pcard"><div class="pc-h">自动快照</div><div class="pc-r"><span>怎么来的</span><div>应用自动保存：每天第一次打开时一份，导入、重置、清空、恢复、版本更新前也各存一份</div></div><div class="pc-r"><span>保留多久</span><div>每日快照保留最近 7 天</div></div><div class="pc-r"><span>存在哪里</span><div><b>和进度在同一个浏览器里</b></div></div><div class="pc-r"><span>能防什么</span><div>点错了、误清空、导入错了</div></div></div><div class="pcard"><div class="pc-h">备份文件</div><div class="pc-r"><span>怎么来的</span><div>你自己点「一键分享备份」或「导出备份文件」</div></div><div class="pc-r"><span>保留多久</span><div>你存多久就有多久</div></div><div class="pc-r"><span>存在哪里</span><div>微信文件传输助手、网盘、电脑，随你</div></div><div class="pc-r"><span>能防什么</span><div>换手机、清理浏览器、手机坏了</div></div></div>
+<div class="call warn"><b>注意</b>快照只能防「手滑」，防不了换手机或清理浏览器，因为它和进度存在同一个地方，会一起丢。真正保险的是每周发出去的备份文件。</div>
+<section class="how" id="s7-2"><h3>7.2　如何备份（每周一次）</h3><ol class="steps"><li><b>最简单：</b>距离上次备份满 7 天，总览会出现「该备份了（每周一次）」卡片，点 <span class="n">1</span> <span class="k">一键分享备份</span>。</li><li>手机会弹出分享菜单，选<b>微信</b>，再选<b>「文件传输助手」</b>发送；也可以选网盘、QQ 或邮箱。</li><li>如果手机不支持分享文件，应用会自动改成下载备份文件（文件名像「高考打卡备份-2026-09-26.json」），或者复制备份文本，你把它粘贴发给文件传输助手就行。</li><li>暂时不想备份，点 <span class="n">2</span> <span class="k">7 天后再提醒</span>。</li><li>随时想备份，也可以到设置的「数据备份」里点 <span class="n">4</span> <span class="k">分享备份（发到微信/网盘）</span>、<span class="n">3</span> <span class="k">导出备份文件</span> 或 <span class="n">5</span> <span class="k">复制备份文本</span>。</li></ol><div class="call tip"><b>小提示</b>在微信里打开应用时没法下载文件，请用「复制备份文本」，把文字发给自己保存。</div><figure class="pf"><div class="shot"><img src="img/doc-backup-reminder-0.jpg" loading="lazy" decoding="async" width="780" height="460" alt="总览里的备份提醒"><div class="mk" style="left:6.92%;top:40.50%;width:42.15%;height:19.13%"><b class="">1</b></div><div class="mk" style="left:51.12%;top:40.50%;width:41.96%;height:19.13%"><b class="">2</b></div></div><figcaption>总览里的备份提醒</figcaption></figure><figure class="pf"><div class="shot"><img src="img/doc-backup-0.jpg" loading="lazy" decoding="async" width="780" height="696" alt="设置里的「数据备份」"><div class="mk" style="left:6.67%;top:9.88%;width:86.67%;height:12.64%"><b class="">3</b></div><div class="mk" style="left:6.67%;top:24.82%;width:86.67%;height:12.64%"><b class="">4</b></div><div class="mk" style="left:6.67%;top:39.76%;width:42.31%;height:12.64%"><b class="">5</b></div><div class="mk" style="left:51.03%;top:39.76%;width:42.31%;height:12.64%"><b class="">6</b></div><div class="mk" style="left:6.67%;top:55.28%;width:86.67%;height:20.57%"><b class="">7</b></div><div class="mk" style="left:6.67%;top:79.95%;width:23.97%;height:10.34%"><b class="">8</b></div></div><figcaption>设置里的「数据备份」</figcaption></figure></section>
+<section class="how" id="s7-3"><h3>7.3　如何导入备份（换手机或恢复）</h3><ol class="steps"><li>在新手机（或新的浏览器）上打开应用，先随便完成第一次设置。</li><li>把之前发到微信或网盘的备份文件保存到手机里。</li><li>进入设置的「数据备份」，点 <span class="k">导入备份文件</span>（7.2 节截图中的 <span class="n">6</span>），选中那个备份文件。</li><li>如果你存的是备份文本：长按复制全部文字，粘贴到下面的文本框（<span class="n">7</span>）里，再点 <span class="n">8</span> <span class="k">从文本导入</span>。</li><li>看到提示「导入将覆盖本设备当前的全部数据（导入前会自动保存一份快照），确定继续？」时点「确定」，出现「导入成功」就好了。</li></ol><div class="call tip"><b>小提示</b>备份文件可以导入到任何手机、任何浏览器，也可以导入到离线单文件版「高考知识点打卡器.html」里，旧版本的备份也能导入。</div></section>
+<section class="how" id="s7-4"><h3>7.4　如何恢复自动快照</h3><ol class="steps"><li>进入设置，往下滑到「自动快照」。</li><li>每一行是一份快照，写着保存时间、原因（如「每日自动」「重置前」），以及当时已学、掌握多少个、打卡多少天。</li><li>找到想回到的那一份，点右边的 <span class="n">1</span> <span class="k">恢复</span>，确认「用这份快照替换当前全部数据？」。</li><li>恢复之前，应用会把现在的数据也另存一份快照，所以恢复错了还能再换回来。</li></ol><figure class="pf"><div class="shot"><img src="img/doc-snapshots-0.jpg" loading="lazy" decoding="async" width="780" height="460" alt="设置里的「自动快照」"><div class="mk" style="left:81.79%;top:42.73%;width:11.54%;height:14.78%"><b class="">1</b></div></div><figcaption>设置里的「自动快照」</figcaption></figure></section>
+<h2 id="s8" class="pb"><span class="no">8</span>打不开怎么办</h2>
+<div class="side"><div class="txt"><p>如果某天网址打不开或者特别慢，按下面的顺序试：</p>
+<ol class="steps"><li><b>从手机桌面的图标打开。</b>只要之前添加过，网址打不开也能用，进度都在。这就是为什么强烈建议你第一天就添加到桌面。</li>
+<li><b>换个网络或稍后再试。</b>网址放在 GitHub 上，个别网络（部分宽带、晚高峰）会慢或连不上，Wi-Fi 和手机流量换着试试。第一次打开和添加桌面，请在网络好的时候完成。</li>
+<li><b>用离线单文件版。</b>如果你手上有「高考知识点打卡器.html」这个文件，把它保存到手机或电脑上，直接用浏览器打开就能用，完全不需要网络。它的进度和网址版是分开的，打开后到设置里导入你的备份就能接着用。</li>
+<li><b>用备份恢复。</b>在任何能打开的地方（新网址、新手机、单文件版），到设置里导入最近的备份。</li>
+<li><b>误操作想找回。</b>用「自动快照」恢复到最近 7 天里的某一天，见 7.4 节。</li></ol></div><figure class="pf"><div class="shot"><img src="img/doc-help-0.jpg" loading="lazy" decoding="async" width="780" height="840" alt="设置里也有「打不开怎么办？」"></div><figcaption>设置里也有「打不开怎么办？」</figcaption></figure></div>
+<div class="call tip"><b>小提示</b>顶部出现「新版本已就绪」时，点「点击刷新」就会更新到新版本，进度不会丢。更新前应用还会自动存一份快照。</div>
+<h2 id="s9" class="pb"><span class="no">9</span>为什么这样学更高效</h2>
+<div class="why"><div class="wy"><b>时间先给最能提分的科目</b><p>做完诊断后，应用按「离目标还差多少分」和「这科还有多少没掌握（高频内容算双倍）」给各科分配每天的时间。差距大的科目多分，但每科至少 8%、最多 35%，不会让哪科被完全放下。</p></div><div class="wy"><b>提分优先</b><p>自动安排和「提分优先」排序综合考虑：这科的时间分配、是不是高频、现在什么状态、是不是难点、没记住过几次、复习是不是过期了。每个任务下面的小字告诉你原因。</p></div><div class="wy"><b>主动回忆</b><p>合上书先回忆、先做题，再对照答案，比反复看书、划线记得牢得多。所以完成任务时要自测，闪卡也是先回忆再看要点。</p></div><div class="wy"><b>间隔复习</b><p>「学过」的内容在第 1、3、7、15 天提醒复习，快忘的时候复习一次最省时间。「需复习」的每天提醒，总是忘的点会出现得更频繁。连续都记得，就自动变成「掌握」。</p></div><div class="wy"><b>番茄钟</b><p>25 分钟专注加 5 分钟休息，手机静音放远一点。计时记录下来，你才能看清时间到底花在了哪一科。</p></div><div class="wy"><b>错题归因</b><p>错了要知道为什么：概念不懂就回课本重学并写进要点；方法不会就整理解题步骤、同类题连做 3 道；计算粗心就建易错清单、关键步骤验算；审题失误就圈关键词和条件；记忆遗忘就多用闪卡自测。</p></div><div class="wy"><b>每周复盘</b><p>每周日花几分钟看投入、记得率和错因，再让应用按最新情况重排下周计划，方向偏了能及时调回来。</p></div></div>
+<h2 id="s10" class="pb"><span class="no">10</span>知识点清单概览</h2>
+<div class="sgrid"><div class="scard"><div class="sc-h"><b>语文</b><span>161 个知识点 · 高频 29 · 20 章</span></div><div class="sc-b">文言文阅读、古代诗歌阅读、名篇名句默写（教材篇目）、现代文阅读、语言文字运用、整本书阅读、主观题答题模板、写作</div></div><div class="scard"><div class="sc-h"><b>数学</b><span>134 个知识点 · 高频 36 · 19 章</span></div><div class="sc-b">必修第一、二册，选择性必修第一、二、三册，综合与题型</div></div><div class="scard"><div class="sc-h"><b>英语</b><span>101 个知识点 · 高频 20 · 10 章</span></div><div class="sc-b">词汇、语法、阅读、语言运用、听力（按本省要求）、写作</div></div><div class="scard"><div class="sc-h"><b>物理</b><span>133 个知识点 · 高频 31 · 29 章</span></div><div class="sc-b">必修第一至三册，选择性必修第一至三册，实验</div></div><div class="scard"><div class="sc-h"><b>历史</b><span>144 个知识点 · 高频 23 · 28 章</span></div><div class="sc-b">中外历史纲要（上、下），选择性必修 1 至 3，史学方法与题型</div></div><div class="scard"><div class="sc-h"><b>化学</b><span>112 个知识点 · 高频 29 · 22 章</span></div><div class="sc-b">必修第一、二册，选择性必修 1 化学反应原理、2 物质结构与性质、3 有机化学基础，实验与综合题型</div></div><div class="scard"><div class="sc-h"><b>生物</b><span>115 个知识点 · 高频 28 · 26 章</span></div><div class="sc-b">必修 1 分子与细胞、2 遗传与进化，选择性必修 1 至 3，实验与探究</div></div><div class="scard"><div class="sc-h"><b>政治</b><span>138 个知识点 · 高频 28 · 39 章</span></div><div class="sc-b">必修 1 至 4，选择性必修 1 至 3，时政与题型</div></div><div class="scard"><div class="sc-h"><b>地理</b><span>129 个知识点 · 高频 27 · 28 章</span></div><div class="sc-b">必修第一、二册，选择性必修 1 至 3，地理技能与区域地理</div></div><div class="scard tot"><div class="sc-h"><b>合计</b><span>1167 个知识点 · 高频 251 · 221 章</span></div><div class="sc-b">应用里只显示你选的科目。</div></div></div>
+<div class="call warn"><b>注意</b>知识点按新课标、新教材（人教版 / 统编版）整理，仅供复习参考。各省考试范围略有不同，比如英语听力、初中古诗文默写、部分选学内容，请对照本省的考试说明，用不到的可以直接标成「掌握」跳过。</div>
+<h2 id="s11" class="pb"><span class="no">11</span>常见问题与已知限制</h2>
+<div class="faq"><div class="q"><b>问：一定要做诊断吗？</b><p>不做也能用，各科会平均分配时间。做了诊断，自动安排会优先补你最薄弱的科目，建议花 2 分钟做一下。</p></div><div class="q"><b>问：每天任务太多了，做不完怎么办？</b><p>在设置里把「每日任务上限（个）」调小，或者在「学习参数」里把新学一个知识点的分钟数调大；诊断里填的每天可用时间也要按实际情况填。做不完的第二天可以一键转入。</p></div><div class="q"><b>问：iPhone 计时结束为什么不振动？</b><p>iPhone 的浏览器不支持振动，计时结束时只有提示音（手机没静音时）和屏幕提示。</p></div><div class="q"><b>问：计时的时候可以切到别的应用吗？</b><p>可以，时间按开始的时刻算，切回来会接着显示。但应用不在前台时不会响铃，回到应用才会提示已完成并记下时间。</p></div><div class="q"><b>问：统计里的学习时间怎么比我实际学的少？</b><p>统计只算用「专注计时」记下的分钟。想统计准确，学习时记得开计时。</p></div><div class="q"><b>问：网址打开很慢或打不开？</b><p>网址放在 GitHub 上，个别网络会慢。添加到桌面后从图标打开，就不受网络影响了，具体见第 8 章。</p></div><div class="q"><b>问：换手机了，进度怎么搬过去？</b><p>在旧手机上点「一键分享备份」发到微信文件传输助手，再在新手机上打开应用、到设置里导入这个文件，见 7.2 和 7.3 节。</p></div><div class="q"><b>问：为什么我在另一个浏览器里打开，进度是空的？</b><p>进度按浏览器、按网址分开保存，不会自动同步。请固定从同一个桌面图标打开；要换地方用，先备份再导入。</p></div><div class="q"><b>问：自动快照能在新手机上恢复吗？</b><p>不能。快照和进度存在同一个浏览器里，只能在本机恢复。换手机要用备份文件。</p></div><div class="q"><b>问：高考日期过了，页面提示「已结束」？</b><p>到设置里把高考日期改成新的日期，再点「保存设置」。</p></div><div class="q"><b>问：在手机上怎么随时翻看这本手册？</b><p>打开应用，点右上角的齿轮进入设置，最上面就是「操作手册」，点「打开操作手册」。网页版手册可以左右滑动翻页、搜索关键词；应用添加到桌面后，没网也能看。</p></div><div class="q"><b>问：会收集我的信息吗？</b><p>不会。应用没有账号，数据只存在你的手机上，不上传。</p></div></div></template>
+<script>(function () {
+  'use strict';
+  var $ = function (s) { return document.querySelector(s); };
+  var KEY = 'gk-manual-pos', FKEY = 'gk-manual-fs';
+  var stage = $('#stage'), src = $('#src').content;
+  // ---------- 1. 按章节切页 ----------
+  var pages = [], cur = null, curCh = '';
+  var isBreak = function (n) { return n.nodeType === 1 && n.matches('h2, section.how, h3[id], .wcover'); };
+  Array.prototype.slice.call(src.childNodes).forEach(function (n) {
+    if (n.nodeType === 3 && !n.textContent.trim()) return;
+    if (!cur || isBreak(n)) {
+      // 章标题后只有一小段引言时，和第一节放在同一页
+      var small = cur && n.nodeType === 1 && !n.matches('h2, .wcover') && cur.el.firstElementChild && cur.el.firstElementChild.tagName === 'H2' && cur.el.textContent.length < 160;
+      if (!small) {
+        var el = document.createElement('article'); el.className = 'pg'; el.setAttribute('tabindex', '-1');
+        cur = { el: el }; pages.push(cur);
+      }
+    }
+    cur.el.appendChild(n);
+  });
+  var N = pages.length;
+  function label(h) {
+    if (!h) return '';
+    var no = h.querySelector('.no'); var t = h.textContent.trim();
+    if (no) t = no.textContent.trim() + ' ' + t.slice(no.textContent.trim().length).trim();
+    return t;
+  }
+  pages.forEach(function (p, i) {
+    var h2 = p.el.querySelector(':scope > h2'), h3 = p.el.querySelector('h3[id], section.how h3');
+    if (h2) curCh = label(h2);
+    p.ch = i === 0 ? '操作手册' : curCh;
+    p.lv = p.el.querySelector('.wcover') ? 0 : (h2 ? 1 : 2);
+    p.title = i === 0 ? '封面' : (h2 ? label(h2) : label(h3) || curCh);
+    p.sub = h2 && h3 ? label(h3) : '';
+    var ids = []; p.el.querySelectorAll('[id]').forEach(function (e) { ids.push(e.id); }); p.ids = ids;
+    if (i > 0) { var end = document.createElement('div'); end.className = 'pg-end'; end.textContent = i < N - 1 ? '第 ' + (i + 1) + ' / ' + N + ' 页 · 向左滑或点「下一页」继续' : '全书完 · 祝你高考顺利！'; p.el.appendChild(end); }
+    stage.appendChild(p.el);
+  });
+  // ---------- 2. 翻页 ----------
+  var at = 0, busy = null;
+  function place(i, dx, anim) {
+    var e = pages[i].el;
+    e.style.transition = anim ? 'transform .28s cubic-bezier(.2,.7,.3,1)' : 'none';
+    e.style.transform = 'translate3d(calc(' + ((i - at) * 100) + '% + ' + (dx || 0) + 'px),0,0)';
+  }
+  function layout(dx, anim) { for (var i = Math.max(0, at - 1); i <= Math.min(N - 1, at + 1); i++) place(i, dx, anim); }
+  function go(n, opt) {
+    opt = opt || {};
+    n = Math.max(0, Math.min(N - 1, n));
+    var old = at, near = Math.abs(n - old) === 1 && !opt.jump;
+    clearTimeout(busy);
+    if (n !== old) clearHl(old);
+    pages.forEach(function (p, i) {
+      var show = Math.abs(i - n) <= 1 || (near && Math.abs(i - old) <= 1);
+      if (show && !p.el.classList.contains('on')) { p.el.classList.add('on'); var a0 = at; at = old; place(i, 0, false); at = a0; }
+      if (!show) p.el.classList.remove('on');
+    });
+    at = n;
+    void stage.offsetWidth;
+    layout(0, near);
+    busy = setTimeout(function () { pages.forEach(function (p, i) { if (Math.abs(i - at) > 1) p.el.classList.remove('on'); }); }, 320);
+    if (opt.top) pages[n].el.scrollTop = 0;
+    update();
+  }
+  function update() {
+    $('#ind').textContent = (at + 1) + ' / ' + N;
+    $('#bPrev').disabled = at === 0; $('#bNext').disabled = at === N - 1;
+    $('#ttl').textContent = pages[at].ch;
+    try { localStorage.setItem(KEY, JSON.stringify({ i: at, id: pages[at].ids[0] || '' })); } catch (e) {}
+    if (history.replaceState) history.replaceState(null, '', '#p' + (at + 1));
+    var tb = $('#tocList').children; for (var k = 0; k < tb.length; k++) tb[k].classList.toggle('cur', +tb[k].dataset.p === at);
+  }
+  $('#bPrev').onclick = function () { go(at - 1); };
+  $('#bNext').onclick = function () { go(at + 1); };
+  document.addEventListener('keydown', function (e) {
+    if (e.target.tagName === 'INPUT') return;
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') go(at - 1);
+    else if (e.key === 'ArrowRight' || e.key === 'PageDown') go(at + 1);
+  });
+  // 手指左右滑动翻页（上下滑动照常滚动页面）
+  var sx = 0, sy = 0, dx = 0, lock = null, t0 = 0, multi = false;
+  stage.addEventListener('touchstart', function (e) {
+    multi = e.touches.length > 1; if (multi) return;
+    sx = e.touches[0].clientX; sy = e.touches[0].clientY; dx = 0; lock = null; t0 = Date.now();
+  }, { passive: true });
+  stage.addEventListener('touchmove', function (e) {
+    if (multi || e.touches.length > 1) { multi = true; return; }
+    var mx = e.touches[0].clientX - sx, my = e.touches[0].clientY - sy;
+    if (lock === null && (Math.abs(mx) > 8 || Math.abs(my) > 8)) lock = Math.abs(mx) > Math.abs(my) * 1.15 ? 'h' : 'v';
+    if (lock === 'h') {
+      if (e.cancelable) e.preventDefault();
+      dx = mx; if ((at === 0 && dx > 0) || (at === N - 1 && dx < 0)) dx /= 3;
+      layout(dx, false);
+    }
+  }, { passive: false });
+  function endSwipe() {
+    if (lock === 'h') {
+      var v = Math.abs(dx) / Math.max(1, Date.now() - t0), W = stage.clientWidth;
+      if ((dx < -W * 0.18 || (dx < -24 && v > 0.35)) && at < N - 1) go(at + 1);
+      else if ((dx > W * 0.18 || (dx > 24 && v > 0.35)) && at > 0) go(at - 1);
+      else layout(0, true);
+      stage._swiped = Date.now();
+    }
+    lock = null;
+  }
+  stage.addEventListener('touchend', endSwipe); stage.addEventListener('touchcancel', endSwipe);
+  // 点屏幕左右边缘翻页
+  stage.addEventListener('click', function (e) {
+    if (stage._swiped && Date.now() - stage._swiped < 400) return;
+    if (e.target.closest('a, button, input, textarea, label')) return;
+    var sel = window.getSelection && String(window.getSelection()); if (sel) return;
+    var r = stage.getBoundingClientRect(), x = e.clientX - r.left, edge = Math.min(64, r.width * 0.16);
+    if (x < edge) go(at - 1); else if (x > r.width - edge) go(at + 1);
+  });
+  // ---------- 3. 目录 ----------
+  var toc = $('#tocList');
+  pages.forEach(function (p, i) {
+    if (i === 0) return;
+    var b = document.createElement('button'); b.className = 'l' + p.lv; b.dataset.p = i;
+    b.innerHTML = '<span></span><span class="tp">' + (i + 1) + '</span>'; b.firstChild.textContent = p.title;
+    b.onclick = function () { closePanels(); go(i, { jump: true, top: true }); };
+    toc.appendChild(b);
+    if (p.sub) { var b2 = document.createElement('button'); b2.className = 'l2'; b2.dataset.p = i; b2.innerHTML = '<span></span><span class="tp">' + (i + 1) + '</span>'; b2.firstChild.textContent = p.sub; b2.onclick = b.onclick; toc.appendChild(b2); }
+  });
+  function openPanel(el) { el.classList.add('on'); $('#mask').classList.add('on'); }
+  function closePanels() { $('#drawer').classList.remove('on'); $('#search').classList.remove('on'); $('#mask').classList.remove('on'); }
+  $('#bToc').onclick = function () { openPanel($('#drawer')); var c = toc.querySelector('.cur'); if (c) c.scrollIntoView({ block: 'center' }); };
+  $('#ind').onclick = $('#bToc').onclick;
+  $('#mask').onclick = closePanels; $('#dX').onclick = closePanels;
+  // ---------- 4. 搜索 ----------
+  function textNodes(root) {
+    var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: function (n) { return n.parentNode.closest('.mk, .pg-end, script, style') ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT; } });
+    var out = [], n, pos = 0, spaced = '', lastB = null;
+    while ((n = w.nextNode())) {
+      out.push({ n: n, s: pos }); pos += n.nodeValue.length;
+      var blk = n.parentNode.closest('.no, p, li, h2, h3, div, figcaption, td, section'); // 块与块之间补一个空格，摘要更好读
+      if (lastB && blk !== lastB && !/\s$/.test(spaced)) spaced += ' ';
+      spaced += n.nodeValue; lastB = blk;
+    }
+    return { list: out, text: out.map(function (o) { return o.n.nodeValue; }).join(''), spaced: spaced };
+  }
+  var TX = pages.map(function (p) { return textNodes(p.el).spaced; });
+  var LOW = TX.map(function (t) { return t.toLowerCase(); });
+  var hits = [], hitAt = -1, lastQ = '';
+  function esc(s) { return s.replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function find(q) {
+    var res = []; q = q.toLowerCase();
+    LOW.forEach(function (t, pi) { var k = 0, i, idx = 0; while ((i = t.indexOf(q, k)) >= 0) { res.push({ p: pi, i: i, k: idx++ }); k = i + q.length; } });
+    return res;
+  }
+  function renderResults(q) {
+    var box = $('#sRes'), info = $('#sInfo');
+    q = q.trim(); lastQ = q; box.innerHTML = '';
+    $('#sHints').style.display = q ? 'none' : 'flex';
+    if (!q) { info.textContent = '输入关键词，在全部 ' + N + ' 页里查找。'; hits = []; return; }
+    hits = find(q);
+    var pgs = {}; hits.forEach(function (h) { pgs[h.p] = 1; });
+    info.textContent = hits.length ? '找到 ' + hits.length + ' 处，在 ' + Object.keys(pgs).length + ' 页里。点一条结果就跳过去。' : '没有找到「' + q + '」，换个说法试试，比如「备份」「番茄钟」「快照」。';
+    var frag = document.createDocumentFragment();
+    hits.slice(0, 300).forEach(function (h, j) {
+      var t = TX[h.p], a = Math.max(0, h.i - 18), b = Math.min(t.length, h.i + q.length + 30);
+      var b1 = document.createElement('button'); b1.className = 'sr';
+      b1.innerHTML = '<div class="st"><span></span><span>第 ' + (h.p + 1) + ' 页</span></div><div class="ss">' + (a > 0 ? '…' : '') + esc(t.slice(a, h.i)).replace(/\s+/g, ' ') + '<mark>' + esc(t.substr(h.i, q.length)) + '</mark>' + esc(t.slice(h.i + q.length, b)).replace(/\s+/g, ' ') + (b < t.length ? '…' : '') + '</div>';
+      b1.querySelector('.st span').textContent = pages[h.p].title;
+      b1.onclick = function () { showHit(j); };
+      frag.appendChild(b1);
+    });
+    box.appendChild(frag);
+  }
+  function clearHl(pi) {
+    var el = pages[pi] && pages[pi].el; if (!el) return;
+    el.querySelectorAll('mark.hl').forEach(function (m) { var p = m.parentNode; while (m.firstChild) p.insertBefore(m.firstChild, m); p.removeChild(m); p.normalize(); });
+  }
+  function highlight(pi, q, k) {
+    clearHl(pi);
+    var el = pages[pi].el, tn = textNodes(el), low = tn.text.toLowerCase(), ql = q.toLowerCase(), ms = [], i, s = 0;
+    while ((i = low.indexOf(ql, s)) >= 0) { ms.push(i); s = i + ql.length; }
+    var target = null;
+    for (var m = ms.length - 1; m >= 0; m--) {
+      var a = ms[m], b = a + ql.length;
+      for (var j = tn.list.length - 1; j >= 0; j--) {
+        var o = tn.list[j], os = o.s, oe = o.s + o.n.nodeValue.length;
+        if (oe <= a || os >= b) continue;
+        var r = document.createRange(); r.setStart(o.n, Math.max(a, os) - os); r.setEnd(o.n, Math.min(b, oe) - os);
+        var mk = document.createElement('mark'); mk.className = 'hl' + (m === k ? ' cur' : '');
+        try { r.surroundContents(mk); } catch (e) { continue; }
+        if (m === k) target = mk;
+      }
+    }
+    return target;
+  }
+  function showHit(j) {
+    if (!hits.length) return;
+    hitAt = (j + hits.length) % hits.length; var h = hits[hitAt];
+    closePanels();
+    go(h.p, { jump: Math.abs(h.p - at) !== 1 });
+    var t = highlight(h.p, lastQ, h.k);
+    if (t) setTimeout(function () { t.scrollIntoView({ block: 'center' }); }, 30);
+    $('#hbT').textContent = '「' + lastQ + '」 ' + (hitAt + 1) + ' / ' + hits.length;
+    $('#hitbar').classList.add('on');
+  }
+  $('#hbPrev').onclick = function () { showHit(hitAt - 1); };
+  $('#hbNext').onclick = function () { showHit(hitAt + 1); };
+  $('#hbX').onclick = function () { $('#hitbar').classList.remove('on'); clearHl(at); };
+  var qi = $('#q'), tmr;
+  qi.addEventListener('input', function () { clearTimeout(tmr); tmr = setTimeout(function () { renderResults(qi.value); }, 150); });
+  qi.addEventListener('keydown', function (e) { if (e.key === 'Enter') { qi.blur(); renderResults(qi.value); } });
+  $('#bSearch').onclick = function () { openPanel($('#search')); if (!qi.value) renderResults(''); setTimeout(function () { qi.focus(); }, 60); };
+  $('#sClose').onclick = closePanels;
+  $('#sHints').addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) { qi.value = b.textContent; renderResults(qi.value); } });
+  // ---------- 5. 字号 ----------
+  var FS = [17, 19, 21, 15], fsI = 0;
+  try { fsI = Math.max(0, FS.indexOf(+localStorage.getItem(FKEY))); } catch (e) {}
+  function setFs() { document.documentElement.style.setProperty('--fs', FS[fsI] + 'px'); try { localStorage.setItem(FKEY, FS[fsI]); } catch (e) {} }
+  $('#bFont').onclick = function () { fsI = (fsI + 1) % FS.length; setFs(); toast('字号：' + ['标准', '大', '特大', '小'][fsI]); };
+  setFs();
+  // ---------- 6. 提示条 ----------
+  var tt;
+  function toast(msg, btn, fn) {
+    var el = $('#toast'); el.innerHTML = '<span></span>' + (btn ? '<button></button>' : ''); el.firstChild.textContent = msg;
+    if (btn) { el.lastChild.textContent = btn; el.lastChild.onclick = function () { el.classList.remove('on'); fn(); }; }
+    el.classList.add('on'); clearTimeout(tt); tt = setTimeout(function () { el.classList.remove('on'); }, btn ? 5000 : 1600);
+  }
+  // 封面按钮
+  var bs = document.querySelector('[data-go=start]'); if (bs) bs.onclick = function () { go(1, { top: true }); };
+  var bt = document.querySelector('[data-go=toc]'); if (bt) bt.onclick = $('#bToc').onclick;
+  // ---------- 7. 打开时回到上次读到的页 ----------
+  var start = 0, m = /^#p(\d+)$/.exec(location.hash), resumed = false;
+  if (m) start = +m[1] - 1;
+  else if (location.hash.length > 1) { pages.forEach(function (p, i) { if (p.ids.indexOf(location.hash.slice(1)) >= 0) start = i; }); }
+  else {
+    try {
+      var sv = JSON.parse(localStorage.getItem(KEY) || 'null');
+      if (sv) { start = sv.i; if (sv.id) pages.forEach(function (p, i) { if (p.ids[0] === sv.id) start = i; }); resumed = start > 0; }
+    } catch (e) {}
+  }
+  go(start, { jump: true });
+  if (resumed) toast('已回到上次读到的第 ' + (at + 1) + ' 页', '从头看', function () { go(0, { jump: true, top: true }); });
+  window.__man = { go: go, get at() { return at; }, N: N, pages: pages, find: find };
+})();
+</script></body></html>
