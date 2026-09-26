@@ -182,9 +182,9 @@ details.subj>summary::-webkit-details-marker{display:none}
 .pick{display:none}
 .sf[data-mode="312"] .p312,.sf[data-mode="33"] .p33,.sf[data-mode="li"] .pli,.sf[data-mode="wen"] .pwen{display:block}
 .hint{font-size:13px;color:var(--sub);background:var(--bg);padding:10px;border-radius:10px;margin:12px 0 0}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
 .f{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--sub)}
-.f input{height:44px;border:1px solid var(--line);border-radius:10px;padding:0 10px;background:var(--card);font-size:16px;color:var(--text);min-width:0;width:100%}
+.f input{-webkit-appearance:none;appearance:none;display:block;max-width:100%;height:44px;border:1px solid var(--line);border-radius:10px;padding:0 10px;background:var(--card);font-size:16px;color:var(--text);min-width:0;width:100%}
 textarea.inp{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;background:var(--card);font-size:15px;min-height:70px}
 .note-box{background:#fff9db;color:#8a6d00;border-radius:12px;padding:12px 14px;font-size:14px;margin-bottom:12px}
 @media (prefers-color-scheme:dark){.note-box{background:#3a3217;color:#ffe066}}
@@ -670,6 +670,7 @@ const MODES = {
   'li': { name: '老高考 理科', desc: '语数英 + 理综' },
   'wen': { name: '老高考 文科', desc: '语数英 + 文综' }
 };
+const MODE_KEYS = ['312', '33', 'li', 'wen']; // 固定显示顺序（纯数字键在对象中会被自动排序）
 function fullScore(sk, mode) {
   if (REQUIRED.indexOf(sk) >= 0) return 150;
   if (mode === 'li') return { wuli: 110, huaxue: 100, shengwu: 90 }[sk] || 100;
@@ -835,7 +836,7 @@ function cc(type, name, k, on) { return '<label class="cc"><input type="' + type
 function setupFormHTML(c) {
   c = Object.assign(defaultCfg(), c || {});
   return '<div class="sf" data-mode="' + c.mode + '">' +
-    '<div class="fl">选科模式</div><div class="modes">' + Object.keys(MODES).map(k => '<label class="mode"><input type="radio" name="mode" value="' + k + '"' + (c.mode === k ? ' checked' : '') + '><span><b>' + MODES[k].name + '</b><small>' + MODES[k].desc + '</small></span></label>').join('') + '</div>' +
+    '<div class="fl">选科模式</div><div class="modes">' + MODE_KEYS.map(k => '<label class="mode"><input type="radio" name="mode" value="' + k + '"' + (c.mode === k ? ' checked' : '') + '><span><b>' + MODES[k].name + '</b><small>' + MODES[k].desc + '</small></span></label>').join('') + '</div>' +
     '<div class="pick p312"><div class="fl">首选科目 <small>（二选一）</small></div><div class="chipset">' + ['wuli', 'lishi'].map(k => cc('radio', 'first', k, c.first === k)).join('') + '</div>' +
     '<div class="fl">再选科目 <small>（四选二）</small></div><div class="chipset">' + ['huaxue', 'shengwu', 'zhengzhi', 'dili'].map(k => cc('checkbox', 'second', k, (c.second || []).indexOf(k) >= 0)).join('') + '</div></div>' +
     '<div class="pick p33"><div class="fl">选考科目 <small>（六选三）</small></div><div class="chipset">' + ['wuli', 'huaxue', 'shengwu', 'zhengzhi', 'lishi', 'dili'].map(k => cc('checkbox', 'three', k, (c.three || []).indexOf(k) >= 0)).join('') + '</div></div>' +
@@ -843,7 +844,7 @@ function setupFormHTML(c) {
     '<div class="pick pwen"><p class="hint">考试科目：语文、数学、英语（各150）+ 文科综合300（政治、历史、地理各100）</p></div>' +
     '<div class="fl">考试与目标</div><div class="grid2">' +
     '<label class="f"><span>高考日期</span><input type="date" name="exam" value="' + esc(c.exam) + '"></label>' +
-    '<label class="f"><span>目标总分（选填，满分750）</span><input type="number" name="target" inputmode="numeric" min="0" max="750" placeholder="如 600" value="' + esc(c.target == null ? '' : c.target) + '"></label></div>' +
+    '<label class="f"><span>目标总分（选填）</span><input type="number" name="target" inputmode="numeric" min="0" max="750" placeholder="如 600" value="' + esc(c.target == null ? '' : c.target) + '"></label></div>' +
     '<div class="fl">复习阶段 <small>默认：一轮至考前约100天，二轮至考前4周</small></div><div class="grid2">' +
     '<label class="f"><span>一轮结束日期</span><input type="date" name="r1" value="' + esc(c.r1) + '"></label>' +
     '<label class="f"><span>二轮结束日期</span><input type="date" name="r2" value="' + esc(c.r2) + '"></label>' +
